@@ -170,7 +170,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>测试报告详情</title>
+    <title>测试报告</title>
     <style type="text/css">
         body {
             font-family: "Microsoft YaHei", Arial, sans-serif;
@@ -279,12 +279,12 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
 </head>
 <body>
     <div class="report-header">
-        <h1 class="report-title">测试报告详情</h1>
+        <h1 class="report-title">测试报告</h1>
         <div class="report-meta">
             执行时间：)"
         << current_time << R"(<br>
             执行范围：)"
-        << (config.case_type.empty() ? "所有auto开头的测试组" : config.case_type) << R"(
+        << (config.case_type.empty() ? "自动化测试用例" : config.case_type) << R"(
         </div>
     </div>
 
@@ -355,7 +355,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         <thead>
             <tr>
                 <th>模块</th>
-                <th>测试用例名称</th>
+                <th>测试用例</th>
                 <th>执行结果</th>
                 <th>执行时间(ms)</th>
                 <th>详细信息</th>
