@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+package controller;
+
+
+message GetMaxVelocityResponse {
+  double linear_velocity = 1;
+  double angular_velocity = 2;
+}
+
+message SetMaxVelocityRequest {
+  double linear_velocity = 1;
+  double angular_velocity = 2;
+}
+
+message SetMaxVelocityResponse {
+  bool success = 1;
+}
+
+
+
+service ClassisService {
+  rpc RequestSetMaxVelocity(SetMaxVelocityRequest) returns (SetMaxVelocityResponse) {}
+  rpc RequestGetMaxVelocity(google.protobuf.Empty) returns (GetMaxVelocityResponse) {}
+}
+

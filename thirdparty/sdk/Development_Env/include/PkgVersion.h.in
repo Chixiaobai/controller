@@ -1,0 +1,8 @@
+#pragma once
+
+#define PKG_BUILD_TIME	"@BUILD_TIME@"
+#define PKG_GIT_BRANCH	"@GIT_BRANCH@"
+#define PKG_GIT_HASH	"@GIT_HASH@"
+#define PKG_GIT_TAG	"@GIT_TAG@"
+#define PKG_GIT_INFO	"@GIT_BRANCH@_@GIT_HASH@"
+

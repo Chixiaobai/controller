@@ -1,0 +1,7 @@
+﻿#pragma once
+
+#include "ComponentStub.h"
+#include "IEventServiceInner.h"
+
+#define DECLARE_UNIQUE_EVENTSERVICE_STUB() DECLARE_UNIQUE_COMPONENT_STUB(EventService)
+#define IMPLEMENT_UNIQUE_EVENTSERVICE_STUB() IMPLEMENT_UNIQUE_COMPONENT_STUB(EventService, UNIQUE_EVENTSERVICE_NAME)

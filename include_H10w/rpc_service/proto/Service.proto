@@ -1,0 +1,181 @@
+syntax = "proto3";
+
+package H10WService;
+
+// 抱闸控制请求
+message BrakeControlRequest {
+  // 抱闸状态
+  enum BRAKE_STATE {
+    BRAKE_OFF = 0; // 关闭
+    BRAKE_ON = 1;  // 开启
+  }
+
+  BRAKE_STATE request_state = 1; // 请求状态
+  bool auto_clear_error = 2;     // 是否自动清除错误
+}
+
+// 响应结构
+message BrakeControlResponse {
+  bool success = 1;         // 操作是否成功
+  string error_code = 2;    // 错误代码(成功时为空)
+  string error_message = 3; // 错误描述(成功时为空)
+  repeated string failed_devices =
+      4; // 失败设备列表，逗号分隔格式(如：["Elevator", "Head"])
+}
+
+// 上电/下电控制请求
+message PowerControlRequest {
+  // 电源状态
+  enum POWER_STATE {
+    POWER_ON = 0;  // 上电
+    POWER_OFF = 1; // 下电
+  }
+
+  POWER_STATE request_state = 1; // 请求状态
+}
+
+// 响应结构
+message PowerControlResponse {
+  bool success = 1;         // 操作是否成功
+  string error_code = 2;    // 错误代码(成功时为空)
+  string error_message = 3; // 错误描述(成功时为空)
+}
+
+// Part索引
+enum PART_INDEX {
+  PART_INDEX_UNKNOWN = 0; // 无效值
+  HEAD_INDEX = 2;         // 头部
+  LEFT_ARM_INDEX = 6;     // 左臂
+  RIGHT_ARM_INDEX = 7;    // 右臂
+}
+
+// 关节索引
+enum JOINT_INDEX {
+  JOINT_INDEX_UNKNOWN = 0; // 无效值
+  L_ARM_JOINT1 = 1;        // 左臂1关节
+  L_ARM_JOINT2 = 2;        // 左臂2关节
+  L_ARM_JOINT3 = 3;        // 左臂3关节
+  L_ARM_JOINT4 = 4;        // 左臂4关节
+  L_ARM_JOINT5 = 5;        // 左臂5关节
+  L_ARM_JOINT6 = 6;        // 左臂6关节
+  L_ARM_JOINT7 = 7;        // 左臂7关节
+  R_ARM_JOINT1 = 8;        // 右臂1关节
+  R_ARM_JOINT2 = 9;        // 右臂2关节
+  R_ARM_JOINT3 = 10;       // 右臂3关节
+  R_ARM_JOINT4 = 11;       // 右臂4关节
+  R_ARM_JOINT5 = 12;       // 右臂5关节
+  R_ARM_JOINT6 = 13;       // 右臂6关节
+  R_ARM_JOINT7 = 14;       // 右臂7关节
+  HEAD_PITCH = 15;         // 头部俯仰关节
+  HEAD_YAW = 16;           // 头部旋转关节
+  ELEVATOR_MOTOR = 17;     // 升降机构
+  L_GRIPPER_MOTOR = 18;    // 左臂夹爪
+  R_GRIPPER_MOTOR = 19;    // 右臂夹爪
+}
+
+// 读取扭矩零偏请求
+message TorqueOffSetRequest {
+  PART_INDEX part_index = 1; // 请求读取扭矩零偏的部位
+}
+
+// 读取扭矩零偏请求响应结构
+message TorqueOffSetResponse {
+  bool success = 1;                    // 操作是否成功
+  string error_code = 2;               // 错误代码(成功时为空)
+  repeated float a_channel_offset = 3; //通道A扭矩零偏
+  repeated float b_channel_offset = 4; //通道B扭矩零偏
+}
+
+// 读取错误码请求
+message GetErrorCodeRequest {
+  PART_INDEX part_index = 1; // 请求读取错误码的部位
+}
+
+// 读取错误码请求响应结构
+message GetErrorCodeResponse {
+  bool success = 1;                     // 操作是否成功
+  string error_code = 2;                // 错误代码(成功时为空)
+  repeated uint32 joint_error_code = 3; //关节错误码
+}
+
+// 关节位置零位标定请求
+message CalibrationRequest {
+  JOINT_INDEX joint_index = 1; // 请求标零的关节索引, 暂不支持升降机构和夹爪
+}
+
+// 响应结构
+message CalibrationResponse {
+  bool success = 1; // 操作是否成功
+}
+
+// 保存参数请求
+message SaveParameterRequest {
+  JOINT_INDEX joint_index = 1; // 请求保存参数的关节索引, 暂不支持升降机构和夹爪
+}
+
+// 保存参数响应结构
+message SaveParameterResponse {
+  bool success = 1; // 操作是否成功
+}
+
+// 清除错误请求
+message ClearErrorRequest {
+  JOINT_INDEX joint_index = 1; // 清除错误的关节索引, 暂不支持升降机构和夹爪
+}
+
+// 清除错误响应结构
+message ClearErrorResponse {
+  bool success = 1; // 操作是否成功
+}
+
+// 位置限位配置请求(软限位)
+message SetJointSoftLimitRequest {
+  repeated JOINT_INDEX joint_index = 1; // 关节索引
+  repeated double min_position = 2;     // 最小位置限制
+  repeated double max_position = 3;     // 最大位置限制
+}
+
+// 位置限位配置响应(软限位)
+message SetJointSoftLimitResponse {
+  bool success = 1; // 操作是否成功
+}
+
+// 位置限位读取请求(软限位)
+message GetJointSoftLimitRequest {
+  repeated JOINT_INDEX joint_index = 1; // 关节索引
+}
+
+// 位置限位读取响应(软限位)
+message GetJointSoftLimitResponse {
+  repeated double min_position = 2; // 最小位置限制
+  repeated double max_position = 3; // 最大位置限制
+}
+
+// 位置限位读取请求(硬限位)
+message GetJointHardLimitRequest {
+  repeated JOINT_INDEX joint_index = 1; // 关节索引
+}
+
+// 位置限位读取响应(硬限位)
+message GetJointHardLimitResponse {
+  repeated double min_position = 2; // 最小位置限制
+  repeated double max_position = 3; // 最大位置限制
+}
+
+// 设备控制服务 批量控制设备抱闸状态
+service DeviceControlService {
+  rpc ControlBrakeStatus(BrakeControlRequest) returns (BrakeControlResponse);
+  rpc ControlPowerStatus(PowerControlRequest) returns (PowerControlResponse);
+  rpc GetTorqueOffset(TorqueOffSetRequest) returns (TorqueOffSetResponse);
+  rpc GetJointErrorCode(GetErrorCodeRequest) returns (GetErrorCodeResponse);
+  rpc CalibrationZero(CalibrationRequest) returns (CalibrationResponse);
+  rpc SaveParameter(SaveParameterRequest) returns (SaveParameterResponse);
+  rpc ClearError(ClearErrorRequest) returns (ClearErrorResponse);
+  rpc Calibration90Deg(CalibrationRequest) returns (CalibrationResponse);
+  rpc SetJointSoftLimit(SetJointSoftLimitRequest)
+      returns (SetJointSoftLimitResponse);
+  rpc GetJointSoftLimit(GetJointSoftLimitRequest)
+      returns (GetJointSoftLimitResponse);
+  rpc GetJointHardLimit(GetJointHardLimitRequest)
+      returns (GetJointHardLimitResponse);
+}

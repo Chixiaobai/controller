@@ -1,0 +1,10 @@
+﻿<?xml version = "1.0" encoding = "utf-8" ?>
+<ModuleDef>
+	<Variants>
+		<Variant name="COM" type="string" value="/dev/ttyUSB0" />
+		<Variant name="Head" type="string" value="" />
+		<Variant name="BaudRate" type="unsigned int" value="115200" />
+		<Variant name="Parity" type="unsigned char" value="2" />
+		<Variant name="StopBit" type="unsigned char" value="0" />
+	</Variants>
+</ModuleDef>

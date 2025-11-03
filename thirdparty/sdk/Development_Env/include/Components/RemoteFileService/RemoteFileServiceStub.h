@@ -1,0 +1,8 @@
+﻿#pragma once
+
+#include "IRemoteFileServiceInner.h"
+#include "ComponentStub.h"
+
+#define DECLARE_UNIQUE_REMOTEFILESERVICE_STUB() DECLARE_UNIQUE_COMPONENT_STUB(RemoteFileService)
+#define IMPLEMENT_UNIQUE_REMOTEFILESERVICE_STUB() \
+    IMPLEMENT_UNIQUE_COMPONENT_STUB(RemoteFileService, UNIQUE_REMOTEFILESERVICE_NAME)

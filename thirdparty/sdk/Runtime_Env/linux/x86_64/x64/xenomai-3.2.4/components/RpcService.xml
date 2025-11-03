@@ -1,0 +1,10 @@
+﻿<?xml version = "1.0" encoding = "utf-8" ?>
+<Components>
+	<Component>
+		<Dependence source="ModuleVersionManager" />
+		<Dependence source="LanguageSupport" />
+		<Dependence source="LogSupport" />
+		<Dependence source="FrameworkCore" />
+		<Dependence source="HardwareManager" />
+	</Component>
+</Components>

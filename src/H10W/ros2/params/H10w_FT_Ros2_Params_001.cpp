@@ -1,0 +1,90 @@
+#include <signal.h>
+#include "H10wRosClient.h"
+#include "h1_sdk_base.h"
+
+static H10wRosClient *g_pTester = nullptr;
+
+static void consoleHandler(int intSigNum)
+{
+    if ((SIGINT == intSigNum) || (SIGTERM == intSigNum))
+    {
+
+        if (nullptr != g_pTester)
+        {
+            g_pTester->stopTest();
+        }
+    }
+}
+
+static void setConsoleHandler()
+{
+    struct sigaction stSigAction;
+    stSigAction.sa_handler = &consoleHandler;
+    sigemptyset(&stSigAction.sa_mask);
+    stSigAction.sa_flags = 0;
+    if (sigaction(SIGINT, &stSigAction, nullptr) != 0 || sigaction(SIGTERM, &stSigAction, nullptr) != 0)
+    {
+        printf("Fail to set callback function for console application!\n");
+        fflush(stdout);
+    }
+}
+
+// 定义测试用例的描述, 方便用户了解测试内容
+void H10w_FT_Ros2_Params_001() { printf("测试获取软限位\n"); }
+
+// 定义测试实体，多个用例可以关联同一个实体
+void h10w_ft_ros2_params_001()
+{
+    H10w_FT_Ros2_Params_001();
+    setConsoleHandler();
+
+    std::vector<std::string> context; // 测试任务内容
+    std::vector<bool> num;            // 测试任务结果
+    std::vector<std::string> vec;     // 存储错误信息容器
+
+    auto node = std::make_shared<H10wRosClient>(IpPort);
+
+    // 启动spin循环（单独线程，避免阻塞主逻辑）
+    std::thread spin_thread([&node]()
+                            { rclcpp::spin(node); });
+    while (rclcpp::ok() && !node->has_move_msg())
+    {
+        std::this_thread::sleep_for(10ms);
+    }
+
+    std::vector<controller::msg::JointParams> joint_params;
+    if (node->get_joint_soft_limit(joint_params))
+    {
+        std::cout << "get_joint_soft_limit succeed!" << std::endl;
+        for (const auto &param : joint_params)
+        {
+            std::cout << "joint index: " << param.joint_index;
+            std::cout << "max limit: " << param.max_pos;
+            std::cout << "min limit: " << param.min_pos << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "get_joint_soft_limit failed!" << std::endl;
+    }
+
+    node->stopTest();
+    // 等待spin线程结束
+
+    // 解析测试结果
+    Analysis_Test_Task_Result(num, "H10w_FT_Ros2_Params_001");
+    if (num.at(num.size() - 1))
+    {
+        setCaseSucceed("H10w_FT_Ros2_Params_001");
+    }
+    else
+    {
+        setCaseFailed("H10w_FT_Ros2_Params_001");
+    }
+
+    sleepMilliseconds(1000);
+}
+
+// 注册测试用例及测试方法
+REGIST_CASE_FUNCTION(h10w_ft_ros2_params_001)
+REGIST_CASE(H10w_FT_Ros2_Params_001, h10w_ft_ros2_params_001, H10w_FT_Ros2_Params_001);

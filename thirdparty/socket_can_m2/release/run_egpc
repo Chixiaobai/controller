@@ -1,0 +1,120 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:				EGPC-B4S1
+# Required-Start:		$local_fs $remote_fs $syslog $network $time
+# Required-Stop:		$local_fs $remote_fs $syslog $network 
+# Default-Start:		2 3 4 5
+# Default-Stop:			0 1 6
+# Short-Description:	INNODISK CAN Bus Starter
+# Description:			INNODISK CAN Bus Starter, used for setup egpc canbus
+### END INIT INFO
+
+do_start()
+{
+    sudo rmmod f81601
+    sudo insmod /etc/init.d/f81601.ko
+
+    timeout=60
+
+    # check can0
+    str_can0=""
+    check_times=0
+    while [ "${str_can0}" == "" ]
+    do
+        sudo ip link set can0 type can restart-ms 100
+        sudo ip link set can0 type can bitrate 1000000 sample-point 0.75
+        sudo ip link set can0 type can berr-reporting on
+        sudo ifconfig can0 txqueuelen 1000
+        sudo tc qdisc add dev can0 root handle 1: pfifo
+        sudo ifconfig can0 up
+        sleep 0.2
+        str_can0=$(ifconfig |grep can0)
+        check_times=$((${check_times}+1))
+        if [ ${check_times} -ge ${timeout} ]; then
+            exit 0
+        fi
+    done
+    echo "egpc: can0 up!" > /dev/kmsg
+
+    # check can1
+    str_can1=""
+    check_times=0
+    while [ "${str_can1}" == "" ]
+    do
+        sudo ip link set can1 type can restart-ms 100
+        sudo ip link set can1 type can bitrate 1000000 sample-point 0.75
+        sudo ip link set can1 type can berr-reporting on
+        sudo ifconfig can1 txqueuelen 1000
+        sudo tc qdisc add dev can1 root handle 1: pfifo
+        sudo ifconfig can1 up
+        sleep 0.2
+        str_can1=$(ifconfig |grep can1)
+        check_times=$((${check_times}+1))
+        if [ ${check_times} -ge ${timeout} ]; then
+            exit 0
+        fi
+    done
+    echo "egpc: can1 up!" > /dev/kmsg
+
+    # check can2
+    str_can2=""
+    check_times=0
+    while [ "${str_can2}" == "" ]
+    do
+        sudo ip link set can2 type can restart-ms 100
+        sudo ip link set can2 type can bitrate 1000000 sample-point 0.75
+        sudo ip link set can2 type can berr-reporting on
+        sudo ifconfig can2 txqueuelen 1000
+        sudo tc qdisc add dev can2 root handle 1: pfifo
+        sudo ifconfig can2 up
+        sleep 0.2
+        str_can2=$(ifconfig |grep can2)
+        check_times=$((${check_times}+1))
+        if [ ${check_times} -ge ${timeout} ]; then
+            exit 0
+        fi
+    done
+    echo "egpc: can2 up!" > /dev/kmsg
+
+    # check can3
+    str_can3=""
+    check_times=0
+    while [ "${str_can3}" == "" ]
+    do
+        sudo ip link set can3 type can restart-ms 100
+        sudo ip link set can3 type can bitrate 1000000 sample-point 0.75
+        sudo ip link set can3 type can berr-reporting on
+        sudo ifconfig can3 txqueuelen 1000
+        sudo tc qdisc add dev can3 root handle 1: pfifo
+        sudo ifconfig can3 up
+        sleep 0.2
+        str_can3=$(ifconfig |grep can3)
+        check_times=$((${check_times}+1))
+        if [ ${check_times} -ge ${timeout} ]; then
+            exit 0
+        fi
+    done
+    echo "egpc: can3 up!" > /dev/kmsg
+}
+
+# do_stop()
+# {
+# }
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "egpc: Starting run_egpc" > /dev/kmsg
+    do_start
+    ;;
+  stop)
+    echo "egpc: Stopping run_egpc" > /dev/kmsg
+    # do_stop
+    ;;
+  *)
+    echo "egpc: Usage: /etc/init.d/blah {start|stop}" > /dev/kmsg
+    exit 1
+    ;;
+esac
+ 
+exit 0

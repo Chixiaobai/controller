@@ -1,0 +1,5 @@
+uint32_t id 
+char name[64]
+uint32_t score
+char information[1024]
+

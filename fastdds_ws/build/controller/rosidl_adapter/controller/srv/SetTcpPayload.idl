@@ -1,0 +1,16 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/SetTcpPayload.srv
+// generated code does not contain a copyright notice
+
+#include "controller/msg/TcpPayloadParams.idl"
+
+module controller {
+  module srv {
+    struct SetTcpPayload_Request {
+      sequence<controller::msg::TcpPayloadParams> tcp_payload_params;
+    };
+    struct SetTcpPayload_Response {
+      boolean success;
+    };
+  };
+};

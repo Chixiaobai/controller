@@ -1,0 +1,7 @@
+﻿#pragma once
+
+#include "IFrameworkCoreInner.h"
+#include "ComponentStub.h"
+
+#define DECLARE_UNIQUE_FRAMEWORKCORE_STUB() DECLARE_UNIQUE_COMPONENT_STUB(FrameworkCore)
+#define IMPLEMENT_UNIQUE_FRAMEWORKCORE_STUB() IMPLEMENT_UNIQUE_COMPONENT_STUB(FrameworkCore, UNIQUE_FRAMEWORKCORE_NAME)

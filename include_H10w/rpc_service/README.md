@@ -1,0 +1,2 @@
+1.在proto文件夹下创建proto文件
+2.当前目录执行generate_grpc_pb_cpp.sh脚本，service文件下会生成proto文件对应的grpc以及pb文件

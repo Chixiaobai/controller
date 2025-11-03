@@ -1,0 +1,111 @@
+[0.013s] Invoking command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test -- -j12 -l12
+[0.094s] [35m[1mConsolidate compiler generated dependencies of target h10w_controller_test[0m
+[0.203s] [  3%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wGrpcMove.cpp.o[0m
+[0.207s] [  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o[0m
+[0.210s] [ 10%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o[0m
+[0.211s] [ 17%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o[0m
+[0.211s] [ 17%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o[0m
+[1.330s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.330s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.330s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.330s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.330s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2[m[K:
+[1.330s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.330s]    36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \
+[1.330s]       |                                                                                                 
+[1.336s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.336s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.336s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.336s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.336s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2[m[K:
+[1.337s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.337s]    36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \
+[1.337s]       |                                                                                                 
+[1.355s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.355s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.356s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.356s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.356s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2[m[K:
+[1.356s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.356s]    36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \
+[1.356s]       |                                                                                                 
+[1.369s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.370s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.370s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.370s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.372s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2[m[K:
+[1.373s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.373s]    36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \
+[1.373s]       |                                                                                                 
+[1.374s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.374s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.374s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.374s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.374s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.cpp:8[m[K:
+[1.374s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.374s]    36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \
+[1.374s]       |                                                                                                 
+[9.566s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:[m[K In function ‘[01m[Kvoid case_auto_Grpc_Params_H10w_FT_Grpc_Params_002_body()[m[K’:
+[9.567s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:65:49:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)[m[K’
+[9.567s]    65 |     [01;31m[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)[m[K;
+[9.567s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.567s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9[m[K,
+[9.567s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2[m[K:
+[9.568s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)[m[K’
+[9.568s]   102 |     bool [01;36m[KsetJointSoftLimit[m[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+[9.568s]       |          [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[9.568s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[9.570s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:87:49:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)[m[K’
+[9.570s]    87 |     [01;31m[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)[m[K;
+[9.570s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.571s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9[m[K,
+[9.571s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2[m[K:
+[9.571s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)[m[K’
+[9.571s]   102 |     bool [01;36m[KsetJointSoftLimit[m[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+[9.571s]       |          [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[9.571s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[11.575s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:[m[K In function ‘[01m[Kvoid case_Grpc_Params_H10w_FT_Grpc_Params_003_body()[m[K’:
+[11.576s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:60:49:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)[m[K’
+[11.576s]    60 |     [01;31m[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)[m[K;
+[11.576s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.576s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9[m[K,
+[11.576s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2[m[K:
+[11.576s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)[m[K’
+[11.576s]   102 |     bool [01;36m[KsetJointSoftLimit[m[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+[11.576s]       |          [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[11.577s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[11.587s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:73:49:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)[m[K’
+[11.587s]    73 |     [01;31m[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)[m[K;
+[11.587s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.587s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9[m[K,
+[11.588s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2[m[K:
+[11.588s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)[m[K’
+[11.588s]   102 |     bool [01;36m[KsetJointSoftLimit[m[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+[11.588s]       |          [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[11.588s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[11.845s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:[m[K In function ‘[01m[Kvoid case_Grpc_Params_H10w_FT_Grpc_Params_004_body()[m[K’:
+[11.845s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:60:49:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)[m[K’
+[11.845s]    60 |     [01;31m[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)[m[K;
+[11.845s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.845s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9[m[K,
+[11.846s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2[m[K:
+[11.846s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)[m[K’
+[11.846s]   102 |     bool [01;36m[KsetJointSoftLimit[m[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+[11.846s]       |          [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[11.846s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[11.848s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:72:49:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)[m[K’
+[11.848s]    72 |     [01;31m[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)[m[K;
+[11.848s]       |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.848s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9[m[K,
+[11.848s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2[m[K:
+[11.848s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)[m[K’
+[11.849s]   102 |     bool [01;36m[KsetJointSoftLimit[m[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+[11.849s]       |          [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[11.849s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[13.930s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:412：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o] 错误 1
+[13.930s] gmake[2]: *** 正在等待未完成的任务....
+[16.142s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:426：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o] 错误 1
+[16.173s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:440：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o] 错误 1
+[27.042s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/h10w_controller_test.dir/all] 错误 2
+[27.042s] gmake: *** [Makefile:146：all] 错误 2
+[27.048s] Invoked command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test -- -j12 -l12

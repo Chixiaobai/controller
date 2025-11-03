@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package humanoid_monitor;
+
+service JointSpeedCheckService {
+  rpc SetJointSpeedCheckConfig(SetJointSpeedCheckConfigRequest) returns (SetJointSpeedCheckConfigResponse) {}
+  rpc GetJointSpeedCheckConfig(GetJointSpeedCheckConfigRequest) returns (GetJointSpeedCheckConfigResponse) {}
+}
+
+message JointSpeedParams {
+  int32 joint_index = 1;
+  float max_speed = 2;
+  float overspeed_threshold = 3;
+}
+
+message SetJointSpeedCheckConfigRequest {
+  repeated JointSpeedParams params = 1;
+}
+
+message SetJointSpeedCheckConfigResponse {
+}
+
+message GetJointSpeedCheckConfigRequest {
+}
+
+message GetJointSpeedCheckConfigResponse {
+  string config_version = 1;
+  string last_updated = 2;
+  repeated JointSpeedParams joints = 3;
+}

@@ -1,0 +1,111 @@
+[0.009s] Invoking command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test -- -j12 -l12
+[0.068s] [35m[1mConsolidate compiler generated dependencies of target h10w_controller_test[0m
+[0.156s] [  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/main.cpp.o[0m
+[0.156s] [  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o[0m
+[0.160s] [ 14%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o[0m
+[0.161s] [ 14%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wGrpcMove.cpp.o[0m
+[0.161s] [ 17%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wRosClient.cpp.o[0m
+[0.161s] [ 28%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o[0m
+[0.161s] [ 28%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o[0m
+[0.161s] [ 28%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o[0m
+[0.261s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[0.261s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:1[m[K:
+[0.261s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[0.262s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[0.262s]       |                                                                             
+[0.417s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[0.417s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[0.417s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.cpp:1[m[K:
+[0.417s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[0.417s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[0.417s]       |                                                                             
+[0.434s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[0.435s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[0.435s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[0.435s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.h:7[m[K,
+[0.435s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.cpp:8[m[K:
+[0.435s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[0.435s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[0.435s]       |                                                                             
+[1.089s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.090s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.090s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.090s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.091s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2[m[K:
+[1.091s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.091s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[1.091s]       |                                                                             
+[1.131s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:28:9:[m[K [01;31m[Kerror: [m[Kstray ‘[01m[K\[m[K’ in program
+[1.131s]    28 |         [01;31m[K\[m[K if (g_test_config.case_type.empty())                             \
+[1.131s]       |         [01;31m[K^[m[K
+[1.132s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:31:1:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KGTEST_CASE[m[K’
+[1.132s]    31 | [01;36m[KGTEST_CASE[m[K(Grpc_Params, H10w_FT_Grpc_Params_004, "验证设置关节软限位函数的立即生效性")
+[1.132s]       | [01;36m[K^~~~~~~~~~[m[K
+[1.182s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.183s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.183s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.183s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.183s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2[m[K:
+[1.183s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.184s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[1.184s]       |                                                                             
+[1.190s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.190s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.191s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.191s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.191s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2[m[K:
+[1.191s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.191s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[1.191s]       |                                                                             
+[1.198s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.198s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.198s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.198s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.198s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.cpp:8[m[K:
+[1.198s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.198s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[1.198s]       |                                                                             
+[1.210s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:55:1:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kif[m[K’
+[1.210s]    55 | [01;31m[Kif[m[K (config.robot_type.empty())
+[1.210s]       | [01;31m[K^~[m[K
+[1.212s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:61:1:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kreturn[m[K’
+[1.212s]    61 | [01;31m[Kreturn[m[K true;
+[1.212s]       | [01;31m[K^~~~~~[m[K
+[1.212s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:62:1:[m[K [01;31m[Kerror: [m[Kexpected declaration before ‘[01m[K}[m[K’ token
+[1.212s]    62 | [01;31m[K}[m[K
+[1.212s]       | [01;31m[K^[m[K
+[1.212s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:28:9:[m[K [01;31m[Kerror: [m[Kstray ‘[01m[K\[m[K’ in program
+[1.212s]    28 |         [01;31m[K\[m[K if (g_test_config.case_type.empty())                             \
+[1.212s]       |         [01;31m[K^[m[K
+[1.212s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:32:1:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KGTEST_CASE[m[K’
+[1.212s]    32 | [01;36m[KGTEST_CASE[m[K(Grpc_Params, H10w_FT_Grpc_Params_001, "验证获取关节软限位函数有效性")
+[1.213s]       | [01;36m[K^~~~~~~~~~[m[K
+[1.219s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:28:9:[m[K [01;31m[Kerror: [m[Kstray ‘[01m[K\[m[K’ in program
+[1.219s]    28 |         [01;31m[K\[m[K if (g_test_config.case_type.empty())                             \
+[1.219s]       |         [01;31m[K^[m[K
+[1.219s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:35:1:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KGTEST_CASE[m[K’
+[1.220s]    35 | [01;36m[KGTEST_CASE[m[K(auto_Grpc_Params, H10w_FT_Grpc_Params_002, "验证关节软限位修改后，获取关节软限位结果正确性")
+[1.220s]       | [01;36m[K^~~~~~~~~~[m[K
+[1.241s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[1.241s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+[1.241s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+[1.241s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+[1.242s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2[m[K:
+[1.242s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:76:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[1.242s]    20 | #define GTEST_CASE(case_group, case_name, desc)                            \
+[1.242s]       |                                                                             
+[1.271s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:28:9:[m[K [01;31m[Kerror: [m[Kstray ‘[01m[K\[m[K’ in program
+[1.271s]    28 |         [01;31m[K\[m[K if (g_test_config.case_type.empty())                             \
+[1.272s]       |         [01;31m[K^[m[K
+[1.272s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:31:1:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KGTEST_CASE[m[K’
+[1.272s]    31 | [01;36m[KGTEST_CASE[m[K(Grpc_Params, H10w_FT_Grpc_Params_003, "验证设置关节软限位函数的有效性")
+[1.272s]       | [01;36m[K^~~~~~~~~~[m[K
+[1.572s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:76：CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o] 错误 1
+[1.573s] gmake[2]: *** 正在等待未完成的任务....
+[12.129s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:440：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o] 错误 1
+[12.785s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:412：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o] 错误 1
+[13.081s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:398：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o] 错误 1
+[13.093s] gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:426：CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o] 错误 1
+[31.364s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/h10w_controller_test.dir/all] 错误 2
+[31.364s] gmake: *** [Makefile:146：all] 错误 2
+[31.368s] Invoked command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test -- -j12 -l12

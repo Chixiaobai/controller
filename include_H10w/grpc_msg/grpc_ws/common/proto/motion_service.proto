@@ -1,0 +1,78 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package controller;
+
+// 单关节运动
+message  JointMoveRequest{
+  uint32  joint_index = 1;
+  double  target_position = 2;
+  double  velocity = 3;
+}
+
+message JointMoveResponse{
+  bool  success = 1;
+  uint32 token = 2;
+}
+
+// 多关节运动
+message JointAngle{
+  uint32  joint_index = 1; //关节枚举
+  double  target_position = 2;//关节目标角度
+  double  velocity = 3;//关节最大移动速度
+}
+
+message   MultiJointMoveRequest{
+  repeated JointAngle  joint_angles = 1; //目标姿态
+}
+
+message   MultiJointMoveResponse{
+  bool  success = 1;
+  uint32 token = 2;
+}
+
+message LinearMove {
+  int32 type = 1;
+  repeated double pose = 2;
+  double velocity_percent = 3;
+  double acceleration_percent = 4;
+}
+
+message LinearMoveRequest {
+  repeated LinearMove linear_move = 1;
+}
+
+message LinearMoveResponse {
+  int32 result = 1;
+  int32 task_id = 2;
+}
+
+message StopResponse{
+bool success = 1;
+}
+
+message EnableRealtimeRequest{
+  bool enable = 1;
+}
+
+message EnableRealtimeResponse{
+  bool success = 1;
+}
+
+message ControlPolicyRequest {
+  int32 policy = 1;
+}
+
+message ControlPolicyResponse {
+  bool success = 1;
+}
+
+service MotionService {
+  rpc RequestSingleJointMove(JointMoveRequest) returns (JointMoveResponse) {}
+  rpc RequestMultiJointsMove(MultiJointMoveRequest) returns (MultiJointMoveResponse) {}
+  rpc RequestLinearMove(LinearMoveRequest) returns (LinearMoveResponse) {}
+  rpc RequestStop(google.protobuf.Empty) returns (StopResponse) {}
+  rpc RequestEnableRealtimeCmd(EnableRealtimeRequest) returns (EnableRealtimeResponse) {}
+  rpc RequestSetControlPolicy(ControlPolicyRequest) returns (ControlPolicyResponse) {}
+}
+
+

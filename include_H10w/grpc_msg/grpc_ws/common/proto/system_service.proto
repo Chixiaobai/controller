@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package controller;
+import "google/protobuf/empty.proto";
+
+message VersionResponse{
+  string main = 1;
+  map<string, string> plugins = 2;
+}
+
+message ErrorClearResponse{
+  bool  success = 1;
+}
+
+service SystemService {
+  rpc GetVersion(google.protobuf.Empty) returns (VersionResponse) {}
+  rpc ClearError(google.protobuf.Empty) returns (ErrorClearResponse) {}
+}

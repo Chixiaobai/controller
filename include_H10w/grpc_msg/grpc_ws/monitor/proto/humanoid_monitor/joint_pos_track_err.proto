@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package humanoid_monitor;
+
+service JointPosTrackErrService {
+  rpc SetJointPosTrackErrConfig(SetJointPosTrackErrConfigRequest) returns (SetJointPosTrackErrConfigResponse) {}
+  rpc GetJointPosTrackErrConfig(GetJointPosTrackErrConfigRequest) returns (GetJointPosTrackErrConfigResponse) {}
+}
+
+message JointPosTrackErrParams {
+  int32 joint_index = 1;
+  float position_threshold =2;
+}
+
+message SetJointPosTrackErrConfigRequest {
+  repeated JointPosTrackErrParams params = 1;
+}
+
+message SetJointPosTrackErrConfigResponse {
+}
+
+message GetJointPosTrackErrConfigRequest {
+}
+
+message GetJointPosTrackErrConfigResponse {
+  string config_version = 1;
+  string last_updated = 2;
+  repeated JointPosTrackErrParams joints = 3;
+}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package humanoid_monitor;
+
+import "google/protobuf/empty.proto";
+
+service HumanoidMonitorService {
+  rpc SubscribeState(SubscribeStateRequest) returns (stream SecurityState) {}
+  rpc GetVersion(google.protobuf.Empty) returns (VersionResponse) {}
+}
+
+message SpeedData {
+  bool is_overspeed = 1;
+  map<int32, float> joint_speeds = 2;
+}
+
+message PositionData {
+  bool is_out_position = 1;
+  map<int32, float> joint_positions = 2;
+}
+
+message SecurityState {
+  string timestamp = 1;
+  SpeedData speed_data = 2;
+  PositionData position_data = 3;
+}
+
+message SubscribeStateRequest {
+  string client_id = 1;
+  uint32 sample_rate = 2;
+  bool include_speed_data = 3;
+  bool include_position_data = 4;
+}
+
+message VersionResponse {
+  string main = 1;
+  string robot = 2;
+  map<string, string> functions = 3;
+}

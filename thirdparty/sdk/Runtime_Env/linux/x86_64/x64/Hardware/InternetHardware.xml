@@ -1,0 +1,9 @@
+﻿<?xml version = "1.0" encoding = "utf-8" ?>
+<ModuleDef>
+	<Variants>
+		<Variant name="Mode" type="unsigned short" value="2" />
+		<Variant name="LocalPort" type="unsigned short" value="6000" />
+		<Variant name="RemoteIP" type="string" value="" />
+		<Variant name="RemotePort" type="unsigned short" value="" />
+	</Variants>
+</ModuleDef>

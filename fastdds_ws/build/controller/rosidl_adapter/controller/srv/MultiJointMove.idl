@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/MultiJointMove.srv
+// generated code does not contain a copyright notice
+
+#include "controller/msg/JointAngle.idl"
+
+module controller {
+  module srv {
+    struct MultiJointMove_Request {
+      sequence<controller::msg::JointAngle> joint_angles;
+    };
+    struct MultiJointMove_Response {
+      boolean success;
+
+      uint32 token;
+    };
+  };
+};

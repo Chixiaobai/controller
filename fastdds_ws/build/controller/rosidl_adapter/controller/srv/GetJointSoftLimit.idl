@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/GetJointSoftLimit.srv
+// generated code does not contain a copyright notice
+
+#include "controller/msg/JointParams.idl"
+
+module controller {
+  module srv {
+    @verbatim (language="comment", text=
+      "请求：空")
+    struct GetJointSoftLimit_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct GetJointSoftLimit_Response {
+      sequence<controller::msg::JointParams> joint_params;
+    };
+  };
+};

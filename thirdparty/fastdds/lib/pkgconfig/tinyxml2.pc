@@ -1,0 +1,10 @@
+prefix=/root/Fast-DDS/install
+exec_prefix=${prefix}
+libdir=/root/Fast-DDS/install/lib
+includedir=/root/Fast-DDS/install/include
+
+Name: TinyXML2
+Description: simple, small, C++ XML parser
+Version: 6.0.0
+Libs: -L${libdir} -ltinyxml2
+Cflags: -I${includedir}

@@ -1,0 +1,3 @@
+uint32_t frame_counter
+char topic_data[1024]
+uint8_t topic_md5[16]

@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "linux-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/lizhou/Desktop/Humanoid/SaftMonitor/c++/Agile_SDK_SaftMonitor/include_H10w/grpc_msg/grpc_ws/common/proto/",
+                "/home/lizhou/Desktop/Humanoid/SaftMonitor/c++/Agile_SDK_SaftMonitor/include_H10w/grpc_msg/grpc_ws/monitor/proto/humanoid_monitor/"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}

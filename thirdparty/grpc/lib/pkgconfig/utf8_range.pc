@@ -1,0 +1,11 @@
+prefix=/data/install/grpc
+exec_prefix=/data/install/grpc
+libdir=/data/install/grpc/lib
+includedir=/data/install/grpc/include
+
+Name: UTF8 Range
+Description: Google's UTF8 Library
+Version: 1.0
+Requires: absl_strings
+Libs: -L${libdir} -lutf8_validity -lutf8_range -pthread
+Cflags: -I${includedir}

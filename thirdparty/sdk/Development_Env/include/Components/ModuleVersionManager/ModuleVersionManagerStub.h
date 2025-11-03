@@ -1,0 +1,8 @@
+﻿#pragma once
+
+#include "IModuleVersionManagerInner.h"
+#include "ComponentStub.h"
+
+#define DECLARE_UNIQUE_MODULEVERSIONMANAGER_STUB() DECLARE_UNIQUE_COMPONENT_STUB(ModuleVersionManager)
+#define IMPLEMENT_UNIQUE_MODULEVERSIONMANAGER_STUB() \
+    IMPLEMENT_UNIQUE_COMPONENT_STUB(ModuleVersionManager, UNIQUE_MODULEVERSIONMANAGER_NAME)

@@ -1,0 +1,92 @@
+﻿<nodes>
+  <!-- <node>
+    注意：XML文件中特殊字符使用其实体引用：<(&lt;)、>(&gt:)、&(&amp;)、'(&apos;)、"(&quot;)等
+    <group>分组名称</group>
+    <start_before>前置节点名称，以','分隔</start_before>
+    <working_directory>工作目录，可使用环境变量表示</working_directory>
+    <environment>环境变量，以','分隔，可使用换行和空格</environment>
+    <command>启动命令，以';'分隔</command>
+    <startup_time>启动时间，支持s和ms精度</startup_time>
+    <name>节点名称</name>
+  </node> -->
+  <node>
+    <group>Example</group>
+    <start_before>LatencyDemoClient</start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/LatencyDemo 0 --alias=LatencyDemoServer</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>LatencyDemoServer</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before></start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/LatencyDemo 1 --alias=LatencyDemoClient</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>LatencyDemoClient</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before>ServiceAndTopicDemoClient</start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/ServiceAndTopicDemo 0 --alias=ServiceAndTopicDemoServer</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>ServiceAndTopicDemoServer</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before></start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/ServiceAndTopicDemo 1 --alias=ServiceAndTopicDemoClient</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>ServiceAndTopicDemoClient</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before>ServiceDemoClient</start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/ServiceDemo 0 --alias=ServiceDemoServer</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>ServiceDemoServer</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before></start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>echo HelloWorld; LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/ServiceDemo 1 --alias=ServiceDemoClient</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>ServiceDemoClient</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before>TopicDemoClient</start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/TopicDemo 0 --alias=TopicDemoServer</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>TopicDemoServer</name>
+  </node>
+  <node>
+    <group>Example</group>
+    <start_before></start_before>
+    <working_directory>$AMW_ACTIVE_ENVIRONMENT_ROOT</working_directory>
+    <environment>LD_LIBRARY_PATH, AMW_SERVICE_CENTER_URL</environment>
+    <command>LD_LIBRARY_PATH=$LD_LIBRARY_PATH $AMW_ACTIVE_ENVIRONMENT_ROOT/TopicDemo 1 --alias=TopicDemoClient</command>
+    <runasroot>1</runasroot>
+    <startup_time>0s</startup_time>
+    <name>TopicDemoClient</name>
+  </node>
+</nodes>

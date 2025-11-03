@@ -1,0 +1,63 @@
+// generated from rosidl_generator_c/resource/idl__struct.h.em
+// with input from controller:srv/GetCartesianRotationMaxVel.idl
+// generated code does not contain a copyright notice
+
+#ifndef CONTROLLER__SRV__DETAIL__GET_CARTESIAN_ROTATION_MAX_VEL__STRUCT_H_
+#define CONTROLLER__SRV__DETAIL__GET_CARTESIAN_ROTATION_MAX_VEL__STRUCT_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+
+// Constants defined in the message
+
+/// Struct defined in srv/GetCartesianRotationMaxVel in the package controller.
+typedef struct controller__srv__GetCartesianRotationMaxVel_Request
+{
+  uint8_t structure_needs_at_least_one_member;
+} controller__srv__GetCartesianRotationMaxVel_Request;
+
+// Struct for a sequence of controller__srv__GetCartesianRotationMaxVel_Request.
+typedef struct controller__srv__GetCartesianRotationMaxVel_Request__Sequence
+{
+  controller__srv__GetCartesianRotationMaxVel_Request * data;
+  /// The number of valid items in data
+  size_t size;
+  /// The number of allocated items in data
+  size_t capacity;
+} controller__srv__GetCartesianRotationMaxVel_Request__Sequence;
+
+
+// Constants defined in the message
+
+// Include directives for member types
+// Member 'cartesian_params'
+#include "controller/msg/detail/cartesian_params__struct.h"
+
+/// Struct defined in srv/GetCartesianRotationMaxVel in the package controller.
+typedef struct controller__srv__GetCartesianRotationMaxVel_Response
+{
+  controller__msg__CartesianParams__Sequence cartesian_params;
+} controller__srv__GetCartesianRotationMaxVel_Response;
+
+// Struct for a sequence of controller__srv__GetCartesianRotationMaxVel_Response.
+typedef struct controller__srv__GetCartesianRotationMaxVel_Response__Sequence
+{
+  controller__srv__GetCartesianRotationMaxVel_Response * data;
+  /// The number of valid items in data
+  size_t size;
+  /// The number of allocated items in data
+  size_t capacity;
+} controller__srv__GetCartesianRotationMaxVel_Response__Sequence;
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  // CONTROLLER__SRV__DETAIL__GET_CARTESIAN_ROTATION_MAX_VEL__STRUCT_H_

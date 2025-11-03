@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/ForwardKinematics.srv
+// generated code does not contain a copyright notice
+
+#include "controller/msg/TcpPoseParams.idl"
+
+module controller {
+  module srv {
+    struct ForwardKinematics_Request {
+      sequence<int32> type;
+
+      sequence<double> joint_angles;
+    };
+    struct ForwardKinematics_Response {
+      sequence<controller::msg::TcpPoseParams> pose;
+    };
+  };
+};

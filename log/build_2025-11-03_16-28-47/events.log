@@ -1,0 +1,557 @@
+[0.000000] (-) TimerEvent: {}
+[0.000361] (h10w_controller_test) JobQueued: {'identifier': 'h10w_controller_test', 'dependencies': OrderedDict()}
+[0.000555] (h10w_controller_test) JobStarted: {'identifier': 'h10w_controller_test'}
+[0.005817] (h10w_controller_test) JobProgress: {'identifier': 'h10w_controller_test', 'progress': 'cmake'}
+[0.006497] (h10w_controller_test) JobProgress: {'identifier': 'h10w_controller_test', 'progress': 'build'}
+[0.007145] (h10w_controller_test) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test', '--', '-j12', '-l12'], 'cwd': '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en'), ('USER', 'lizhou'), ('LC_TIME', 'zh_CN.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/lizhou'), ('CHROME_DESKTOP', 'code.desktop'), ('OLDPWD', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src'), ('TERM_PROGRAM_VERSION', '1.104.1'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('SYSTEMD_EXEC_PID', '226682'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1001/bus,guid=c71dd94646d110d237c60ae869042e65'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'lizhou'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'lizhou'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/lizhou/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/CNBESLPL230091:@/tmp/.ICE-unix/226682,unix/CNBESLPL230091:/tmp/.ICE-unix/226682'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/home/lizhou/Desktop/Humanoid/H10/Agile_SDK_H10W/Robot_DDS_Profile.xml'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/795f14a5_f881_4552_a796_5cac1ac01ea5'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1001'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1001/.mutter-Xwaylandauth.JHQ7E3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1001/vscode-git-936036d12e.sock'), ('GNOME_TERMINAL_SERVICE', ':1.320'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1001/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install:/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QWEN_API_KEY', 'sk-b5760002ce4044fa953d632f12c9dede'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'fcitx'), ('PWD', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CLUTTER_IM_MODULE', 'fcitx'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1001/bus,guid=c71dd94646d110d237c60ae869042e65'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install:/opt/ros/humble')]), 'shell': False}
+[0.062169] (h10w_controller_test) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target h10w_controller_test\x1b[0m\n'}
+[0.099842] (-) TimerEvent: {}
+[0.133470] (h10w_controller_test) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/main.cpp.o\x1b[0m\n'}
+[0.133912] (h10w_controller_test) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o\x1b[0m\n'}
+[0.134019] (h10w_controller_test) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o\x1b[0m\n'}
+[0.134084] (h10w_controller_test) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o\x1b[0m\n'}
+[0.134149] (h10w_controller_test) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wRosClient.cpp.o\x1b[0m\n'}
+[0.134240] (h10w_controller_test) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/rpc_service/service/Service.pb.cc.o\x1b[0m\n'}
+[0.134317] (h10w_controller_test) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o\x1b[0m\n'}
+[0.134385] (h10w_controller_test) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/humanoid_controller_client.cpp.o\x1b[0m\n'}
+[0.135219] (h10w_controller_test) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/rpc_service/service/Service.grpc.pb.cc.o\x1b[0m\n'}
+[0.136589] (h10w_controller_test) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wGrpcMove.cpp.o\x1b[0m\n'}
+[0.201004] (-) TimerEvent: {}
+[0.303055] (-) TimerEvent: {}
+[0.403826] (-) TimerEvent: {}
+[0.416601] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[0.416992] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[0.417101] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.cpp:1\x1b[m\x1b[K:\n'}
+[0.417185] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[0.417317] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[0.417397] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[0.435312] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[0.435702] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[0.435813] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[0.435911] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.h:7\x1b[m\x1b[K,\n'}
+[0.435998] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.cpp:8\x1b[m\x1b[K:\n'}
+[0.436072] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[0.436150] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[0.436253] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[0.504004] (-) TimerEvent: {}
+[0.606332] (-) TimerEvent: {}
+[0.706891] (-) TimerEvent: {}
+[0.808782] (-) TimerEvent: {}
+[0.914639] (-) TimerEvent: {}
+[1.015709] (-) TimerEvent: {}
+[1.116454] (-) TimerEvent: {}
+[1.217764] (-) TimerEvent: {}
+[1.237765] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.238421] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.238585] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.238691] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.238835] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2\x1b[m\x1b[K:\n'}
+[1.238928] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.239017] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[1.239097] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[1.256378] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.257153] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.257319] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.257424] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.257524] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.cpp:8\x1b[m\x1b[K:\n'}
+[1.257601] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.257684] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[1.257764] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[1.260668] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.260995] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.261112] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.261206] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.261302] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2\x1b[m\x1b[K:\n'}
+[1.261380] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.261465] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[1.261557] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[1.319141] (-) TimerEvent: {}
+[1.329344] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.329723] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.329829] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.329919] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.330021] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2\x1b[m\x1b[K:\n'}
+[1.330106] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.330183] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[1.330284] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[1.403217] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.404264] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.404877] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.405311] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.405869] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2\x1b[m\x1b[K:\n'}
+[1.406224] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:36:96:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.406568] (h10w_controller_test) StderrLine: {'line': b'   36 | // if (g_test_config.case_type.empty() && (std::string(#case_group).substr(0, 4) != "auto")) { \\\n'}
+[1.406895] (h10w_controller_test) StderrLine: {'line': b'      |                                                                                                 \n'}
+[1.419232] (-) TimerEvent: {}
+[1.519685] (-) TimerEvent: {}
+[1.620418] (-) TimerEvent: {}
+[1.721863] (-) TimerEvent: {}
+[1.822715] (-) TimerEvent: {}
+[1.924274] (-) TimerEvent: {}
+[2.025952] (-) TimerEvent: {}
+[2.126484] (-) TimerEvent: {}
+[2.227065] (-) TimerEvent: {}
+[2.328044] (-) TimerEvent: {}
+[2.428861] (-) TimerEvent: {}
+[2.531349] (-) TimerEvent: {}
+[2.635050] (-) TimerEvent: {}
+[2.736396] (-) TimerEvent: {}
+[2.839509] (-) TimerEvent: {}
+[2.940546] (-) TimerEvent: {}
+[3.041747] (-) TimerEvent: {}
+[3.143182] (-) TimerEvent: {}
+[3.246340] (-) TimerEvent: {}
+[3.347187] (-) TimerEvent: {}
+[3.447919] (-) TimerEvent: {}
+[3.549423] (-) TimerEvent: {}
+[3.650560] (-) TimerEvent: {}
+[3.752602] (-) TimerEvent: {}
+[3.853711] (-) TimerEvent: {}
+[3.954326] (-) TimerEvent: {}
+[4.055856] (-) TimerEvent: {}
+[4.159746] (-) TimerEvent: {}
+[4.260315] (-) TimerEvent: {}
+[4.363451] (-) TimerEvent: {}
+[4.464390] (-) TimerEvent: {}
+[4.567353] (-) TimerEvent: {}
+[4.668727] (-) TimerEvent: {}
+[4.770486] (-) TimerEvent: {}
+[4.873306] (-) TimerEvent: {}
+[4.973799] (-) TimerEvent: {}
+[5.074303] (-) TimerEvent: {}
+[5.177322] (-) TimerEvent: {}
+[5.277872] (-) TimerEvent: {}
+[5.378432] (-) TimerEvent: {}
+[5.479128] (-) TimerEvent: {}
+[5.581323] (-) TimerEvent: {}
+[5.682020] (-) TimerEvent: {}
+[5.795319] (-) TimerEvent: {}
+[5.895826] (-) TimerEvent: {}
+[5.997350] (-) TimerEvent: {}
+[6.101892] (-) TimerEvent: {}
+[6.203156] (-) TimerEvent: {}
+[6.303827] (-) TimerEvent: {}
+[6.404672] (-) TimerEvent: {}
+[6.505943] (-) TimerEvent: {}
+[6.606916] (-) TimerEvent: {}
+[6.708167] (-) TimerEvent: {}
+[6.808830] (-) TimerEvent: {}
+[6.913414] (-) TimerEvent: {}
+[7.014127] (-) TimerEvent: {}
+[7.114674] (-) TimerEvent: {}
+[7.216378] (-) TimerEvent: {}
+[7.317265] (-) TimerEvent: {}
+[7.418050] (-) TimerEvent: {}
+[7.518740] (-) TimerEvent: {}
+[7.619388] (-) TimerEvent: {}
+[7.719984] (-) TimerEvent: {}
+[7.820468] (-) TimerEvent: {}
+[7.921001] (-) TimerEvent: {}
+[8.021502] (-) TimerEvent: {}
+[8.086420] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::stop()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[8.086802] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.cpp:113:1:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcontrol reaches end of non-void function [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreturn-type\x07-Wreturn-type\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[8.086931] (h10w_controller_test) StderrLine: {'line': b'  113 | \x1b[01;35m\x1b[K}\x1b[m\x1b[K\n'}
+[8.087033] (h10w_controller_test) StderrLine: {'line': b'      | \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[8.121659] (-) TimerEvent: {}
+[8.222171] (-) TimerEvent: {}
+[8.322696] (-) TimerEvent: {}
+[8.423116] (-) TimerEvent: {}
+[8.523617] (-) TimerEvent: {}
+[8.624060] (-) TimerEvent: {}
+[8.724444] (-) TimerEvent: {}
+[8.824864] (-) TimerEvent: {}
+[8.926908] (-) TimerEvent: {}
+[9.027434] (-) TimerEvent: {}
+[9.128862] (-) TimerEvent: {}
+[9.229475] (-) TimerEvent: {}
+[9.330085] (-) TimerEvent: {}
+[9.430654] (-) TimerEvent: {}
+[9.531069] (-) TimerEvent: {}
+[9.631557] (-) TimerEvent: {}
+[9.732175] (-) TimerEvent: {}
+[9.832764] (-) TimerEvent: {}
+[9.933294] (-) TimerEvent: {}
+[10.033717] (-) TimerEvent: {}
+[10.121801] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid case_Grpc_Params_H10w_FT_Grpc_Params_003_body()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.122300] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:60:49:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.122475] (h10w_controller_test) StderrLine: {'line': b'   60 |     \x1b[01;31m\x1b[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)\x1b[m\x1b[K;\n'}
+[10.122603] (h10w_controller_test) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.122809] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9\x1b[m\x1b[K,\n'}
+[10.123027] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2\x1b[m\x1b[K:\n'}
+[10.123155] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.123320] (h10w_controller_test) StderrLine: {'line': b'  102 |     bool \x1b[01;36m\x1b[KsetJointSoftLimit\x1b[m\x1b[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);\n'}
+[10.123473] (h10w_controller_test) StderrLine: {'line': b'      |          \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.123618] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 4 provided\n'}
+[10.124419] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:73:49:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.124708] (h10w_controller_test) StderrLine: {'line': b'   73 |     \x1b[01;31m\x1b[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)\x1b[m\x1b[K;\n'}
+[10.124845] (h10w_controller_test) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.124954] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9\x1b[m\x1b[K,\n'}
+[10.125061] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2\x1b[m\x1b[K:\n'}
+[10.125177] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.125333] (h10w_controller_test) StderrLine: {'line': b'  102 |     bool \x1b[01;36m\x1b[KsetJointSoftLimit\x1b[m\x1b[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);\n'}
+[10.125474] (h10w_controller_test) StderrLine: {'line': b'      |          \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.125577] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 4 provided\n'}
+[10.133829] (-) TimerEvent: {}
+[10.234206] (-) TimerEvent: {}
+[10.334590] (-) TimerEvent: {}
+[10.434984] (-) TimerEvent: {}
+[10.535512] (-) TimerEvent: {}
+[10.635960] (-) TimerEvent: {}
+[10.736451] (-) TimerEvent: {}
+[10.836890] (-) TimerEvent: {}
+[10.893100] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid case_auto_Grpc_Params_H10w_FT_Grpc_Params_002_body()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.893491] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:65:49:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.893644] (h10w_controller_test) StderrLine: {'line': b'   65 |     \x1b[01;31m\x1b[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)\x1b[m\x1b[K;\n'}
+[10.893771] (h10w_controller_test) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.893888] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9\x1b[m\x1b[K,\n'}
+[10.894000] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2\x1b[m\x1b[K:\n'}
+[10.894140] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.894268] (h10w_controller_test) StderrLine: {'line': b'  102 |     bool \x1b[01;36m\x1b[KsetJointSoftLimit\x1b[m\x1b[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);\n'}
+[10.894370] (h10w_controller_test) StderrLine: {'line': b'      |          \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.894461] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 4 provided\n'}
+[10.896341] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:87:49:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.896660] (h10w_controller_test) StderrLine: {'line': b'   87 |     \x1b[01;31m\x1b[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)\x1b[m\x1b[K;\n'}
+[10.896771] (h10w_controller_test) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.896872] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9\x1b[m\x1b[K,\n'}
+[10.896998] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2\x1b[m\x1b[K:\n'}
+[10.897106] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.897225] (h10w_controller_test) StderrLine: {'line': b'  102 |     bool \x1b[01;36m\x1b[KsetJointSoftLimit\x1b[m\x1b[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);\n'}
+[10.897326] (h10w_controller_test) StderrLine: {'line': b'      |          \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.897412] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 4 provided\n'}
+[10.937019] (-) TimerEvent: {}
+[10.979537] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid case_Grpc_Params_H10w_FT_Grpc_Params_004_body()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.979843] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:60:49:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.979978] (h10w_controller_test) StderrLine: {'line': b'   60 |     \x1b[01;31m\x1b[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)\x1b[m\x1b[K;\n'}
+[10.980082] (h10w_controller_test) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.980175] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9\x1b[m\x1b[K,\n'}
+[10.980284] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2\x1b[m\x1b[K:\n'}
+[10.980374] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.980465] (h10w_controller_test) StderrLine: {'line': b'  102 |     bool \x1b[01;36m\x1b[KsetJointSoftLimit\x1b[m\x1b[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);\n'}
+[10.980563] (h10w_controller_test) StderrLine: {'line': b'      |          \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.980650] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 4 provided\n'}
+[10.981600] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:72:49:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KHumanoidControllerClient::setJointSoftLimit(int&, std::vector<unsigned int>&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.981892] (h10w_controller_test) StderrLine: {'line': b'   72 |     \x1b[01;31m\x1b[Knode->m_pControllerClient->setJointSoftLimit(joint_count, joint_index, min_pos, max_pos)\x1b[m\x1b[K;\n'}
+[10.982009] (h10w_controller_test) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.982156] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:9\x1b[m\x1b[K,\n'}
+[10.982361] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2\x1b[m\x1b[K:\n'}
+[10.982477] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kbool HumanoidControllerClient::setJointSoftLimit(const std::vector<unsigned int>&, const std::vector<double, std::allocator<double> >&, const std::vector<double, std::allocator<double> >&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.982609] (h10w_controller_test) StderrLine: {'line': b'  102 |     bool \x1b[01;36m\x1b[KsetJointSoftLimit\x1b[m\x1b[K(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);\n'}
+[10.982727] (h10w_controller_test) StderrLine: {'line': b'      |          \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[10.982843] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/humanoid_controller_client.h:102:10:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 3 arguments, 4 provided\n'}
+[11.037189] (-) TimerEvent: {}
+[11.137659] (-) TimerEvent: {}
+[11.238077] (-) TimerEvent: {}
+[11.338542] (-) TimerEvent: {}
+[11.438996] (-) TimerEvent: {}
+[11.539523] (-) TimerEvent: {}
+[11.640087] (-) TimerEvent: {}
+[11.740665] (-) TimerEvent: {}
+[11.841069] (-) TimerEvent: {}
+[11.941568] (-) TimerEvent: {}
+[12.041989] (-) TimerEvent: {}
+[12.142409] (-) TimerEvent: {}
+[12.242853] (-) TimerEvent: {}
+[12.343279] (-) TimerEvent: {}
+[12.443798] (-) TimerEvent: {}
+[12.512434] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:33\x1b[m\x1b[K,\n'}
+[12.512721] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/allocator.h:46\x1b[m\x1b[K,\n'}
+[12.512833] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:64\x1b[m\x1b[K,\n'}
+[12.512926] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153\x1b[m\x1b[K,\n'}
+[12.513018] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:3\x1b[m\x1b[K,\n'}
+[12.513107] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2\x1b[m\x1b[K:\n'}
+[12.513209] (h10w_controller_test) StderrLine: {'line': b'/usr/include/c++/11/ext/new_allocator.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kvoid __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[12.513341] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/alloc_traits.h:516:17:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstatic void std::allocator_traits<std::allocator<_Tp1> >::construct(std::allocator_traits<std::allocator<_Tp1> >::allocator_type&, _Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; std::allocator_traits<std::allocator<_Tp1> >::allocator_type = std::allocator<H10wGrpcMove>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.513443] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:519:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args&& ...) [with _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.513535] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:650:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_count<_Lp>::__shared_count(_Tp*&, std::_Sp_alloc_shared_tag<_Alloc>, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.513633] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:1342:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.513722] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:409:59:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.513820] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:862:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::allocate_shared(const _Alloc&, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.513912] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:878:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.514003] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:38:47:\x1b[m\x1b[K   required from here\n'}
+[12.514090] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/ext/new_allocator.h:162:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(std::__cxx11::basic_string<char>&, std::shared_ptr<rclcpp::Context>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.514188] (h10w_controller_test) StderrLine: {'line': b'  162 |         { \x1b[01;31m\x1b[K::new((void *)__p) _Up(std::forward<_Args>(__args)...)\x1b[m\x1b[K; }\n'}
+[12.514298] (h10w_controller_test) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[12.514385] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2\x1b[m\x1b[K:\n'}
+[12.514469] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(const string&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.514558] (h10w_controller_test) StderrLine: {'line': b'   17 |     explicit \x1b[01;36m\x1b[KH10wGrpcMove\x1b[m\x1b[K(const std::string &strIpPort = "localhost");\n'}
+[12.514653] (h10w_controller_test) StderrLine: {'line': b'      |              \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[12.514737] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 1 argument, 2 provided\n'}
+[12.543997] (-) TimerEvent: {}
+[12.644508] (-) TimerEvent: {}
+[12.688800] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:33\x1b[m\x1b[K,\n'}
+[12.689127] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/allocator.h:46\x1b[m\x1b[K,\n'}
+[12.689274] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:64\x1b[m\x1b[K,\n'}
+[12.689383] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153\x1b[m\x1b[K,\n'}
+[12.689483] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:3\x1b[m\x1b[K,\n'}
+[12.689585] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2\x1b[m\x1b[K:\n'}
+[12.689687] (h10w_controller_test) StderrLine: {'line': b'/usr/include/c++/11/ext/new_allocator.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kvoid __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[12.689794] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/alloc_traits.h:516:17:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstatic void std::allocator_traits<std::allocator<_Tp1> >::construct(std::allocator_traits<std::allocator<_Tp1> >::allocator_type&, _Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; std::allocator_traits<std::allocator<_Tp1> >::allocator_type = std::allocator<H10wGrpcMove>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.689921] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:519:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args&& ...) [with _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690026] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:650:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_count<_Lp>::__shared_count(_Tp*&, std::_Sp_alloc_shared_tag<_Alloc>, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690132] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:1342:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690263] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:409:59:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690361] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:862:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::allocate_shared(const _Alloc&, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690461] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:878:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690551] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:39:47:\x1b[m\x1b[K   required from here\n'}
+[12.690649] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/ext/new_allocator.h:162:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(std::__cxx11::basic_string<char>&, std::shared_ptr<rclcpp::Context>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.690742] (h10w_controller_test) StderrLine: {'line': b'  162 |         { \x1b[01;31m\x1b[K::new((void *)__p) _Up(std::forward<_Args>(__args)...)\x1b[m\x1b[K; }\n'}
+[12.690831] (h10w_controller_test) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[12.690921] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2\x1b[m\x1b[K:\n'}
+[12.691013] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(const string&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[12.691115] (h10w_controller_test) StderrLine: {'line': b'   17 |     explicit \x1b[01;36m\x1b[KH10wGrpcMove\x1b[m\x1b[K(const std::string &strIpPort = "localhost");\n'}
+[12.691219] (h10w_controller_test) StderrLine: {'line': b'      |              \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[12.691323] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 1 argument, 2 provided\n'}
+[12.744679] (-) TimerEvent: {}
+[12.845096] (-) TimerEvent: {}
+[12.906205] (h10w_controller_test) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:426\xef\xbc\x9aCMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[12.906507] (h10w_controller_test) StderrLine: {'line': b'gmake[2]: *** \xe6\xad\xa3\xe5\x9c\xa8\xe7\xad\x89\xe5\xbe\x85\xe6\x9c\xaa\xe5\xae\x8c\xe6\x88\x90\xe7\x9a\x84\xe4\xbb\xbb\xe5\x8a\xa1....\n'}
+[12.945287] (-) TimerEvent: {}
+[13.006508] (h10w_controller_test) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:398\xef\xbc\x9aCMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[13.045511] (-) TimerEvent: {}
+[13.145981] (-) TimerEvent: {}
+[13.246395] (-) TimerEvent: {}
+[13.346762] (-) TimerEvent: {}
+[13.447136] (-) TimerEvent: {}
+[13.547468] (-) TimerEvent: {}
+[13.591363] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:33\x1b[m\x1b[K,\n'}
+[13.591602] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/allocator.h:46\x1b[m\x1b[K,\n'}
+[13.591700] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:64\x1b[m\x1b[K,\n'}
+[13.591787] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153\x1b[m\x1b[K,\n'}
+[13.591870] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:3\x1b[m\x1b[K,\n'}
+[13.591950] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2\x1b[m\x1b[K:\n'}
+[13.592043] (h10w_controller_test) StderrLine: {'line': b'/usr/include/c++/11/ext/new_allocator.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kvoid __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[13.592128] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/alloc_traits.h:516:17:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstatic void std::allocator_traits<std::allocator<_Tp1> >::construct(std::allocator_traits<std::allocator<_Tp1> >::allocator_type&, _Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; std::allocator_traits<std::allocator<_Tp1> >::allocator_type = std::allocator<H10wGrpcMove>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592232] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:519:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args&& ...) [with _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592328] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:650:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_count<_Lp>::__shared_count(_Tp*&, std::_Sp_alloc_shared_tag<_Alloc>, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592411] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:1342:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592503] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:409:59:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592583] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:862:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::allocate_shared(const _Alloc&, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592664] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:878:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592742] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:42:47:\x1b[m\x1b[K   required from here\n'}
+[13.592825] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/ext/new_allocator.h:162:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(std::__cxx11::basic_string<char>&, std::shared_ptr<rclcpp::Context>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.592904] (h10w_controller_test) StderrLine: {'line': b'  162 |         { \x1b[01;31m\x1b[K::new((void *)__p) _Up(std::forward<_Args>(__args)...)\x1b[m\x1b[K; }\n'}
+[13.592984] (h10w_controller_test) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.593074] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2\x1b[m\x1b[K:\n'}
+[13.593162] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(const string&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.593267] (h10w_controller_test) StderrLine: {'line': b'   17 |     explicit \x1b[01;36m\x1b[KH10wGrpcMove\x1b[m\x1b[K(const std::string &strIpPort = "localhost");\n'}
+[13.593354] (h10w_controller_test) StderrLine: {'line': b'      |              \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.593438] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 1 argument, 2 provided\n'}
+[13.647582] (-) TimerEvent: {}
+[13.672848] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:33\x1b[m\x1b[K,\n'}
+[13.673208] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/allocator.h:46\x1b[m\x1b[K,\n'}
+[13.673339] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:64\x1b[m\x1b[K,\n'}
+[13.673447] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153\x1b[m\x1b[K,\n'}
+[13.673544] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:3\x1b[m\x1b[K,\n'}
+[13.673644] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2\x1b[m\x1b[K:\n'}
+[13.673749] (h10w_controller_test) StderrLine: {'line': b'/usr/include/c++/11/ext/new_allocator.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kvoid __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[13.673861] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/alloc_traits.h:516:17:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstatic void std::allocator_traits<std::allocator<_Tp1> >::construct(std::allocator_traits<std::allocator<_Tp1> >::allocator_type&, _Up*, _Args&& ...) [with _Up = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; std::allocator_traits<std::allocator<_Tp1> >::allocator_type = std::allocator<H10wGrpcMove>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.673966] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:519:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args&& ...) [with _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674080] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:650:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_count<_Lp>::__shared_count(_Tp*&, std::_Sp_alloc_shared_tag<_Alloc>, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674177] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:1342:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674301] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:409:59:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}; _Tp = H10wGrpcMove]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674407] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:862:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::allocate_shared(const _Alloc&, _Args&& ...) [with _Tp = H10wGrpcMove; _Alloc = std::allocator<H10wGrpcMove>; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674515] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:878:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = H10wGrpcMove; _Args = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::shared_ptr<rclcpp::Context>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674613] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:38:47:\x1b[m\x1b[K   required from here\n'}
+[13.674708] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/ext/new_allocator.h:162:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(std::__cxx11::basic_string<char>&, std::shared_ptr<rclcpp::Context>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.674823] (h10w_controller_test) StderrLine: {'line': b'  162 |         { \x1b[01;31m\x1b[K::new((void *)__p) _Up(std::forward<_Args>(__args)...)\x1b[m\x1b[K; }\n'}
+[13.674920] (h10w_controller_test) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.675007] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2\x1b[m\x1b[K:\n'}
+[13.675101] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[KH10wGrpcMove::H10wGrpcMove(const string&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[13.675204] (h10w_controller_test) StderrLine: {'line': b'   17 |     explicit \x1b[01;36m\x1b[KH10wGrpcMove\x1b[m\x1b[K(const std::string &strIpPort = "localhost");\n'}
+[13.675313] (h10w_controller_test) StderrLine: {'line': b'      |              \x1b[01;36m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.675395] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:17:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 1 argument, 2 provided\n'}
+[13.747700] (-) TimerEvent: {}
+[13.848113] (-) TimerEvent: {}
+[13.884408] (h10w_controller_test) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:412\xef\xbc\x9aCMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[13.948214] (-) TimerEvent: {}
+[14.021329] (h10w_controller_test) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:440\xef\xbc\x9aCMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[14.048367] (-) TimerEvent: {}
+[14.148662] (-) TimerEvent: {}
+[14.249105] (-) TimerEvent: {}
+[14.349538] (-) TimerEvent: {}
+[14.449955] (-) TimerEvent: {}
+[14.550289] (-) TimerEvent: {}
+[14.650582] (-) TimerEvent: {}
+[14.750901] (-) TimerEvent: {}
+[14.851245] (-) TimerEvent: {}
+[14.951595] (-) TimerEvent: {}
+[15.051909] (-) TimerEvent: {}
+[15.152331] (-) TimerEvent: {}
+[15.252652] (-) TimerEvent: {}
+[15.353006] (-) TimerEvent: {}
+[15.453425] (-) TimerEvent: {}
+[15.553746] (-) TimerEvent: {}
+[15.654148] (-) TimerEvent: {}
+[15.754549] (-) TimerEvent: {}
+[15.854945] (-) TimerEvent: {}
+[15.955328] (-) TimerEvent: {}
+[16.055710] (-) TimerEvent: {}
+[16.156042] (-) TimerEvent: {}
+[16.256501] (-) TimerEvent: {}
+[16.356898] (-) TimerEvent: {}
+[16.457292] (-) TimerEvent: {}
+[16.557560] (-) TimerEvent: {}
+[16.657875] (-) TimerEvent: {}
+[16.758265] (-) TimerEvent: {}
+[16.858559] (-) TimerEvent: {}
+[16.958946] (-) TimerEvent: {}
+[17.059258] (-) TimerEvent: {}
+[17.159543] (-) TimerEvent: {}
+[17.259862] (-) TimerEvent: {}
+[17.360164] (-) TimerEvent: {}
+[17.460439] (-) TimerEvent: {}
+[17.560739] (-) TimerEvent: {}
+[17.661070] (-) TimerEvent: {}
+[17.761414] (-) TimerEvent: {}
+[17.862057] (-) TimerEvent: {}
+[17.962836] (-) TimerEvent: {}
+[18.063425] (-) TimerEvent: {}
+[18.164320] (-) TimerEvent: {}
+[18.265187] (-) TimerEvent: {}
+[18.365674] (-) TimerEvent: {}
+[18.466113] (-) TimerEvent: {}
+[18.566470] (-) TimerEvent: {}
+[18.666901] (-) TimerEvent: {}
+[18.767303] (-) TimerEvent: {}
+[18.867707] (-) TimerEvent: {}
+[18.968040] (-) TimerEvent: {}
+[19.068471] (-) TimerEvent: {}
+[19.169055] (-) TimerEvent: {}
+[19.269478] (-) TimerEvent: {}
+[19.370082] (-) TimerEvent: {}
+[19.470509] (-) TimerEvent: {}
+[19.570918] (-) TimerEvent: {}
+[19.671580] (-) TimerEvent: {}
+[19.772185] (-) TimerEvent: {}
+[19.872721] (-) TimerEvent: {}
+[19.973166] (-) TimerEvent: {}
+[20.073633] (-) TimerEvent: {}
+[20.173872] (-) TimerEvent: {}
+[20.274160] (-) TimerEvent: {}
+[20.374407] (-) TimerEvent: {}
+[20.474730] (-) TimerEvent: {}
+[20.575054] (-) TimerEvent: {}
+[20.675404] (-) TimerEvent: {}
+[20.775706] (-) TimerEvent: {}
+[20.876097] (-) TimerEvent: {}
+[20.976505] (-) TimerEvent: {}
+[21.076915] (-) TimerEvent: {}
+[21.177334] (-) TimerEvent: {}
+[21.277653] (-) TimerEvent: {}
+[21.378048] (-) TimerEvent: {}
+[21.478391] (-) TimerEvent: {}
+[21.578780] (-) TimerEvent: {}
+[21.679179] (-) TimerEvent: {}
+[21.779592] (-) TimerEvent: {}
+[21.879989] (-) TimerEvent: {}
+[21.980293] (-) TimerEvent: {}
+[22.080585] (-) TimerEvent: {}
+[22.180906] (-) TimerEvent: {}
+[22.281559] (-) TimerEvent: {}
+[22.381962] (-) TimerEvent: {}
+[22.482374] (-) TimerEvent: {}
+[22.582702] (-) TimerEvent: {}
+[22.683325] (-) TimerEvent: {}
+[22.783602] (-) TimerEvent: {}
+[22.884020] (-) TimerEvent: {}
+[22.984460] (-) TimerEvent: {}
+[23.084866] (-) TimerEvent: {}
+[23.185178] (-) TimerEvent: {}
+[23.285772] (-) TimerEvent: {}
+[23.386106] (-) TimerEvent: {}
+[23.486364] (-) TimerEvent: {}
+[23.586698] (-) TimerEvent: {}
+[23.687044] (-) TimerEvent: {}
+[23.787373] (-) TimerEvent: {}
+[23.887671] (-) TimerEvent: {}
+[23.988001] (-) TimerEvent: {}
+[24.088331] (-) TimerEvent: {}
+[24.188603] (-) TimerEvent: {}
+[24.288934] (-) TimerEvent: {}
+[24.389261] (-) TimerEvent: {}
+[24.489532] (-) TimerEvent: {}
+[24.589867] (-) TimerEvent: {}
+[24.690207] (-) TimerEvent: {}
+[24.790536] (-) TimerEvent: {}
+[24.890766] (-) TimerEvent: {}
+[24.990985] (-) TimerEvent: {}
+[25.091293] (-) TimerEvent: {}
+[25.191569] (-) TimerEvent: {}
+[25.291805] (-) TimerEvent: {}
+[25.392028] (-) TimerEvent: {}
+[25.492275] (-) TimerEvent: {}
+[25.592526] (-) TimerEvent: {}
+[25.692808] (-) TimerEvent: {}
+[25.793080] (-) TimerEvent: {}
+[25.893361] (-) TimerEvent: {}
+[25.993649] (-) TimerEvent: {}
+[26.093929] (-) TimerEvent: {}
+[26.194206] (-) TimerEvent: {}
+[26.294590] (-) TimerEvent: {}
+[26.394836] (-) TimerEvent: {}
+[26.495163] (-) TimerEvent: {}
+[26.595504] (-) TimerEvent: {}
+[26.695827] (-) TimerEvent: {}
+[26.796155] (-) TimerEvent: {}
+[26.896509] (-) TimerEvent: {}
+[26.996810] (-) TimerEvent: {}
+[27.097093] (-) TimerEvent: {}
+[27.197353] (-) TimerEvent: {}
+[27.297627] (-) TimerEvent: {}
+[27.398015] (-) TimerEvent: {}
+[27.498387] (-) TimerEvent: {}
+[27.598752] (-) TimerEvent: {}
+[27.699136] (-) TimerEvent: {}
+[27.799465] (-) TimerEvent: {}
+[27.899983] (-) TimerEvent: {}
+[28.000335] (-) TimerEvent: {}
+[28.100610] (-) TimerEvent: {}
+[28.200912] (-) TimerEvent: {}
+[28.301316] (-) TimerEvent: {}
+[28.401646] (-) TimerEvent: {}
+[28.501992] (-) TimerEvent: {}
+[28.602341] (-) TimerEvent: {}
+[28.702675] (-) TimerEvent: {}
+[28.802997] (-) TimerEvent: {}
+[28.903256] (-) TimerEvent: {}
+[29.003604] (-) TimerEvent: {}
+[29.103909] (-) TimerEvent: {}
+[29.204274] (-) TimerEvent: {}
+[29.304590] (-) TimerEvent: {}
+[29.404988] (-) TimerEvent: {}
+[29.505389] (-) TimerEvent: {}
+[29.605648] (-) TimerEvent: {}
+[29.705960] (-) TimerEvent: {}
+[29.806281] (-) TimerEvent: {}
+[29.906573] (-) TimerEvent: {}
+[30.006867] (-) TimerEvent: {}
+[30.107218] (-) TimerEvent: {}
+[30.207487] (-) TimerEvent: {}
+[30.307866] (-) TimerEvent: {}
+[30.408122] (-) TimerEvent: {}
+[30.508457] (-) TimerEvent: {}
+[30.608728] (-) TimerEvent: {}
+[30.709050] (-) TimerEvent: {}
+[30.809368] (-) TimerEvent: {}
+[30.909673] (-) TimerEvent: {}
+[31.009975] (-) TimerEvent: {}
+[31.110262] (-) TimerEvent: {}
+[31.210583] (-) TimerEvent: {}
+[31.311083] (-) TimerEvent: {}
+[31.411531] (-) TimerEvent: {}
+[31.511830] (-) TimerEvent: {}
+[31.612088] (-) TimerEvent: {}
+[31.712749] (-) TimerEvent: {}
+[31.813354] (-) TimerEvent: {}
+[31.914039] (-) TimerEvent: {}
+[32.015014] (-) TimerEvent: {}
+[32.115403] (-) TimerEvent: {}
+[32.215823] (-) TimerEvent: {}
+[32.316185] (-) TimerEvent: {}
+[32.416648] (-) TimerEvent: {}
+[32.516994] (-) TimerEvent: {}
+[32.574544] (h10w_controller_test) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137\xef\xbc\x9aCMakeFiles/h10w_controller_test.dir/all] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[32.574745] (h10w_controller_test) StderrLine: {'line': b'gmake: *** [Makefile:146\xef\xbc\x9aall] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[32.580178] (h10w_controller_test) CommandEnded: {'returncode': 2}
+[32.586046] (h10w_controller_test) JobEnded: {'identifier': 'h10w_controller_test', 'rc': 2}
+[32.596515] (-) EventReactorShutdown: {}

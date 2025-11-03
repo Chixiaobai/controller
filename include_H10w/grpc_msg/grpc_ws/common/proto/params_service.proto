@@ -1,0 +1,129 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package controller;
+
+// request message
+message  JointParams{ 
+  uint32  joint_index = 1;
+  double  max_pos = 2;
+  double  min_pos = 3;
+  double  max_vel = 4;
+  double  max_acc = 5;
+}
+
+message  SetJointParamsRequest{ 
+  repeated JointParams joint_params = 1;
+}
+message  CartesianParams{ 
+  uint32  cartesian_index = 1;
+  double  trans_max_vel = 2;
+  double  trans_max_acc = 3;
+  double  rota_max_vel = 4;
+  double  rota_max_acc = 5;
+}
+message  SetCartesianParamsRequest{ 
+  repeated CartesianParams cartesian_params = 1;
+}
+
+// response message
+message SetParamResponse {
+    bool success = 1;  
+}
+message  GetJointParamsResponse{ 
+  repeated JointParams joint_params = 1;
+}
+message  GetCartesianParamsResponse{ 
+  repeated CartesianParams cartesian_params = 1;
+}
+
+message TcpOffsetParams {
+  int32 type = 1;
+  repeated double offset = 2;
+}
+
+message SetTcpOffsetParamsRequest {
+  repeated TcpOffsetParams tcp_offset_params = 1;
+}
+
+message TcpPayloadParams {
+  int32 type = 1;
+  repeated double parameters = 2;
+}
+
+message SetTcpPayloadParamsRequest {
+  repeated TcpPayloadParams tcp_payload_params = 1;
+}
+
+message GetTcpOffsetRequest {
+  repeated int32 type = 1;
+}
+
+message GetTcpOffsetResponse {
+  bool success = 1;
+  repeated TcpOffsetParams tcp_offset_params = 2;
+}
+
+message GetTcpPayloadRequest {
+  repeated int32 type = 1;
+}
+
+message GetTcpPayloadResponse {
+  bool success = 1;
+  repeated TcpPayloadParams tcp_payload_params = 2;
+}
+
+message TcpPoseParams {
+  int32 type = 1;
+  repeated double pose = 2;
+}
+
+message ForwardKinematicsRequest {
+  repeated int32 type = 1;
+  repeated double joint_angles = 2;
+}
+
+message ForwardKinematicsResponse {
+  repeated TcpPoseParams tcp_pose_params = 1;
+}
+
+message InverseKinematicsRequest {
+  repeated TcpPoseParams tcp_pose_params = 1;
+  bool if_use_whole_body = 2;
+}
+
+message InverseKinematicsResponse {
+  repeated double joint_angles = 1;
+}
+
+service ParamsService {
+    // set rpc
+    rpc SetJointSoftLimit(SetJointParamsRequest) returns (SetParamResponse);
+    rpc SetJointMaxVel(SetJointParamsRequest) returns (SetParamResponse);
+    rpc SetJointMaxAcc(SetJointParamsRequest) returns (SetParamResponse);
+    rpc SetCartesianTranslationMaxVel(SetCartesianParamsRequest) returns (SetParamResponse);
+    rpc SetCartesianTranslationMaxAcc(SetCartesianParamsRequest) returns (SetParamResponse);
+    rpc SetCartesianRotationMaxVel(SetCartesianParamsRequest) returns (SetParamResponse);
+    rpc SetCartesianRotationMaxAcc(SetCartesianParamsRequest) returns (SetParamResponse);
+    rpc SetTcpOffset(SetTcpOffsetParamsRequest) returns (SetParamResponse);
+    rpc SetTcpPayload(SetTcpPayloadParamsRequest) returns (SetParamResponse);
+    // get rpc
+    rpc GetJointSoftLimit(google.protobuf.Empty) returns (GetJointParamsResponse);
+    rpc GetJointMaxVel(google.protobuf.Empty) returns (GetJointParamsResponse);
+    rpc GetJointMaxAcc(google.protobuf.Empty) returns (GetJointParamsResponse);
+    rpc GetCartesianTranslationMaxVel(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetCartesianTranslationMaxAcc(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetCartesianRotationMaxVel(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetCartesianRotationMaxAcc(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetTcpOffset(GetTcpOffsetRequest) returns (GetTcpOffsetResponse);
+    rpc GetTcpPayload(GetTcpPayloadRequest) returns (GetTcpPayloadResponse);
+    rpc ForwardKinematics(ForwardKinematicsRequest) returns (ForwardKinematicsResponse);
+    rpc InverseKinematics(InverseKinematicsRequest) returns (InverseKinematicsResponse);
+    // get mechanical
+    rpc GetJointMechanicalLimit(google.protobuf.Empty) returns (GetJointParamsResponse);
+    rpc GetJointMechanicalMaxVel(google.protobuf.Empty) returns (GetJointParamsResponse);
+    rpc GetJointMechanicalMaxAcc(google.protobuf.Empty) returns (GetJointParamsResponse);
+    rpc GetCartesianMechanicalTranslationMaxVel(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetCartesianMechanicalTranslationMaxAcc(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetCartesianMechanicalRotationMaxVel(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+    rpc GetCartesianMechanicalRotationMaxAcc(google.protobuf.Empty) returns (GetCartesianParamsResponse);
+}
