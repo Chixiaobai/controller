@@ -79,9 +79,8 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     std::map<std::string, int> moduleTotal;                            // 模块→总用例数
     std::map<std::string, int> modulePassed;                           // 模块→通过数
     std::map<std::string, int> moduleFailed;                           // 模块→失败数
-    std::map<std::string, int> moduleSkipped;                          // 模块→跳过数
     std::map<std::string, std::vector<std::string>> moduleFailDetails; // 模块→失败详情
-    int totalAllCases = 0, totalPassed = 0, totalFailed = 0, totalSkipped = 0;
+    int totalAllCases = 0, totalPassed = 0, totalFailed = 0;
 
     // 遍历所有测试组，收集统计数据
     for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx)
@@ -96,12 +95,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             moduleTotal[moduleName]++;
             totalAllCases++;
 
-            if (case_result->Skipped())
-            {
-                moduleSkipped[moduleName]++;
-                totalSkipped++;
-            }
-            else if (case_result->Passed())
+            if (case_result->Passed())
             {
                 modulePassed[moduleName]++;
                 totalPassed++;
@@ -110,24 +104,19 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             {
                 moduleFailed[moduleName]++;
                 totalFailed++;
-                // 格式化失败信息（一行显示，直接在循环内处理）
                 std::string failMsg;
                 for (int i = 0; i < case_result->total_part_count(); ++i)
                 {
                     const TestPartResult &part = case_result->GetTestPartResult(i);
                     if (part.failed())
                     {
-                        // 1. 拼接行号和错误信息前缀
                         failMsg += "行号：" + std::to_string(part.line_number()) + " | 错误信息：";
-                        // 2. 处理原始错误信息，替换换行和连续空格
                         std::string raw_msg = part.message();
-                        // 替换换行符为空格
                         for (char &c : raw_msg)
                         {
                             if (c == '\n' || c == '\r')
                                 c = ' ';
                         }
-                        // 替换连续空格为单个空格
                         std::string compressed_msg;
                         bool prev_space = false;
                         for (char c : raw_msg)
@@ -146,7 +135,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
                                 prev_space = false;
                             }
                         }
-                        // 去除首尾空格
                         if (!compressed_msg.empty() && compressed_msg.front() == ' ')
                         {
                             compressed_msg.erase(0, 1);
@@ -155,7 +143,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
                         {
                             compressed_msg.pop_back();
                         }
-                        // 3. 拼接处理后的错误信息
                         failMsg += compressed_msg;
                     }
                 }
@@ -180,46 +167,26 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             background-color: #f9f9f9;
         }
         .report-header {
-            background-color: #337ab7;
-            color: white;
+            /* 移除蓝色背景 */
+            color: #333; /* 文字改为深灰色 */
             padding: 15px;
             margin-bottom: 20px;
-            text-align: center; /* 标题和执行信息居中 */
+            text-align: center;
         }
         .report-title {
             font-size: 24px;
             font-weight: bold;
             margin: 0;
+            /* 可添加标题下划线增强视觉效果 */
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
         }
         .report-meta {
             margin-top: 10px;
-            color: #d9edf7;
+            color: #666; /* 元信息文字颜色 */
             font-size: 12px;
         }
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
-        }
-        .stat-card {
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 15px;
-            width: 20%;
-            text-align: center;
-        }
-        .stat-label {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .passed { color: #5cb85c; }
-        .failed { color: #d9534f; }
-        .skipped { color: #f0ad4e; }
+        /* 其他样式保持不变 */
         .module-stats-table {
             width: 100%;
             border-collapse: collapse;
@@ -234,6 +201,10 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         }
         .module-stats-table th {
             background-color: #f8f8f8;
+            font-weight: bold;
+        }
+        .module-stats-table .total-row {
+            background-color: #f0f7ff;
             font-weight: bold;
         }
         .cases-table {
@@ -265,15 +236,13 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         }
         .status-pass { background-color: #5cb85c; }
         .status-fail { background-color: #d9534f; }
-        .status-skip { background-color: #f0ad4e; }
         .fail-details {
             margin-top: 8px;
             padding: 10px;
             background-color: #f2dede;
             border-radius: 4px;
             color: #a94442;
-            white-space: nowrap; /* 不换行 */
-            overflow-x: auto; /* 横向滚动（避免溢出） */
+            white-space: pre-wrap;
         }
     </style>
 </head>
@@ -281,33 +250,8 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     <div class="report-header">
         <h1 class="report-title">测试报告</h1>
         <div class="report-meta">
-            执行时间：)"
-        << current_time << R"(<br>
-            执行范围：)"
-        << (config.case_type.empty() ? "自动化测试用例" : config.case_type) << R"(
-        </div>
-    </div>
-
-    <div class="stats-container">
-        <div class="stat-card">
-            <div class="stat-label">总用例数</div>
-            <div class="stat-value total">)"
-        << totalAllCases << R"(</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">通过</div>
-            <div class="stat-value passed">)"
-        << totalPassed << R"(</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">失败</div>
-            <div class="stat-value failed">)"
-        << totalFailed << R"(</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">跳过</div>
-            <div class="stat-value skipped">)"
-        << totalSkipped << R"(</div>
+            执行时间：)" << current_time << R"(<br>
+            执行范围：)" << (config.case_type.empty() ? "自动化测试用例" : config.case_type) << R"(
         </div>
     </div>
 
@@ -318,36 +262,56 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
                 <th>总用例数</th>
                 <th>通过</th>
                 <th>失败</th>
-                <th>跳过</th>
             </tr>
         </thead>
         <tbody>
     )";
 
-    // 生成模块统计表格行
-    for (const auto &[moduleName, _] : moduleTotal)
-    {
+    // 统计指定模块的总计数据
+    int targetTotal = 0, targetPassed = 0, targetFailed = 0;
+
+    // 生成模块统计表格行（仅保留指定模块）
+    for (const auto& [moduleName, _] : moduleTotal) {
+        // 判断是否为指定模块
+        bool isTargetModule = false;
+        if (!config.case_type.empty()) {
+            isTargetModule = (moduleName == config.case_type);
+        } else {
+            isTargetModule = (moduleName.substr(0, 4) == "auto");
+        }
+
+        // 只显示指定模块
+        if (!isTargetModule) {
+            continue;
+        }
+
         int total = moduleTotal[moduleName];
         int passed = modulePassed[moduleName];
         int failed = moduleFailed[moduleName];
-        int skipped = moduleSkipped[moduleName];
+        
+        // 累加指定模块的总计
+        targetTotal += total;
+        targetPassed += passed;
+        targetFailed += failed;
+
         ofs << R"(
             <tr>
-                <td>)"
-            << moduleName << R"(</td>
-                <td>)"
-            << total << R"(</td>
-                <td class="passed">)"
-            << passed << R"(</td>
-                <td class="failed">)"
-            << failed << R"(</td>
-                <td class="skipped">)"
-            << skipped << R"(</td>
+                <td>)" << moduleName << R"(</td>
+                <td>)" << total << R"(</td>
+                <td class="passed">)" << passed << R"(</td>
+                <td class="failed">)" << failed << R"(</td>
             </tr>
         )";
     }
 
+    // 添加指定模块的总计行
     ofs << R"(
+            <tr class="total-row">
+                <td>总计</td>
+                <td>)" << targetTotal << R"(</td>
+                <td class="passed">)" << targetPassed << R"(</td>
+                <td class="failed">)" << targetFailed << R"(</td>
+            </tr>
         </tbody>
     </table>
 
@@ -364,106 +328,74 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         <tbody>
     )";
 
-    // 生成用例详情表格
-    for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx)
-    {
-        const TestSuite *suite = unit_test->GetTestSuite(suite_idx);
+    for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx) {
+        const TestSuite* suite = unit_test->GetTestSuite(suite_idx);
         std::string moduleName = suite->name();
+        
         bool isTargetSuite = false;
-
-        if (!config.case_type.empty())
-        {
-            isTargetSuite = (moduleName == config.case_type);
-        }
-        else
-        {
+        if (!config.case_type.empty()) {
+            isTargetSuite = (moduleName == config.case_type); 
+        } else {
             isTargetSuite = (moduleName.substr(0, 4) == "auto");
         }
 
-        if (!isTargetSuite || suite->total_test_count() == 0)
-        {
+        if (!isTargetSuite || suite->total_test_count() == 0) {
             continue;
         }
 
-        for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
-        {
-            const TestInfo *test_case = suite->GetTestInfo(case_idx);
-            const TestResult *case_result = test_case->result();
+        for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx) {
+            const TestInfo* test_case = suite->GetTestInfo(case_idx);
+            const TestResult* case_result = test_case->result();
+            
+            if (!case_result->Failed()) {
+                continue;
+            }
             std::string caseName = test_case->name();
-            std::string statusText, statusClass;
-            std::string detail = "-";
+            std::string statusText = "失败";
+            std::string statusClass = "status-fail";
+            std::string detail;
             double elapsed = case_result->elapsed_time() / 1000.0;
 
-            if (case_result->Passed())
-            {
-                statusText = "通过";
-                statusClass = "status-pass";
-            }
-            else if (case_result->Failed())
-            {
-                statusText = "失败";
-                statusClass = "status-fail";
-                std::string failMsg;
-                for (int i = 0; i < case_result->total_part_count(); ++i)
-                {
-                    const TestPartResult &part = case_result->GetTestPartResult(i);
-                    if (part.failed())
-                    {
-                        failMsg += "行号：" + std::to_string(part.line_number()) + " | 错误信息：";
-                        std::string raw_msg = part.message();
-                        for (char &c : raw_msg)
-                        {
-                            if (c == '\n' || c == '\r')
-                                c = ' ';
-                        }
-                        std::string compressed_msg;
-                        bool prev_space = false;
-                        for (char c : raw_msg)
-                        {
-                            if (c == ' ')
-                            {
-                                if (!prev_space)
-                                {
-                                    compressed_msg += c;
-                                    prev_space = true;
-                                }
-                            }
-                            else
-                            {
-                                compressed_msg += c;
-                                prev_space = false;
-                            }
-                        }
-                        if (!compressed_msg.empty() && compressed_msg.front() == ' ')
-                            compressed_msg.erase(0, 1);
-                        if (!compressed_msg.empty() && compressed_msg.back() == ' ')
-                            compressed_msg.pop_back();
-                        failMsg += compressed_msg + "<br>";
+            std::string failMsg;
+            for (int i = 0; i < case_result->total_part_count(); ++i) {
+                const TestPartResult& part = case_result->GetTestPartResult(i);
+                if (part.failed()) {
+                    failMsg += "行号：" + std::to_string(part.line_number()) + " | 错误信息：";
+                    std::string raw_msg = part.message();
+                    for (char& c : raw_msg) {
+                        if (c == '\n' || c == '\r') c = ' ';
                     }
+                    std::string compressed_msg;
+                    bool prev_space = false;
+                    for (char c : raw_msg) {
+                        if (c == ' ') {
+                            if (!prev_space) {
+                                compressed_msg += c;
+                                prev_space = true;
+                            }
+                        } else {
+                            compressed_msg += c;
+                            prev_space = false;
+                        }
+                    }
+                    if (!compressed_msg.empty() && compressed_msg.front() == ' ') compressed_msg.erase(0, 1);
+                    if (!compressed_msg.empty() && compressed_msg.back() == ' ') compressed_msg.pop_back();
+                    failMsg += compressed_msg + "<br>";
                 }
-                if (!failMsg.empty() && failMsg.substr(failMsg.size() - 4) == "<br>")
-                    failMsg = failMsg.substr(0, failMsg.size() - 4);
-                detail = R"(<div class="fail-details">)" + failMsg + R"(</div>)";
             }
-            else if (case_result->Skipped())
-            {
-                statusText = "跳过";
-                statusClass = "status-skip";
-                detail = "该用例未执行（跳过原因：按执行范围过滤或主动跳过）";
+            if (!failMsg.empty() && failMsg.substr(failMsg.size() - 4) == "<br>") {
+                failMsg = failMsg.substr(0, failMsg.size() - 4);
             }
+            detail = R"(<div class="fail-details">)" + failMsg + R"(</div>)";
+
 
             ofs << R"(
                 <tr>
-                    <td>)"
-                << moduleName << R"(</td>
-                    <td>)"
-                << caseName << R"(</td>
-                    <td><span class="status-tag )"
-                << statusClass << R"(">)" << statusText << R"(</span></td>
-                    <td>)"
-                << std::fixed << std::setprecision(2) << elapsed << R"(</td>
-                    <td>)"
-                << detail << R"(</td>
+                    <td>)" << moduleName << R"(</td>
+                    <td>)" << caseName << R"(</td>
+                    <td><span class="status-tag )" << statusClass << R"(">)" << statusText << R"(</span></td>
+                    <td>)" << std::fixed << std::setprecision(2) << elapsed << R"(</td>
+                    <td>)" << detail << R"(</td>
                 </tr>
             )";
         }
