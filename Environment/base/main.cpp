@@ -244,23 +244,8 @@ int main(int argc, char **argv)
     testing::InitGoogleTest(&argc, argv);
     testing::GTEST_FLAG(filter) = g_test_config.case_filter;
 
-    // // 打印启动信息（展示当前执行范围）
-    std::cout << "===== 测试启动 =====" << std::endl;
-    std::cout << "臂型：" << g_test_config.robot_type << std::endl;
-    if (g_test_config.case_type.empty())
-    {
-        std::cout << "执行范围：所有用例" << std::endl;
-    }
-    else
-    {
-        std::cout << "执行范围：" << g_test_config.case_type << std::endl;
-    }
-    std::cout << "====================" << std::endl;
-
-    // 执行测试
     int test_result = RUN_ALL_TESTS();
 
-    // 生成报告（如果需要）
     if (!g_test_config.report_path.empty())
     {
         save_html_report(g_test_config.report_path, g_test_config);

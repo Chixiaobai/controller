@@ -8,13 +8,11 @@
 #include <string>
 
 using namespace testing;
-// 在parse_test_arguments函数中，修改过滤规则生成逻辑
 bool parse_test_arguments(int argc, char **argv, TestTaskConfig &config)
 {
     std::cout << "解析-case参数：" << std::endl;
-    // 初始化默认过滤规则（执行所有用例，不提前过滤非auto组）
-    config.case_filter = "*"; // 默认执行所有用例
-
+    config.case_filter = "auto*";
+    config.case_type = "";
     for (int i = 1; i < argc; ++i)
     {
         std::string arg = argv[i];
@@ -23,14 +21,13 @@ bool parse_test_arguments(int argc, char **argv, TestTaskConfig &config)
             std::string case_input = argv[++i];
             config.case_type = case_input;
 
-            // 仅当指定了-case参数时才修改过滤规则
             if (case_input.find('.') != std::string::npos)
             {
-                config.case_filter = case_input; // 单个用例
+                config.case_filter = case_input;
             }
             else
             {
-                config.case_filter = case_input + ".*"; // 批次用例
+                config.case_filter = case_input + ".*";
             }
         }
         else if (arg == "-robot" && i + 1 < argc)
@@ -250,8 +247,10 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     <div class="report-header">
         <h1 class="report-title">测试报告</h1>
         <div class="report-meta">
-            执行时间：)" << current_time << R"(<br>
-            执行范围：)" << (config.case_type.empty() ? "自动化测试用例" : config.case_type) << R"(
+            执行时间：)"
+        << current_time << R"(<br>
+            执行范围：)"
+        << (config.case_type.empty() ? "自动化测试用例" : config.case_type) << R"(
         </div>
     </div>
 
@@ -271,24 +270,29 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     int targetTotal = 0, targetPassed = 0, targetFailed = 0;
 
     // 生成模块统计表格行（仅保留指定模块）
-    for (const auto& [moduleName, _] : moduleTotal) {
+    for (const auto &[moduleName, _] : moduleTotal)
+    {
         // 判断是否为指定模块
         bool isTargetModule = false;
-        if (!config.case_type.empty()) {
+        if (!config.case_type.empty())
+        {
             isTargetModule = (moduleName == config.case_type);
-        } else {
+        }
+        else
+        {
             isTargetModule = (moduleName.substr(0, 4) == "auto");
         }
 
         // 只显示指定模块
-        if (!isTargetModule) {
+        if (!isTargetModule)
+        {
             continue;
         }
 
         int total = moduleTotal[moduleName];
         int passed = modulePassed[moduleName];
         int failed = moduleFailed[moduleName];
-        
+
         // 累加指定模块的总计
         targetTotal += total;
         targetPassed += passed;
@@ -296,10 +300,14 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
 
         ofs << R"(
             <tr>
-                <td>)" << moduleName << R"(</td>
-                <td>)" << total << R"(</td>
-                <td class="passed">)" << passed << R"(</td>
-                <td class="failed">)" << failed << R"(</td>
+                <td>)"
+            << moduleName << R"(</td>
+                <td>)"
+            << total << R"(</td>
+                <td class="passed">)"
+            << passed << R"(</td>
+                <td class="failed">)"
+            << failed << R"(</td>
             </tr>
         )";
     }
@@ -308,9 +316,12 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     ofs << R"(
             <tr class="total-row">
                 <td>总计</td>
-                <td>)" << targetTotal << R"(</td>
-                <td class="passed">)" << targetPassed << R"(</td>
-                <td class="failed">)" << targetFailed << R"(</td>
+                <td>)"
+        << targetTotal << R"(</td>
+                <td class="passed">)"
+        << targetPassed << R"(</td>
+                <td class="failed">)"
+        << targetFailed << R"(</td>
             </tr>
         </tbody>
     </table>
@@ -328,26 +339,33 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         <tbody>
     )";
 
-    for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx) {
-        const TestSuite* suite = unit_test->GetTestSuite(suite_idx);
+    for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx)
+    {
+        const TestSuite *suite = unit_test->GetTestSuite(suite_idx);
         std::string moduleName = suite->name();
-        
+
         bool isTargetSuite = false;
-        if (!config.case_type.empty()) {
-            isTargetSuite = (moduleName == config.case_type); 
-        } else {
+        if (!config.case_type.empty())
+        {
+            isTargetSuite = (moduleName == config.case_type);
+        }
+        else
+        {
             isTargetSuite = (moduleName.substr(0, 4) == "auto");
         }
 
-        if (!isTargetSuite || suite->total_test_count() == 0) {
+        if (!isTargetSuite || suite->total_test_count() == 0)
+        {
             continue;
         }
 
-        for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx) {
-            const TestInfo* test_case = suite->GetTestInfo(case_idx);
-            const TestResult* case_result = test_case->result();
-            
-            if (!case_result->Failed()) {
+        for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
+        {
+            const TestInfo *test_case = suite->GetTestInfo(case_idx);
+            const TestResult *case_result = test_case->result();
+
+            if (!case_result->Failed())
+            {
                 continue;
             }
             std::string caseName = test_case->name();
@@ -357,45 +375,61 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             double elapsed = case_result->elapsed_time() / 1000.0;
 
             std::string failMsg;
-            for (int i = 0; i < case_result->total_part_count(); ++i) {
-                const TestPartResult& part = case_result->GetTestPartResult(i);
-                if (part.failed()) {
+            for (int i = 0; i < case_result->total_part_count(); ++i)
+            {
+                const TestPartResult &part = case_result->GetTestPartResult(i);
+                if (part.failed())
+                {
                     failMsg += "行号：" + std::to_string(part.line_number()) + " | 错误信息：";
                     std::string raw_msg = part.message();
-                    for (char& c : raw_msg) {
-                        if (c == '\n' || c == '\r') c = ' ';
+                    for (char &c : raw_msg)
+                    {
+                        if (c == '\n' || c == '\r')
+                            c = ' ';
                     }
                     std::string compressed_msg;
                     bool prev_space = false;
-                    for (char c : raw_msg) {
-                        if (c == ' ') {
-                            if (!prev_space) {
+                    for (char c : raw_msg)
+                    {
+                        if (c == ' ')
+                        {
+                            if (!prev_space)
+                            {
                                 compressed_msg += c;
                                 prev_space = true;
                             }
-                        } else {
+                        }
+                        else
+                        {
                             compressed_msg += c;
                             prev_space = false;
                         }
                     }
-                    if (!compressed_msg.empty() && compressed_msg.front() == ' ') compressed_msg.erase(0, 1);
-                    if (!compressed_msg.empty() && compressed_msg.back() == ' ') compressed_msg.pop_back();
+                    if (!compressed_msg.empty() && compressed_msg.front() == ' ')
+                        compressed_msg.erase(0, 1);
+                    if (!compressed_msg.empty() && compressed_msg.back() == ' ')
+                        compressed_msg.pop_back();
                     failMsg += compressed_msg + "<br>";
                 }
             }
-            if (!failMsg.empty() && failMsg.substr(failMsg.size() - 4) == "<br>") {
+            if (!failMsg.empty() && failMsg.substr(failMsg.size() - 4) == "<br>")
+            {
                 failMsg = failMsg.substr(0, failMsg.size() - 4);
             }
             detail = R"(<div class="fail-details">)" + failMsg + R"(</div>)";
 
-
             ofs << R"(
                 <tr>
-                    <td>)" << moduleName << R"(</td>
-                    <td>)" << caseName << R"(</td>
-                    <td><span class="status-tag )" << statusClass << R"(">)" << statusText << R"(</span></td>
-                    <td>)" << std::fixed << std::setprecision(2) << elapsed << R"(</td>
-                    <td>)" << detail << R"(</td>
+                    <td>)"
+                << moduleName << R"(</td>
+                    <td>)"
+                << caseName << R"(</td>
+                    <td><span class="status-tag )"
+                << statusClass << R"(">)" << statusText << R"(</span></td>
+                    <td>)"
+                << std::fixed << std::setprecision(2) << elapsed << R"(</td>
+                    <td>)"
+                << detail << R"(</td>
                 </tr>
             )";
         }
