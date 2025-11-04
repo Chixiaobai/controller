@@ -242,7 +242,6 @@ int main(int argc, char **argv)
     }
 
     testing::InitGoogleTest(&argc, argv);
-    testing::GTEST_FLAG(filter) = g_test_config.case_filter;
 
     int test_result = RUN_ALL_TESTS();
 

@@ -1,10 +1,9 @@
 #include <signal.h>
-#include "H10wGrpcMove.h"
+#include "Test.h"
 #include "main.h"
 
 static H10wGrpcMove *g_pTester = nullptr;
 
-// 信号处理函数（保持原有逻辑）
 static void consoleHandler(int intSigNum)
 {
     if ((SIGINT == intSigNum) || (SIGTERM == intSigNum))
@@ -16,7 +15,6 @@ static void consoleHandler(int intSigNum)
     }
 }
 
-// 设置控制台信号处理（保持原有逻辑）
 static void setConsoleHandler()
 {
     struct sigaction stSigAction;
@@ -31,23 +29,17 @@ static void setConsoleHandler()
     }
 }
 
-// 定义测试用例的描述, 方便用户了解测试内容
-GTEST_CASE(auto_Grpc_Params, H10w_FT_Grpc_Params_002, "验证关节软限位修改后，获取关节软限位结果正确性")
+TEST_F(GrpcParamsTest, H10w_FT_Grpc_Params_002)
 {
     setConsoleHandler();
 
-    rclcpp::init(0, nullptr);
-    auto node = std::make_shared<H10wGrpcMove>(IpPort);
-    g_pTester = node.get(); // 绑定全局指针用于信号处理
-
-    // 启动spin循环（单独线程，避免阻塞主逻辑）
-    std::thread spin_thread([&node]()
-                            { rclcpp::spin(node); });
+    ASSERT_NE(grpc_params_client_, nullptr) << "Grpc客户端初始化失败";
+    ASSERT_NE(grpc_params_client_->m_pControllerClient, nullptr) << "控制器客户端为空";
 
     int count = 0;
     // 测试任务1：获取所有关节软限位
     std::cout << "Get Joint Soft Limits: " << std::endl;
-    auto soft_limits = node->m_pControllerClient->getJointSoftLimit();
+    auto soft_limits = grpc_params_client_->m_pControllerClient->getJointSoftLimit();
     for (auto &[i, max, min] : soft_limits)
     {
         std::cout << i << " = [max:" << max << "; min:" << min << ";]" << std::endl;
@@ -94,15 +86,7 @@ GTEST_CASE(auto_Grpc_Params, H10w_FT_Grpc_Params_002, "验证关节软限位修�
     // }
     // EXPECT_EQ(count, joint_index.size());
 
-    node->stopTest();
-    // 清理资源
-    node->stopTest();
-    if (spin_thread.joinable())
-    {
-        spin_thread.join();
-    }
-    node.reset();
+    EXPECT_EQ(1, 2);
 
-    g_pTester = nullptr;
     sleepMilliseconds(1000);
 }

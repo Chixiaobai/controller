@@ -76,8 +76,8 @@ namespace GlobalConstants
 
         constexpr uint32_t WAVE_ARM_COUNT = 300;
 
-        inline std::string IpPort = "192.168.1.75";
-        // inline std::string IpPort = "127.0.0.1";
+        // inline std::string IpPort = "192.168.1.75";
+        inline std::string IpPort = "127.0.0.1";
 
     }
 }

@@ -1,5 +1,5 @@
 #include <signal.h>
-#include "H10wGrpcMove.h"
+#include "Test.h"
 #include "main.h"
 
 static H10wGrpcMove *g_pTester = nullptr;
@@ -29,36 +29,21 @@ static void setConsoleHandler()
     }
 }
 
-GTEST_CASE(Grpc_Params, H10w_FT_Grpc_Params_001, "验证获取关节软限位函数有效性")
+TEST_F(GrpcParamsTest, H10w_FT_Grpc_Params_001)
 {
     setConsoleHandler();
-    rclcpp::init(0, nullptr);
-    auto node = std::make_shared<H10wGrpcMove>(IpPort);
-    g_pTester = node.get();
-
-    // 启动spin循环（单独线程，避免阻塞主逻辑）
-    std::thread spin_thread([&node]()
-                            { rclcpp::spin(node); });
+    ASSERT_NE(grpc_params_client_, nullptr) << "Grpc客户端初始化失败";
+    ASSERT_NE(grpc_params_client_->m_pControllerClient, nullptr) << "控制器客户端为空";
 
     // 测试任务1：获取所有关节软限位
     std::cout << "Get Joint Soft Limits: " << std::endl;
-    auto soft_limits = node->m_pControllerClient->getJointSoftLimit();
+    auto soft_limits = grpc_params_client_->m_pControllerClient->getJointSoftLimit();
     for (auto &[i, max, min] : soft_limits)
     {
         std::cout << i << " = [max:" << max << "; min:" << min << ";]" << std::endl;
     }
 
-    char ret = read_input("将上述结果与配置文件中的软限位对比，是否一致？(y/n)\n");
-    EXPECT_EQ(ret, 'y') << "用户确认结果不一致，获取关节软限位失败";
-
-    // 清理资源
-    node->stopTest();
-    if (spin_thread.joinable())
-    {
-        spin_thread.join();
-    }
-    node.reset();
-
-    g_pTester = nullptr;
+    EXPECT_EQ(1, 2);
+    
     sleepMilliseconds(1000);
 }

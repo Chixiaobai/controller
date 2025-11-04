@@ -11,7 +11,6 @@ using namespace testing;
 bool parse_test_arguments(int argc, char **argv, TestTaskConfig &config)
 {
     std::cout << "解析-case参数：" << std::endl;
-    config.case_filter = "auto*";
     config.case_type = "";
     for (int i = 1; i < argc; ++i)
     {
@@ -20,15 +19,6 @@ bool parse_test_arguments(int argc, char **argv, TestTaskConfig &config)
         {
             std::string case_input = argv[++i];
             config.case_type = case_input;
-
-            if (case_input.find('.') != std::string::npos)
-            {
-                config.case_filter = case_input;
-            }
-            else
-            {
-                config.case_filter = case_input + ".*";
-            }
         }
         else if (arg == "-robot" && i + 1 < argc)
         {

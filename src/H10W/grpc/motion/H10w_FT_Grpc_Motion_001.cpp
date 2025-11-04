@@ -35,9 +35,8 @@ GTEST_CASE(auto_Grpc_Motions, H10w_FT_Grpc_Motion_001, "测试单关节移动")
     rclcpp::init(0, nullptr);
 
     auto node = std::make_shared<H10wGrpcMove>(IpPort);
+
     g_pTester = node.get();
-    std::thread spin_thread([&node]()
-                            { rclcpp::spin(node); });
 
     while (rclcpp::ok() && !node->has_move_msg())
     {
