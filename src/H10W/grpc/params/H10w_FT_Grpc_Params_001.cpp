@@ -33,10 +33,7 @@ GTEST_CASE(Grpc_Params, H10w_FT_Grpc_Params_001, "验证获取关节软限位函
 {
     setConsoleHandler();
 
-    auto test_context = std::make_shared<rclcpp::Context>();
-    test_context->init(0, nullptr);
-
-    auto node = std::make_shared<H10wGrpcMove>(IpPort, test_context);
+    auto node = std::make_shared<H10wGrpcMove>(IpPort);
     g_pTester = node.get();
 
     // 启动spin循环（单独线程，避免阻塞主逻辑）

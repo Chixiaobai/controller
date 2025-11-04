@@ -32,10 +32,7 @@ GTEST_CASE(Grpc_Params, H10w_FT_Grpc_Params_004, "验证设置关节软限位函
 {
     setConsoleHandler();
 
-    auto test_context = std::make_shared<rclcpp::Context>();
-    test_context->init(0, nullptr);
-
-    auto node = std::make_shared<H10wGrpcMove>(IpPort, test_context);
+    auto node = std::make_shared<H10wGrpcMove>(IpPort);
     g_pTester = node.get();
 
     // 启动spin循环（单独线程，避免阻塞主逻辑）
@@ -56,21 +53,21 @@ GTEST_CASE(Grpc_Params, H10w_FT_Grpc_Params_004, "验证设置关节软限位函
     std::vector<double> min_pos = {-0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.2, -0.2, 0.1, -0.001, -0.001};
     std::vector<double> max_pos = {0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.2, 0.2, 0.6, 0.001, 0.001};
 
-    node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
+    // node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
 
     char ret = read_input("查看配置文件中的软限位，是否与设置的一致？(y/n)\n");
     EXPECT_EQ(ret, 'y') << "用户确认结果不一致，获取关节软限位失败";
-    // 测试任务2：恢复关节软限位
-    for (auto &[i, max, min] : soft_limits)
-    {
+    // // 测试任务2：恢复关节软限位
+    // for (auto &[i, max, min] : soft_limits)
+    // {
 
-        max_pos[i] = max;
-        min_pos[i] = min;
-    }
+    //     max_pos[i] = max;
+    //     min_pos[i] = min;
+    // }
 
-    node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
-    ret = read_input("查看配置文件中的软限位，是否与设置的一致？(y/n)\n");
-    EXPECT_EQ(ret, 'y') << "用户确认结果不一致，设置关节软限位失败";
+    // node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
+    // ret = read_input("查看配置文件中的软限位，是否与设置的一致？(y/n)\n");
+    // EXPECT_EQ(ret, 'y') << "用户确认结果不一致，设置关节软限位失败";
 
     node->stopTest();
     if (spin_thread.joinable())

@@ -14,7 +14,7 @@ using namespace GlobalConstants::H10W;
 class H10wGrpcMove : public rclcpp::Node
 {
 public:
-    explicit H10wGrpcMove(const std::string &strIpPort, rclcpp::Context::SharedPtr context);
+    explicit H10wGrpcMove(const std::string &strIpPort = "localhost");
     ~H10wGrpcMove() = default;
 
     void stopTest();

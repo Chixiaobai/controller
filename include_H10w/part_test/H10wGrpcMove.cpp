@@ -7,8 +7,8 @@
 
 #include "H10wGrpcMove.h"
 
-H10wGrpcMove::H10wGrpcMove(const std::string &strIpPort, rclcpp::Context::SharedPtr context)
-    : Node("H10wGrpcMove", rclcpp::NodeOptions().context(context)),
+H10wGrpcMove::H10wGrpcMove(const std::string &strIpPort)
+    : Node("H10wGrpcMove"),
       m_pDevCtrlSvrClient(std::make_unique<CDeviceControlServiceClient>(
           grpc::CreateChannel(strIpPort + ":8686", grpc::InsecureChannelCredentials()))),
       m_pControllerClient(std::make_unique<HumanoidControllerClient>(
@@ -49,14 +49,7 @@ void H10wGrpcMove::stopTest()
     m_pControllerClient->stop();
     // m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
     // m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
-    auto node_base = this->get_node_base_interface();
-    auto context = node_base->get_context(); // 从节点基础接口提取上下文
-
-    // 关闭当前用例的上下文（仅关闭当前节点的上下文，不影响全局）
-    if (context->is_valid())
-    {
-        context->shutdown("Test case finished");
-    }
+    rclcpp::shutdown();
 }
 void H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &velocity_percent, uint32_t &token)
 {
@@ -179,7 +172,7 @@ void H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector
         if (now - start_time >= timeout)
         {
             RCLCPP_ERROR(this->get_logger(),
-                         "grpc_linearmove() 超时（%d秒），操作未完成。当前状态: state=%d,", static_cast<int>(timeout.count()),
+                         "grpc_linearmove() 超时（%d秒），操作未完成。当前状态: state=%d," ,static_cast<int>(timeout.count()),
                          get_move_msg_->state);
             return;
         }
@@ -189,14 +182,14 @@ void H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector
         {
             for (int j = 0; j < 6; j++)
             {
-                if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j], pose[i][j], 0.001))
+                if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j],pose[i][j],0.001))
                 {
                     all_reached = false;
                     break;
                 }
             }
         }
-        if (all_reached && get_move_msg_->state == 0)
+        if (all_reached &&get_move_msg_->state == 0)
         {
             RCLCPP_INFO(this->get_logger(),
                         "grpc_linearmove() 完成");
