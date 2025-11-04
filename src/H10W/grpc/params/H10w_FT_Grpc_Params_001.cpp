@@ -1,5 +1,5 @@
 #include <signal.h>
-#include "Test.h"
+#include "Test _Grpc_Params_Fixture.h"
 #include "main.h"
 
 static H10wGrpcMove *g_pTester = nullptr;
@@ -10,7 +10,8 @@ static void consoleHandler(int intSigNum)
     {
         if (nullptr != g_pTester)
         {
-            g_pTester->stopTest();
+            g_pTester->m_pControllerClient->stop();
+            rclcpp::shutdown();
         }
     }
 }
@@ -44,6 +45,6 @@ TEST_F(GrpcParamsTest, H10w_FT_Grpc_Params_001)
     }
 
     EXPECT_EQ(1, 2);
-    
+
     sleepMilliseconds(1000);
 }

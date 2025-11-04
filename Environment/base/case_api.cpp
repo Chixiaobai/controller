@@ -270,7 +270,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         }
         else
         {
-            isTargetModule = (moduleName.substr(0, 4) == "auto");
+            isTargetModule = true;
         }
 
         // 只显示指定模块
@@ -341,7 +341,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         }
         else
         {
-            isTargetSuite = (moduleName.substr(0, 4) == "auto");
+            isTargetSuite = true;
         }
 
         if (!isTargetSuite || suite->total_test_count() == 0)
