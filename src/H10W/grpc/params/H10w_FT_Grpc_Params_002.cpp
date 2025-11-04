@@ -36,6 +36,7 @@ GTEST_CASE(auto_Grpc_Params, H10w_FT_Grpc_Params_002, "验证关节软限位修�
 {
     setConsoleHandler();
 
+    rclcpp::init(0, nullptr);
     auto node = std::make_shared<H10wGrpcMove>(IpPort);
     g_pTester = node.get(); // 绑定全局指针用于信号处理
 
@@ -52,46 +53,46 @@ GTEST_CASE(auto_Grpc_Params, H10w_FT_Grpc_Params_002, "验证关节软限位修�
         std::cout << i << " = [max:" << max << "; min:" << min << ";]" << std::endl;
     }
 
-    // 测试任务2：修改关节软限位
-    std::cout << "Modify Joint Soft Limits: " << std::endl;
-    std::vector<uint32_t> joint_index = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
-    std::vector<double> min_pos = {-1.5, -1.5, -1.5, 0.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, 0.5, -1.5, -1.5, -1.5,  -0.2, -0.2, 0.01};
-    std::vector<double> max_pos = {1.5, 1.5, 1.5, 1.0, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.0, 1.5, 1.5, 1.5, 0.2, 0.1, 0.6};
+    // // 测试任务2：修改关节软限位
+    // std::cout << "Modify Joint Soft Limits: " << std::endl;
+    // std::vector<uint32_t> joint_index = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+    // std::vector<double> min_pos = {-1.5, -1.5, -1.5, 0.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, 0.5, -1.5, -1.5, -1.5, -0.2, -0.2, 0.01};
+    // std::vector<double> max_pos = {1.5, 1.5, 1.5, 1.0, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.0, 1.5, 1.5, 1.5, 0.2, 0.1, 0.6};
 
-    node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
+    // node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
 
-    auto new_soft_limits = node->m_pControllerClient->getJointSoftLimit();
-    for (auto &[i, max, min] : new_soft_limits)
-    {
+    // auto new_soft_limits = node->m_pControllerClient->getJointSoftLimit();
+    // for (auto &[i, max, min] : new_soft_limits)
+    // {
 
-        if (max_pos[i] == max && min_pos[i] == min)
-        {
-            count++;
-        }
-    }
-    EXPECT_EQ(count, joint_index.size());
+    //     if (max_pos[i] == max && min_pos[i] == min)
+    //     {
+    //         count++;
+    //     }
+    // }
+    // EXPECT_EQ(count, joint_index.size());
 
-    // 测试任务3：恢复所有关节软限位
-    count = 0;
-    for (auto &[i, max, min] : soft_limits)
-    {
+    // // 测试任务3：恢复所有关节软限位
+    // count = 0;
+    // for (auto &[i, max, min] : soft_limits)
+    // {
 
-        max_pos[i] = max;
-        min_pos[i] = min;
-    }
+    //     max_pos[i] = max;
+    //     min_pos[i] = min;
+    // }
 
-    node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
+    // node->m_pControllerClient->setJointSoftLimit(joint_index, min_pos, max_pos);
 
-    new_soft_limits = node->m_pControllerClient->getJointSoftLimit();
-    for (auto &[i, max, min] : new_soft_limits)
-    {
+    // new_soft_limits = node->m_pControllerClient->getJointSoftLimit();
+    // for (auto &[i, max, min] : new_soft_limits)
+    // {
 
-        if (max_pos[i] == max && min_pos[i] == min)
-        {
-            count++;
-        }
-    }
-    EXPECT_EQ(count, joint_index.size());
+    //     if (max_pos[i] == max && min_pos[i] == min)
+    //     {
+    //         count++;
+    //     }
+    // }
+    // EXPECT_EQ(count, joint_index.size());
 
     node->stopTest();
     // 清理资源

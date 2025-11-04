@@ -31,7 +31,7 @@ static void setConsoleHandler()
 GTEST_CASE(Grpc_Params, H10w_FT_Grpc_Params_003, "验证设置关节软限位函数的有效性")
 {
     setConsoleHandler();
-
+    rclcpp::init(0, nullptr);
     auto node = std::make_shared<H10wGrpcMove>(IpPort);
     g_pTester = node.get();
 

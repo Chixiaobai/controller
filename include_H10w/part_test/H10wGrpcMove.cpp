@@ -53,6 +53,7 @@ void H10wGrpcMove::stopTest()
 }
 void H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &velocity_percent, uint32_t &token)
 {
+    
     m_pControllerClient->SingleJointMove(index, position, velocity_percent, token);
     // 定义超时时间为5秒
     const auto timeout = std::chrono::seconds(5);

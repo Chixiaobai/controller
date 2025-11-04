@@ -28,12 +28,16 @@ static void setConsoleHandler()
     }
 }
 
-GTEST_CASE(Grpc_motions, H10w_FT_Grpc_Motion_001, "测试单关节移动")
+GTEST_CASE(auto_Grpc_Motions, H10w_FT_Grpc_Motion_001, "测试单关节移动")
 {
     setConsoleHandler();
 
+    rclcpp::init(0, nullptr);
+
     auto node = std::make_shared<H10wGrpcMove>(IpPort);
     g_pTester = node.get();
+    std::thread spin_thread([&node]()
+                            { rclcpp::spin(node); });
 
     while (rclcpp::ok() && !node->has_move_msg())
     {
@@ -48,7 +52,15 @@ GTEST_CASE(Grpc_motions, H10w_FT_Grpc_Motion_001, "测试单关节移动")
 
     char ret = read_input("是否正常结束运动(y/n)\n");
     EXPECT_EQ(ret, 'y') << "用户确认结果不一致，运动异常";
+    // 清理资源
     node->stopTest();
+    if (spin_thread.joinable())
+    {
+        spin_thread.join();
+    }
+    node.reset();
+
+    g_pTester = nullptr;
 
     sleepMilliseconds(1000);
 }

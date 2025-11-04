@@ -1,0 +1,31 @@
+[0.010s] Invoking command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test -- -j12 -l12
+[0.060s] [35m[1mConsolidate compiler generated dependencies of target h10w_controller_test[0m
+[0.123s] [  3%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o[0m
+[0.208s] In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+[0.208s]                  from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:1[m[K:
+[0.208s] [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+[0.208s]    20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+[0.208s]       |                                                                   
+[0.920s] [  7%] [32m[1mLinking CXX executable h10w_controller_test[0m
+[3.075s] [100%] Built target h10w_controller_test
+[3.086s] Invoked command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test -- -j12 -l12
+[3.096s] Invoking command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test
+[3.102s] -- Install configuration: ""
+[3.102s] -- Installing: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/lib/h10w_controller_test/h10w_controller_test
+[3.117s] -- Set runtime path of "/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/lib/h10w_controller_test/h10w_controller_test" to ""
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/package_run_dependencies/h10w_controller_test
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/parent_prefix_path/h10w_controller_test
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/ament_prefix_path.sh
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/ament_prefix_path.dsv
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/path.sh
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/path.dsv
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.bash
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.sh
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.zsh
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.dsv
+[3.117s] -- Installing: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/package.dsv
+[3.117s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/packages/h10w_controller_test
+[3.118s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/cmake/h10w_controller_testConfig.cmake
+[3.118s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/cmake/h10w_controller_testConfig-version.cmake
+[3.118s] -- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/package.xml
+[3.119s] Invoked command in '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test

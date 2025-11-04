@@ -1,0 +1,5 @@
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:1[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   

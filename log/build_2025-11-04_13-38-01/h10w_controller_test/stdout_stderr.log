@@ -1,0 +1,24 @@
+[35m[1mConsolidate compiler generated dependencies of target h10w_controller_test[0m
+[  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o[0m
+[ 10%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o[0m
+[ 14%] [32m[1mLinking CXX executable h10w_controller_test[0m
+[100%] Built target h10w_controller_test
+-- Install configuration: ""
+-- Installing: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/lib/h10w_controller_test/h10w_controller_test
+-- Set runtime path of "/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/lib/h10w_controller_test/h10w_controller_test" to ""
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/package_run_dependencies/h10w_controller_test
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/parent_prefix_path/h10w_controller_test
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/ament_prefix_path.sh
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/path.sh
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/path.dsv
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.bash
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.sh
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.zsh
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.dsv
+-- Installing: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/package.dsv
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/packages/h10w_controller_test
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/cmake/h10w_controller_testConfig.cmake
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/cmake/h10w_controller_testConfig-version.cmake
+-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/package.xml

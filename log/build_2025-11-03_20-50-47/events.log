@@ -1,0 +1,396 @@
+[0.000000] (-) TimerEvent: {}
+[0.000473] (h10w_controller_test) JobQueued: {'identifier': 'h10w_controller_test', 'dependencies': OrderedDict()}
+[0.000586] (h10w_controller_test) JobStarted: {'identifier': 'h10w_controller_test'}
+[0.005528] (h10w_controller_test) JobProgress: {'identifier': 'h10w_controller_test', 'progress': 'cmake'}
+[0.006179] (h10w_controller_test) JobProgress: {'identifier': 'h10w_controller_test', 'progress': 'build'}
+[0.007465] (h10w_controller_test) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test', '--', '-j12', '-l12'], 'cwd': '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en'), ('USER', 'lizhou'), ('LC_TIME', 'zh_CN.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/lizhou'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.104.1'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('SYSTEMD_EXEC_PID', '226682'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1001/bus,guid=c71dd94646d110d237c60ae869042e65'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install:/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'lizhou'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'lizhou'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/lizhou/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/CNBESLPL230091:@/tmp/.ICE-unix/226682,unix/CNBESLPL230091:/tmp/.ICE-unix/226682'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/home/lizhou/Desktop/Humanoid/H10/Agile_SDK_H10W/Robot_DDS_Profile.xml'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/795f14a5_f881_4552_a796_5cac1ac01ea5'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1001'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1001/.mutter-Xwaylandauth.JHQ7E3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1001/vscode-git-936036d12e.sock'), ('GNOME_TERMINAL_SERVICE', ':1.320'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1001/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install:/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install:/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QWEN_API_KEY', 'sk-b5760002ce4044fa953d632f12c9dede'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'fcitx'), ('PWD', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CLUTTER_IM_MODULE', 'fcitx'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1001/bus,guid=c71dd94646d110d237c60ae869042e65'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install:/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install:/opt/ros/humble')]), 'shell': False}
+[0.059720] (h10w_controller_test) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target h10w_controller_test\x1b[0m\n'}
+[0.099788] (-) TimerEvent: {}
+[0.126247] (h10w_controller_test) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wGrpcMove.cpp.o\x1b[0m\n'}
+[0.127945] (h10w_controller_test) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o\x1b[0m\n'}
+[0.128080] (h10w_controller_test) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o\x1b[0m\n'}
+[0.128117] (h10w_controller_test) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wRosClient.cpp.o\x1b[0m\n'}
+[0.131840] (h10w_controller_test) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o\x1b[0m\n'}
+[0.132115] (h10w_controller_test) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o\x1b[0m\n'}
+[0.199909] (-) TimerEvent: {}
+[0.300250] (-) TimerEvent: {}
+[0.396813] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[0.397121] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[0.397166] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[0.397202] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.h:7\x1b[m\x1b[K,\n'}
+[0.397231] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.cpp:8\x1b[m\x1b[K:\n'}
+[0.397261] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[0.397293] (h10w_controller_test) StderrLine: {'line': b'   20 | #define GTEST_CASE(case_group, case_name, desc)                  \\\n'}
+[0.397321] (h10w_controller_test) StderrLine: {'line': b'      |                                                                   \n'}
+[0.400344] (-) TimerEvent: {}
+[0.503884] (-) TimerEvent: {}
+[0.605050] (-) TimerEvent: {}
+[0.705959] (-) TimerEvent: {}
+[0.807356] (-) TimerEvent: {}
+[0.908454] (-) TimerEvent: {}
+[0.984297] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[0.985051] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[0.985189] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[0.985267] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[0.985333] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2\x1b[m\x1b[K:\n'}
+[0.985398] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[0.985463] (h10w_controller_test) StderrLine: {'line': b'   20 | #define GTEST_CASE(case_group, case_name, desc)                  \\\n'}
+[0.985525] (h10w_controller_test) StderrLine: {'line': b'      |                                                                   \n'}
+[0.997481] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[0.997799] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[0.997880] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[0.997949] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[0.998013] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.cpp:8\x1b[m\x1b[K:\n'}
+[0.998074] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[0.998169] (h10w_controller_test) StderrLine: {'line': b'   20 | #define GTEST_CASE(case_group, case_name, desc)                  \\\n'}
+[0.998234] (h10w_controller_test) StderrLine: {'line': b'      |                                                                   \n'}
+[1.000240] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.000517] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.000600] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.000687] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.000749] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2\x1b[m\x1b[K:\n'}
+[1.000811] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.000876] (h10w_controller_test) StderrLine: {'line': b'   20 | #define GTEST_CASE(case_group, case_name, desc)                  \\\n'}
+[1.000939] (h10w_controller_test) StderrLine: {'line': b'      |                                                                   \n'}
+[1.008697] (-) TimerEvent: {}
+[1.062521] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.062790] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.062861] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.062928] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.062990] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2\x1b[m\x1b[K:\n'}
+[1.063053] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.063115] (h10w_controller_test) StderrLine: {'line': b'   20 | #define GTEST_CASE(case_group, case_name, desc)                  \\\n'}
+[1.063176] (h10w_controller_test) StderrLine: {'line': b'      |                                                                   \n'}
+[1.063905] (h10w_controller_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4\x1b[m\x1b[K,\n'}
+[1.064084] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14\x1b[m\x1b[K,\n'}
+[1.064155] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6\x1b[m\x1b[K,\n'}
+[1.064234] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10\x1b[m\x1b[K,\n'}
+[1.064294] (h10w_controller_test) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2\x1b[m\x1b[K:\n'}
+[1.064355] (h10w_controller_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kbackslash-newline at end of file\n'}
+[1.064417] (h10w_controller_test) StderrLine: {'line': b'   20 | #define GTEST_CASE(case_group, case_name, desc)                  \\\n'}
+[1.064476] (h10w_controller_test) StderrLine: {'line': b'      |                                                                   \n'}
+[1.108899] (-) TimerEvent: {}
+[1.209436] (-) TimerEvent: {}
+[1.310040] (-) TimerEvent: {}
+[1.410836] (-) TimerEvent: {}
+[1.511762] (-) TimerEvent: {}
+[1.612815] (-) TimerEvent: {}
+[1.713377] (-) TimerEvent: {}
+[1.813782] (-) TimerEvent: {}
+[1.914125] (-) TimerEvent: {}
+[2.014486] (-) TimerEvent: {}
+[2.114870] (-) TimerEvent: {}
+[2.215224] (-) TimerEvent: {}
+[2.315643] (-) TimerEvent: {}
+[2.416046] (-) TimerEvent: {}
+[2.516411] (-) TimerEvent: {}
+[2.616856] (-) TimerEvent: {}
+[2.717295] (-) TimerEvent: {}
+[2.817697] (-) TimerEvent: {}
+[2.918078] (-) TimerEvent: {}
+[3.018532] (-) TimerEvent: {}
+[3.118938] (-) TimerEvent: {}
+[3.219334] (-) TimerEvent: {}
+[3.319770] (-) TimerEvent: {}
+[3.420154] (-) TimerEvent: {}
+[3.520560] (-) TimerEvent: {}
+[3.620963] (-) TimerEvent: {}
+[3.721414] (-) TimerEvent: {}
+[3.821806] (-) TimerEvent: {}
+[3.922084] (-) TimerEvent: {}
+[4.022564] (-) TimerEvent: {}
+[4.123555] (-) TimerEvent: {}
+[4.224282] (-) TimerEvent: {}
+[4.325096] (-) TimerEvent: {}
+[4.426355] (-) TimerEvent: {}
+[4.526726] (-) TimerEvent: {}
+[4.627150] (-) TimerEvent: {}
+[4.727526] (-) TimerEvent: {}
+[4.827914] (-) TimerEvent: {}
+[4.928308] (-) TimerEvent: {}
+[5.028795] (-) TimerEvent: {}
+[5.129189] (-) TimerEvent: {}
+[5.229639] (-) TimerEvent: {}
+[5.330006] (-) TimerEvent: {}
+[5.430375] (-) TimerEvent: {}
+[5.530794] (-) TimerEvent: {}
+[5.631190] (-) TimerEvent: {}
+[5.731561] (-) TimerEvent: {}
+[5.831938] (-) TimerEvent: {}
+[5.932384] (-) TimerEvent: {}
+[6.032828] (-) TimerEvent: {}
+[6.133250] (-) TimerEvent: {}
+[6.233644] (-) TimerEvent: {}
+[6.334067] (-) TimerEvent: {}
+[6.434494] (-) TimerEvent: {}
+[6.534940] (-) TimerEvent: {}
+[6.635409] (-) TimerEvent: {}
+[6.735859] (-) TimerEvent: {}
+[6.836274] (-) TimerEvent: {}
+[6.936689] (-) TimerEvent: {}
+[7.037050] (-) TimerEvent: {}
+[7.137474] (-) TimerEvent: {}
+[7.237905] (-) TimerEvent: {}
+[7.338327] (-) TimerEvent: {}
+[7.438765] (-) TimerEvent: {}
+[7.539192] (-) TimerEvent: {}
+[7.639637] (-) TimerEvent: {}
+[7.740126] (-) TimerEvent: {}
+[7.840594] (-) TimerEvent: {}
+[7.940999] (-) TimerEvent: {}
+[8.041375] (-) TimerEvent: {}
+[8.141754] (-) TimerEvent: {}
+[8.242151] (-) TimerEvent: {}
+[8.342642] (-) TimerEvent: {}
+[8.443026] (-) TimerEvent: {}
+[8.543431] (-) TimerEvent: {}
+[8.643853] (-) TimerEvent: {}
+[8.744317] (-) TimerEvent: {}
+[8.844957] (-) TimerEvent: {}
+[8.945562] (-) TimerEvent: {}
+[9.046056] (-) TimerEvent: {}
+[9.146446] (-) TimerEvent: {}
+[9.246817] (-) TimerEvent: {}
+[9.347213] (-) TimerEvent: {}
+[9.447586] (-) TimerEvent: {}
+[9.547947] (-) TimerEvent: {}
+[9.648271] (-) TimerEvent: {}
+[9.748624] (-) TimerEvent: {}
+[9.848962] (-) TimerEvent: {}
+[9.949339] (-) TimerEvent: {}
+[10.049744] (-) TimerEvent: {}
+[10.150086] (-) TimerEvent: {}
+[10.250411] (-) TimerEvent: {}
+[10.350833] (-) TimerEvent: {}
+[10.451255] (-) TimerEvent: {}
+[10.551615] (-) TimerEvent: {}
+[10.652057] (-) TimerEvent: {}
+[10.752484] (-) TimerEvent: {}
+[10.852877] (-) TimerEvent: {}
+[10.953317] (-) TimerEvent: {}
+[11.053662] (-) TimerEvent: {}
+[11.153946] (-) TimerEvent: {}
+[11.254244] (-) TimerEvent: {}
+[11.354574] (-) TimerEvent: {}
+[11.454873] (-) TimerEvent: {}
+[11.555224] (-) TimerEvent: {}
+[11.655543] (-) TimerEvent: {}
+[11.755838] (-) TimerEvent: {}
+[11.856659] (-) TimerEvent: {}
+[11.957352] (-) TimerEvent: {}
+[12.058209] (-) TimerEvent: {}
+[12.158634] (-) TimerEvent: {}
+[12.259109] (-) TimerEvent: {}
+[12.359567] (-) TimerEvent: {}
+[12.459891] (-) TimerEvent: {}
+[12.560196] (-) TimerEvent: {}
+[12.660527] (-) TimerEvent: {}
+[12.760812] (-) TimerEvent: {}
+[12.861087] (-) TimerEvent: {}
+[12.961363] (-) TimerEvent: {}
+[13.061733] (-) TimerEvent: {}
+[13.162005] (-) TimerEvent: {}
+[13.262297] (-) TimerEvent: {}
+[13.362599] (-) TimerEvent: {}
+[13.462952] (-) TimerEvent: {}
+[13.563269] (-) TimerEvent: {}
+[13.663741] (-) TimerEvent: {}
+[13.764035] (-) TimerEvent: {}
+[13.864406] (-) TimerEvent: {}
+[13.964716] (-) TimerEvent: {}
+[14.065091] (-) TimerEvent: {}
+[14.165348] (-) TimerEvent: {}
+[14.265737] (-) TimerEvent: {}
+[14.365996] (-) TimerEvent: {}
+[14.466336] (-) TimerEvent: {}
+[14.566652] (-) TimerEvent: {}
+[14.666995] (-) TimerEvent: {}
+[14.767273] (-) TimerEvent: {}
+[14.867659] (-) TimerEvent: {}
+[14.968054] (-) TimerEvent: {}
+[15.068346] (-) TimerEvent: {}
+[15.168590] (-) TimerEvent: {}
+[15.268976] (-) TimerEvent: {}
+[15.369267] (-) TimerEvent: {}
+[15.469569] (-) TimerEvent: {}
+[15.569870] (-) TimerEvent: {}
+[15.670199] (-) TimerEvent: {}
+[15.770501] (-) TimerEvent: {}
+[15.870833] (-) TimerEvent: {}
+[15.971139] (-) TimerEvent: {}
+[16.071524] (-) TimerEvent: {}
+[16.171772] (-) TimerEvent: {}
+[16.272141] (-) TimerEvent: {}
+[16.372408] (-) TimerEvent: {}
+[16.472735] (-) TimerEvent: {}
+[16.573039] (-) TimerEvent: {}
+[16.673300] (-) TimerEvent: {}
+[16.773580] (-) TimerEvent: {}
+[16.873876] (-) TimerEvent: {}
+[16.974259] (-) TimerEvent: {}
+[17.074512] (-) TimerEvent: {}
+[17.174942] (-) TimerEvent: {}
+[17.275204] (-) TimerEvent: {}
+[17.375478] (-) TimerEvent: {}
+[17.475718] (-) TimerEvent: {}
+[17.575994] (-) TimerEvent: {}
+[17.676312] (-) TimerEvent: {}
+[17.776571] (-) TimerEvent: {}
+[17.876908] (-) TimerEvent: {}
+[17.977222] (-) TimerEvent: {}
+[18.077491] (-) TimerEvent: {}
+[18.177780] (-) TimerEvent: {}
+[18.278082] (-) TimerEvent: {}
+[18.378449] (-) TimerEvent: {}
+[18.478773] (-) TimerEvent: {}
+[18.579063] (-) TimerEvent: {}
+[18.679412] (-) TimerEvent: {}
+[18.779740] (-) TimerEvent: {}
+[18.880056] (-) TimerEvent: {}
+[18.980348] (-) TimerEvent: {}
+[19.080629] (-) TimerEvent: {}
+[19.180904] (-) TimerEvent: {}
+[19.281253] (-) TimerEvent: {}
+[19.381618] (-) TimerEvent: {}
+[19.481979] (-) TimerEvent: {}
+[19.582454] (-) TimerEvent: {}
+[19.682710] (-) TimerEvent: {}
+[19.783002] (-) TimerEvent: {}
+[19.883379] (-) TimerEvent: {}
+[19.983760] (-) TimerEvent: {}
+[20.084121] (-) TimerEvent: {}
+[20.184491] (-) TimerEvent: {}
+[20.284871] (-) TimerEvent: {}
+[20.385198] (-) TimerEvent: {}
+[20.485490] (-) TimerEvent: {}
+[20.585809] (-) TimerEvent: {}
+[20.686058] (-) TimerEvent: {}
+[20.786425] (-) TimerEvent: {}
+[20.886712] (-) TimerEvent: {}
+[20.986957] (-) TimerEvent: {}
+[21.087201] (-) TimerEvent: {}
+[21.187474] (-) TimerEvent: {}
+[21.287747] (-) TimerEvent: {}
+[21.388035] (-) TimerEvent: {}
+[21.488317] (-) TimerEvent: {}
+[21.588590] (-) TimerEvent: {}
+[21.688964] (-) TimerEvent: {}
+[21.789210] (-) TimerEvent: {}
+[21.889453] (-) TimerEvent: {}
+[21.989792] (-) TimerEvent: {}
+[22.090141] (-) TimerEvent: {}
+[22.190508] (-) TimerEvent: {}
+[22.290867] (-) TimerEvent: {}
+[22.391192] (-) TimerEvent: {}
+[22.491515] (-) TimerEvent: {}
+[22.591863] (-) TimerEvent: {}
+[22.692193] (-) TimerEvent: {}
+[22.792522] (-) TimerEvent: {}
+[22.892775] (-) TimerEvent: {}
+[22.993039] (-) TimerEvent: {}
+[23.093262] (-) TimerEvent: {}
+[23.193594] (-) TimerEvent: {}
+[23.293926] (-) TimerEvent: {}
+[23.394178] (-) TimerEvent: {}
+[23.494500] (-) TimerEvent: {}
+[23.594725] (-) TimerEvent: {}
+[23.694997] (-) TimerEvent: {}
+[23.795257] (-) TimerEvent: {}
+[23.895501] (-) TimerEvent: {}
+[23.995760] (-) TimerEvent: {}
+[24.096137] (-) TimerEvent: {}
+[24.196516] (-) TimerEvent: {}
+[24.296790] (-) TimerEvent: {}
+[24.397161] (-) TimerEvent: {}
+[24.497544] (-) TimerEvent: {}
+[24.597792] (-) TimerEvent: {}
+[24.698092] (-) TimerEvent: {}
+[24.798390] (-) TimerEvent: {}
+[24.898689] (-) TimerEvent: {}
+[24.998930] (-) TimerEvent: {}
+[25.099297] (-) TimerEvent: {}
+[25.199658] (-) TimerEvent: {}
+[25.300022] (-) TimerEvent: {}
+[25.400301] (-) TimerEvent: {}
+[25.500555] (-) TimerEvent: {}
+[25.600916] (-) TimerEvent: {}
+[25.701275] (-) TimerEvent: {}
+[25.801654] (-) TimerEvent: {}
+[25.902030] (-) TimerEvent: {}
+[26.002398] (-) TimerEvent: {}
+[26.102784] (-) TimerEvent: {}
+[26.203151] (-) TimerEvent: {}
+[26.303390] (-) TimerEvent: {}
+[26.403703] (-) TimerEvent: {}
+[26.503982] (-) TimerEvent: {}
+[26.604261] (-) TimerEvent: {}
+[26.704539] (-) TimerEvent: {}
+[26.804815] (-) TimerEvent: {}
+[26.905068] (-) TimerEvent: {}
+[27.005357] (-) TimerEvent: {}
+[27.105642] (-) TimerEvent: {}
+[27.205958] (-) TimerEvent: {}
+[27.306274] (-) TimerEvent: {}
+[27.406587] (-) TimerEvent: {}
+[27.506892] (-) TimerEvent: {}
+[27.607202] (-) TimerEvent: {}
+[27.707464] (-) TimerEvent: {}
+[27.807804] (-) TimerEvent: {}
+[27.908101] (-) TimerEvent: {}
+[28.008354] (-) TimerEvent: {}
+[28.108725] (-) TimerEvent: {}
+[28.209063] (-) TimerEvent: {}
+[28.309380] (-) TimerEvent: {}
+[28.409687] (-) TimerEvent: {}
+[28.510065] (-) TimerEvent: {}
+[28.610649] (-) TimerEvent: {}
+[28.710964] (-) TimerEvent: {}
+[28.811418] (-) TimerEvent: {}
+[28.911750] (-) TimerEvent: {}
+[28.973723] (h10w_controller_test) StdoutLine: {'line': b'[ 25%] \x1b[32m\x1b[1mLinking CXX executable h10w_controller_test\x1b[0m\n'}
+[29.011861] (-) TimerEvent: {}
+[29.112167] (-) TimerEvent: {}
+[29.212447] (-) TimerEvent: {}
+[29.312882] (-) TimerEvent: {}
+[29.413612] (-) TimerEvent: {}
+[29.513994] (-) TimerEvent: {}
+[29.614309] (-) TimerEvent: {}
+[29.714626] (-) TimerEvent: {}
+[29.815083] (-) TimerEvent: {}
+[29.915385] (-) TimerEvent: {}
+[30.015689] (-) TimerEvent: {}
+[30.116010] (-) TimerEvent: {}
+[30.216275] (-) TimerEvent: {}
+[30.316590] (-) TimerEvent: {}
+[30.416995] (-) TimerEvent: {}
+[30.517292] (-) TimerEvent: {}
+[30.617697] (-) TimerEvent: {}
+[30.718159] (-) TimerEvent: {}
+[30.818515] (-) TimerEvent: {}
+[30.918953] (-) TimerEvent: {}
+[30.979841] (h10w_controller_test) StdoutLine: {'line': b'[100%] Built target h10w_controller_test\n'}
+[30.989898] (h10w_controller_test) CommandEnded: {'returncode': 0}
+[30.990518] (h10w_controller_test) JobProgress: {'identifier': 'h10w_controller_test', 'progress': 'install'}
+[30.998110] (h10w_controller_test) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test'], 'cwd': '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en'), ('USER', 'lizhou'), ('LC_TIME', 'zh_CN.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/lizhou'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.104.1'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('SYSTEMD_EXEC_PID', '226682'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1001/bus,guid=c71dd94646d110d237c60ae869042e65'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install:/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'lizhou'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'lizhou'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/lizhou/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/CNBESLPL230091:@/tmp/.ICE-unix/226682,unix/CNBESLPL230091:/tmp/.ICE-unix/226682'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/home/lizhou/Desktop/Humanoid/H10/Agile_SDK_H10W/Robot_DDS_Profile.xml'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/795f14a5_f881_4552_a796_5cac1ac01ea5'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1001'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1001/.mutter-Xwaylandauth.JHQ7E3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1001/vscode-git-936036d12e.sock'), ('GNOME_TERMINAL_SERVICE', ':1.320'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1001/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install:/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install:/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QWEN_API_KEY', 'sk-b5760002ce4044fa953d632f12c9dede'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'fcitx'), ('PWD', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/build/h10w_controller_test'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CLUTTER_IM_MODULE', 'fcitx'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1001/bus,guid=c71dd94646d110d237c60ae869042e65'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install:/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/fastdds_ws/install:/opt/ros/humble')]), 'shell': False}
+[31.005332] (h10w_controller_test) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[31.005522] (h10w_controller_test) StdoutLine: {'line': b'-- Installing: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/lib/h10w_controller_test/h10w_controller_test\n'}
+[31.019094] (-) TimerEvent: {}
+[31.021616] (h10w_controller_test) StdoutLine: {'line': b'-- Set runtime path of "/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/lib/h10w_controller_test/h10w_controller_test" to ""\n'}
+[31.021804] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/package_run_dependencies/h10w_controller_test\n'}
+[31.021915] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/parent_prefix_path/h10w_controller_test\n'}
+[31.021984] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/ament_prefix_path.sh\n'}
+[31.022051] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/ament_prefix_path.dsv\n'}
+[31.022117] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/path.sh\n'}
+[31.022181] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/environment/path.dsv\n'}
+[31.022244] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.bash\n'}
+[31.022306] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.sh\n'}
+[31.022378] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.zsh\n'}
+[31.022440] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/local_setup.dsv\n'}
+[31.022501] (h10w_controller_test) StdoutLine: {'line': b'-- Installing: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/package.dsv\n'}
+[31.022568] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/ament_index/resource_index/packages/h10w_controller_test\n'}
+[31.022628] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/cmake/h10w_controller_testConfig.cmake\n'}
+[31.022688] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/cmake/h10w_controller_testConfig-version.cmake\n'}
+[31.022748] (h10w_controller_test) StdoutLine: {'line': b'-- Up-to-date: /home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/install/share/h10w_controller_test/package.xml\n'}
+[31.023420] (h10w_controller_test) CommandEnded: {'returncode': 0}
+[31.035600] (h10w_controller_test) JobEnded: {'identifier': 'h10w_controller_test', 'rc': 0}
+[31.036069] (-) EventReactorShutdown: {}

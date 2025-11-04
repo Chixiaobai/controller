@@ -1,0 +1,79 @@
+[35m[1mConsolidate compiler generated dependencies of target h10w_controller_test[0m
+[  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/main.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wGrpcMove.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp.o[0m
+[ 17%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/include_H10w/part_test/H10wRosClient.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp.o[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp.o[0m
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:1[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.cpp:1[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.h:7[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wRosClient.cpp:8[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_002.cpp:2[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_003.cpp:2[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_001.cpp:2[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.cpp:8[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/main.h:14[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10Wglobalconstants.h:6[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/include_H10w/part_test/H10wGrpcMove.h:10[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/src/H10W/grpc/params/H10w_FT_Grpc_Params_004.cpp:2[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:[m[K In function ‘[01m[Kbool save_html_report(const string&, const TestTaskConfig&)[m[K’:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:118:57:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kconst char*[m[K’ and ‘[01m[Kconst char [5][m[K’ to binary ‘[01m[Koperator+[m[K’
+  118 |                 suite_fails.push_back([32m[Ktest_case->name()[m[K [01;31m[K+[m[K [34m[K"：\n"[m[K + fail_msg);
+      |                                       [32m[K~~~~~~~~~~~~~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+      |                                                      [32m[K|[m[K    [34m[K|[m[K
+      |                                                      [32m[K|[m[K    [34m[Kconst char [5][m[K
+      |                                                      [32m[Kconst char*[m[K
+gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:76：CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o] 错误 1
+gmake[2]: *** 正在等待未完成的任务....
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/h10w_controller_test.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2

@@ -6,11 +6,10 @@
 // 测试用例基础信息（仅保留必要元数据，不关联旧框架）
 struct TestCaseMeta
 {
-    std::string case_id;     // 测试用例唯一标识
-    std::string description; // 用例描述
+    std::string case_id;
+    std::string description; 
 };
 
-// 注册测试用例元信息（仅用于记录，不影响GTest执行流程）
 #define REGISTER_TEST_META(case_group, case_name, desc)          \
     static TestCaseMeta case_meta_##case_group##_##case_name = { \
         #case_group "_" #case_name,                              \

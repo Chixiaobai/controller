@@ -240,8 +240,7 @@ int main(int argc, char **argv)
     {
         return 1;
     }
-    rclcpp::init(argc, argv);
-    
+
     testing::InitGoogleTest(&argc, argv);
     testing::GTEST_FLAG(filter) = g_test_config.case_filter;
 

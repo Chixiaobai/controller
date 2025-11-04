@@ -1,0 +1,17 @@
+[35m[1mConsolidate compiler generated dependencies of target h10w_controller_test[0m
+[  3%] [32mBuilding CXX object CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o[0m
+In file included from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.h:4[m[K,
+                 from [01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:1[m[K:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_def.h:20:66:[m[K [01;35m[Kwarning: [m[Kbackslash-newline at end of file
+   20 | #define GTEST_CASE(case_group, case_name, desc)                  \
+      |                                                                   
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:[m[K In function ‘[01m[Kbool save_html_report(const string&, const TestTaskConfig&)[m[K’:
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:413:25:[m[K [01;31m[Kerror: [m[K‘[01m[KfailMsg[m[K’ was not declared in this scope
+  413 |                         [01;31m[KfailMsg[m[K += "行号：" + std::to_string(part.line_number()) + " | 错误信息：";
+      |                         [01;31m[K^~~~~~~[m[K
+[01m[K/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/H10w_controller/Environment/base/case_api.cpp:452:22:[m[K [01;31m[Kerror: [m[K‘[01m[KfailMsg[m[K’ was not declared in this scope
+  452 |                 if (![01;31m[KfailMsg[m[K.empty() && failMsg.substr(failMsg.size() - 4) == "<br>")
+      |                      [01;31m[K^~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/h10w_controller_test.dir/build.make:76：CMakeFiles/h10w_controller_test.dir/Environment/base/case_api.cpp.o] 错误 1
+gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/h10w_controller_test.dir/all] 错误 2
+gmake: *** [Makefile:146：all] 错误 2
