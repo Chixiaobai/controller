@@ -3,14 +3,13 @@
 #include <map>
 #include <gtest/gtest.h>
 
+// 精简配置结构，仅保留报告路径
 struct TestTaskConfig {
-    std::string case_type;        // 改为：测试用例所在文件夹名称
-    std::string robot_type;       // 机器人类型（如"H10w"）
-    std::string report_path;      // 测试报告路径
-    std::map<std::string, std::string> extra_params;  // 其他扩展参数
+    std::string report_path;  // 仅保留报告路径参数
 };
 extern TestTaskConfig g_test_config;
 
+// 函数声明调整（仅解析-report参数）
 bool parse_test_arguments(int argc, char** argv, TestTaskConfig& config);
 bool save_html_report(const std::string& report_path, const TestTaskConfig& config);
 std::string get_current_time_str();

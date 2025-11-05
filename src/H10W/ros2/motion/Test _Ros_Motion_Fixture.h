@@ -38,17 +38,16 @@ protected:
         // {
         //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
         // }
-        m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
-        m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
+        ros_motion_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        ros_motion_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }
 
     void TearDown() override
     {
         std::cout<<"TearDown"<<std::endl;
-        m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        ros_motion_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
+        ros_motion_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
     }
 
     inline static std::shared_ptr<H10wRosClient> ros_motion_client_;
-    std::unique_ptr<CDeviceControlServiceClient> m_pDevCtrlSvrClient;
 };

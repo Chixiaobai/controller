@@ -10,32 +10,20 @@
 using namespace testing;
 bool parse_test_arguments(int argc, char **argv, TestTaskConfig &config)
 {
-    std::cout << "解析-case参数：" << std::endl;
-    config.case_type = "";
+    config.report_path = "";
+
     for (int i = 1; i < argc; ++i)
     {
         std::string arg = argv[i];
-        if (arg == "-case" && i + 1 < argc)
-        {
-            std::string case_input = argv[++i];
-            config.case_type = case_input;
-        }
-        else if (arg == "-robot" && i + 1 < argc)
-        {
-            config.robot_type = argv[++i];
-        }
-        else if (arg == "-report" && i + 1 < argc)
+        if (arg == "-report" && i + 1 < argc)
         {
             config.report_path = argv[++i];
         }
+        else
+        {
+            continue;
+        }
     }
-
-    if (config.robot_type.empty())
-    {
-        std::cerr << "错误：必须使用-robot指定机器人类型（如-robot H10-W）" << std::endl;
-        return false;
-    }
-
     return true;
 }
 
@@ -239,8 +227,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         <div class="report-meta">
             执行时间：)"
         << current_time << R"(<br>
-            执行范围：)"
-        << (config.case_type.empty() ? "自动化测试用例" : config.case_type) << R"(
         </div>
     </div>
 
@@ -263,15 +249,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     for (const auto &[moduleName, _] : moduleTotal)
     {
         // 判断是否为指定模块
-        bool isTargetModule = false;
-        if (!config.case_type.empty())
-        {
-            isTargetModule = (moduleName == config.case_type);
-        }
-        else
-        {
-            isTargetModule = true;
-        }
+        bool isTargetModule = true;
 
         // 只显示指定模块
         if (!isTargetModule)
@@ -334,15 +312,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         const TestSuite *suite = unit_test->GetTestSuite(suite_idx);
         std::string moduleName = suite->name();
 
-        bool isTargetSuite = false;
-        if (!config.case_type.empty())
-        {
-            isTargetSuite = (moduleName == config.case_type);
-        }
-        else
-        {
-            isTargetSuite = true;
-        }
+        bool isTargetSuite = true;
 
         if (!isTargetSuite || suite->total_test_count() == 0)
         {

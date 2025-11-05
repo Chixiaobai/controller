@@ -12,7 +12,7 @@ class GrpcParamsTest : public testing::Test
 protected:
     static void SetUpTestSuite()
     {
-        std::cout<<"SetUpTestSuite"<<std::endl;
+        std::cout << "SetUpTestSuite" << std::endl;
         if (!rclcpp::ok())
         {
             rclcpp::init(0, nullptr);
@@ -22,7 +22,7 @@ protected:
 
     static void TearDownTestSuite()
     {
-        std::cout<<"TearDownTestSuite"<<std::endl;
+        std::cout << "TearDownTestSuite" << std::endl;
         if (grpc_params_client_ && rclcpp::ok())
         {
             rclcpp::shutdown();
@@ -32,22 +32,21 @@ protected:
 
     void SetUp() override
     {
-        std::cout<<"SetUp"<<std::endl;
+        std::cout << "SetUp" << std::endl;
         // while (rclcpp::ok() && !grpc_params_client_->has_move_msg())
         // {
         //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
         // }
-        m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
-        m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
+        grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }
 
     void TearDown() override
     {
-        std::cout<<"TearDown"<<std::endl;
-        m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        std::cout << "TearDown" << std::endl;
+        grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
+        grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
     }
 
     inline static std::shared_ptr<H10wGrpcMove> grpc_params_client_;
-    std::unique_ptr<CDeviceControlServiceClient> m_pDevCtrlSvrClient;
 };

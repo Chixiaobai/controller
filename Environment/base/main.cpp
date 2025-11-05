@@ -210,12 +210,6 @@ void sleep_ms(unsigned int ms)
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
 
-// 判断当前机器人类型是否匹配目标类型
-bool is_robot_type(const std::string &type)
-{
-    return g_test_config.robot_type == type;
-}
-
 // 带时间戳的日志输出
 void test_log(const std::string &case_id, const std::string &message)
 {

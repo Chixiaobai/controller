@@ -13,7 +13,7 @@ class Ros2ParamsTest : public testing::Test
 protected:
     static void SetUpTestSuite()
     {
-        std::cout<<"SetUpTestSuite"<<std::endl;
+        std::cout << "SetUpTestSuite" << std::endl;
         if (!rclcpp::ok())
         {
             rclcpp::init(0, nullptr);
@@ -23,7 +23,7 @@ protected:
 
     static void TearDownTestSuite()
     {
-        std::cout<<"TearDownTestSuite"<<std::endl;
+        std::cout << "TearDownTestSuite" << std::endl;
         if (ros_topic_client_ && rclcpp::ok())
         {
             rclcpp::shutdown();
@@ -33,24 +33,23 @@ protected:
 
     void SetUp() override
     {
-        std::cout<<"SetUp"<<std::endl;
+        std::cout << "SetUp" << std::endl;
         // while (rclcpp::ok() && !ros_topic_client_->has_move_msg())
         // {
         //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
         // }
-        m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
-        m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
+        ros_topic_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        ros_topic_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
         ros_topic_client_->enable_realtime_cmd(true);
     }
 
     void TearDown() override
     {
-        std::cout<<"TearDown"<<std::endl;
-        m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        std::cout << "TearDown" << std::endl;
+        ros_topic_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
+        ros_topic_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
         ros_topic_client_->enable_realtime_cmd(false);
     }
 
     inline static std::shared_ptr<H10wRosClient> ros_topic_client_;
-    std::unique_ptr<CDeviceControlServiceClient> m_pDevCtrlSvrClient;
 };
