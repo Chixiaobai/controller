@@ -67,7 +67,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 #8. Specify the test source file
-file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/H10_Controller/grpc/*/*.cpp)
+file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/H10_Controller/*/*/*.cpp)
 
 file(GLOB_RECURSE H10w_SRC ${CMAKE_CURRENT_SOURCE_DIR}/include_H10w/*)
 

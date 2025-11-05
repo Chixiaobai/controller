@@ -52,7 +52,3 @@ bool isWithinRange(double inputValue, double lowerBound, double upperBound);
 
 // 时间工具函数
 void sleep_ms(unsigned int ms);  // 毫秒级睡眠
-
-
-//获取测试所需参数
-std::map<std::string, std::vector<float>> getTestParameters(std::string &config_file_path);

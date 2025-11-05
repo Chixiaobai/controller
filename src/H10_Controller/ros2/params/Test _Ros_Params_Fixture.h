@@ -4,18 +4,20 @@
 #include <memory>
 #include <thread>
 #include <signal.h>
+#include "xmlHandler.h"
 #include "H10wRosClient.h"
 #include "H10Wglobalconstants.h"
 #include "DeviceControlServiceClient.h"
 #include "humanoid_controller_client.h"
-
+namespace fs = std::filesystem;
 class Ros2ParamsTest : public testing::Test
 {
 protected:
     inline static H10wRosClient *g_pTester = nullptr;
     inline static struct sigaction originalSigInt = {0};
     inline static struct sigaction originalSigTerm = {0};
-
+    inline static std::map<std::string, std::vector<float>> robotParameters;
+    inline static XML_HANDLER *xml_handler = nullptr;
     static void consoleHandler(int intSigNum)
     {
         if ((SIGINT == intSigNum) || (SIGTERM == intSigNum))
@@ -51,6 +53,11 @@ protected:
     static void SetUpTestSuite()
     {
         std::cout << "SetUpTestSuite" << std::endl;
+        std::string robotConfigPath;
+        Get_robot_config_file_path(robotConfigPath);
+        fs::path fPath(robotConfigPath);
+        xml_handler = new XML_HANDLER(fPath.string());
+
         if (!rclcpp::ok())
         {
             rclcpp::init(0, nullptr);
@@ -69,6 +76,9 @@ protected:
             ros_params_client_.reset();
         }
         g_pTester = nullptr;
+        delete xml_handler;
+        xml_handler = nullptr;
+        
         sigaction(SIGINT, &originalSigInt, nullptr);
         sigaction(SIGTERM, &originalSigTerm, nullptr);
     }
@@ -76,10 +86,11 @@ protected:
     void SetUp() override
     {
         std::cout << "SetUp" << std::endl;
-        // while (rclcpp::ok() && !ros_params_client_->has_move_msg())
-        // {
-        //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        // }
+        robotParameters = xml_handler->get_parameters();
+        while (rclcpp::ok() && !ros_params_client_->has_move_msg())
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
         ros_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
         ros_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }

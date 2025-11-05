@@ -62,31 +62,31 @@ bool H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &veloci
         if (now - start_time >= timeout)
         {
 
-            // RCLCPP_ERROR(this->get_logger(),
-            //              "grpc_singlemove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
-            //              static_cast<int>(timeout.count()),
-            //              get_move_msg_->token,
-            //              get_move_msg_->state,
-            //              token);
+            RCLCPP_ERROR(this->get_logger(),
+                         "grpc_singlemove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
+                         static_cast<int>(timeout.count()),
+                         get_move_msg_->token,
+                         get_move_msg_->state,
+                         token);
             return false;
         }
 
         // 检查是否满足完成条件
-        // if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
+        if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
         {
-        //     RCLCPP_INFO(this->get_logger(),
-        //                 "grpc_singlemove() 完成。token=%u, state=%d",
-        //                 token, get_move_msg_->state);
+            RCLCPP_INFO(this->get_logger(),
+                        "grpc_singlemove() 完成。token=%u, state=%d",
+                        token, get_move_msg_->state);
             return true;
         }
         // error
-        // if (get_error_msg_->error_code != 0)
+        if (get_error_msg_->error_code != 0)
         {
-            // RCLCPP_ERROR(this->get_logger(),
-            //              "message:module=%u, error_code=%d, msg=%s",
-            //              get_error_msg_->module,
-            //              get_error_msg_->error_code,
-            //              get_error_msg_->msg.c_str());
+            RCLCPP_ERROR(this->get_logger(),
+                         "message:module=%u, error_code=%d, msg=%s",
+                         get_error_msg_->module,
+                         get_error_msg_->error_code,
+                         get_error_msg_->msg.c_str());
             return false;
         }
 
@@ -94,7 +94,7 @@ bool H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &veloci
         std::this_thread::sleep_for(check_interval);
     }
 }
-void H10wGrpcMove::grpc_multimove(const std::vector<int32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token)
+bool H10wGrpcMove::grpc_multimove(const std::vector<int32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token)
 {
     m_pControllerClient->MultiJointsMove(joint_index, position, velocity_percent, token);
 
@@ -119,7 +119,7 @@ void H10wGrpcMove::grpc_multimove(const std::vector<int32_t> &joint_index, const
                          get_move_msg_->token,
                          get_move_msg_->state,
                          token);
-            return;
+            return false;
         }
 
         // 检查是否满足完成条件
@@ -128,7 +128,7 @@ void H10wGrpcMove::grpc_multimove(const std::vector<int32_t> &joint_index, const
             RCLCPP_INFO(this->get_logger(),
                         "grpc_multimove() 完成。token=%u, state=%d",
                         token, get_move_msg_->state);
-            return;
+            return true;
         }
         // error
         if (get_error_msg_->error_code != 0)
@@ -138,14 +138,14 @@ void H10wGrpcMove::grpc_multimove(const std::vector<int32_t> &joint_index, const
                          get_error_msg_->module,
                          get_error_msg_->error_code,
                          get_error_msg_->msg.c_str());
-            return;
+            return false;
         }
 
         // 等待一段时间后再次检查（避免CPU占用过高）
         std::this_thread::sleep_for(check_interval);
     }
 }
-void H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent, int32_t &task_id)
+bool H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent, int32_t &task_id)
 {
     m_pControllerClient->LinearMovel(type, pose, velocity_percent, acceleration_percent, task_id);
     // 定义超时时间为5秒
@@ -164,9 +164,9 @@ void H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector
         if (now - start_time >= timeout)
         {
             RCLCPP_ERROR(this->get_logger(),
-                         "grpc_linearmove() 超时（%d秒），操作未完成。当前状态: state=%d," ,static_cast<int>(timeout.count()),
+                         "grpc_linearmove() 超时（%d秒），操作未完成。当前状态: state=%d,", static_cast<int>(timeout.count()),
                          get_move_msg_->state);
-            return;
+            return false;
         }
 
         // 检查是否满足完成条件
@@ -174,18 +174,18 @@ void H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector
         {
             for (int j = 0; j < 6; j++)
             {
-                if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j],pose[i][j],0.001))
+                if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j], pose[i][j], 0.001))
                 {
                     all_reached = false;
                     break;
                 }
             }
         }
-        if (all_reached &&get_move_msg_->state == 0)
+        if (all_reached && get_move_msg_->state == 0)
         {
             RCLCPP_INFO(this->get_logger(),
                         "grpc_linearmove() 完成");
-            return;
+            return true;
         }
         // error
         if (get_error_msg_->error_code != 0)
@@ -195,7 +195,7 @@ void H10wGrpcMove::grpc_linearmove(const std::vector<int32_t> &type, std::vector
                          get_error_msg_->module,
                          get_error_msg_->error_code,
                          get_error_msg_->msg.c_str());
-            return;
+            return false;
         }
 
         // 等待一段时间后再次检查（避免CPU占用过高）

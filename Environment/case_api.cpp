@@ -29,7 +29,7 @@ bool parse_test_arguments(int argc, char **argv, TestTaskConfig &config)
 
 bool save_html_report(const std::string &report_path, const TestTaskConfig &config)
 {
-    const UnitTest *unit_test = UnitTest::GetInstance();
+    const ::testing::UnitTest *unit_test = ::testing::UnitTest::GetInstance();
     if (!unit_test)
     {
         std::cerr << "Failed to get UnitTest instance" << std::endl;
@@ -43,95 +43,79 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         return false;
     }
 
-    // 时间格式化
+    // 时间格式化（兼容旧GCC版本）
     std::time_t now = std::time(nullptr);
     std::tm tm = *std::localtime(&now);
-    std::stringstream time_ss;
-    time_ss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
-    std::string current_time = time_ss.str();
+    char time_buf[64];
+    strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", &tm);
+    std::string current_time = time_buf;
 
-    // 统计变量（仅统计实际执行的用例）
-    std::map<std::string, int> moduleTotal;                            // 模块→实际执行总用例数
-    std::map<std::string, int> modulePassed;                           // 模块→执行通过数
-    std::map<std::string, int> moduleFailed;                           // 模块→执行失败数
-    std::map<std::string, std::vector<std::string>> moduleFailDetails; // 模块→失败详情
+    // 统计变量 + 存储筛选后的用例
+    std::map<std::string, int> moduleTotal;
+    std::map<std::string, int> modulePassed;
+    std::map<std::string, int> moduleFailed;
+    std::vector<std::pair<const ::testing::TestSuite *, const ::testing::TestInfo *>> filteredTests;
     int totalAllCases = 0, totalPassed = 0, totalFailed = 0;
 
-    // 第一步：遍历所有测试组，收集【实际执行】的统计数据
     for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx)
     {
-        const TestSuite *suite = unit_test->GetTestSuite(suite_idx);
-        std::string moduleName = suite->name();
+        const ::testing::TestSuite *suite = unit_test->GetTestSuite(suite_idx);
+        std::string suite_name = suite->name();
+        int suite_executed_count = 0;
 
+        // 统计当前套件中「实际执行的用例数」：名称非空 + （有片段 或 有执行时间）
         for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
         {
-            const TestInfo *test_case = suite->GetTestInfo(case_idx);
-            const TestResult *case_result = test_case->result();
+            const ::testing::TestInfo *test_case = suite->GetTestInfo(case_idx);
+            const ::testing::TestResult *case_result = test_case->result();
 
-            // 关键修复1：过滤未执行的用例（执行过的用例片段数 ≥ 1）
-            if (case_result->total_part_count() == 0)
+            // 关键修改：同时覆盖「有断言（片段数>0）」和「无断言（执行时间>0）」的执行用例
+            bool isExecuted = (test_case->name() != nullptr && *test_case->name() != '\0') &&
+                              (case_result->total_part_count() > 0 || case_result->elapsed_time() > 0);
+
+            if (isExecuted)
+            {
+                suite_executed_count++;
+            }
+        }
+
+        // 跳过无实际执行用例的套件
+        if (suite_executed_count == 0)
+            continue;
+
+        // 第二步：筛选当前套件中实际执行的用例
+        for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
+        {
+            const ::testing::TestInfo *test_case = suite->GetTestInfo(case_idx);
+            const ::testing::TestResult *case_result = test_case->result();
+            std::string case_name = test_case->name();
+
+            // 同样的筛选条件，确保一致性
+            bool isExecuted = (test_case->name() != nullptr && *test_case->name() != '\0') &&
+                              (case_result->total_part_count() > 0 || case_result->elapsed_time() > 0);
+
+            if (!isExecuted)
+            {
                 continue;
+            }
 
-            // 统计实际执行的用例
-            moduleTotal[moduleName]++;
+            // 记录并统计
+            filteredTests.emplace_back(suite, test_case);
             totalAllCases++;
+            moduleTotal[suite_name]++;
 
             if (case_result->Passed())
             {
-                modulePassed[moduleName]++;
                 totalPassed++;
+                modulePassed[suite_name]++;
             }
-            else if (case_result->Failed())
+            else
             {
-                moduleFailed[moduleName]++;
                 totalFailed++;
-                // 拼接失败详情
-                std::string failMsg = test_case->name();
-                for (int i = 0; i < case_result->total_part_count(); ++i)
-                {
-                    const TestPartResult &part = case_result->GetTestPartResult(i);
-                    if (part.failed())
-                    {
-                        failMsg += "行号" + std::to_string(part.line_number()) + "：";
-                        std::string raw_msg = part.message();
-                        // 清理换行和多余空格
-                        std::replace(raw_msg.begin(), raw_msg.end(), '\n', ' ');
-                        std::replace(raw_msg.begin(), raw_msg.end(), '\r', ' ');
-                        std::string compressed_msg;
-                        bool prev_space = false;
-                        for (char c : raw_msg)
-                        {
-                            if (c == ' ')
-                            {
-                                if (!prev_space)
-                                {
-                                    compressed_msg += c;
-                                    prev_space = true;
-                                }
-                            }
-                            else
-                            {
-                                compressed_msg += c;
-                                prev_space = false;
-                            }
-                        }
-                        // 去除首尾空格
-                        if (!compressed_msg.empty() && compressed_msg.front() == ' ')
-                            compressed_msg.erase(0, 1);
-                        if (!compressed_msg.empty() && compressed_msg.back() == ' ')
-                            compressed_msg.pop_back();
-                        failMsg += compressed_msg + "；";
-                    }
-                }
-                // 去除末尾多余的分号
-                if (!failMsg.empty() && failMsg.back() == '；')
-                    failMsg.pop_back();
-                moduleFailDetails[moduleName].push_back(failMsg);
+                moduleFailed[suite_name]++;
             }
         }
     }
-
-    // 第二步：生成HTML报告
     ofs << R"(
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -263,7 +247,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         <tbody>
     )";
 
-    // 关键修复2：只显示有实际执行用例的模块（移除无效的 isTargetModule 判断）
     if (moduleTotal.empty())
     {
         ofs << R"(
@@ -274,19 +257,15 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     }
     else
     {
-        int targetTotal = 0, targetPassed = 0, targetFailed = 0;
-        for (const auto &[moduleName, total] : moduleTotal)
+        for (const auto &[suite_name, total] : moduleTotal)
         {
-            int passed = modulePassed[moduleName];
-            int failed = moduleFailed[moduleName];
-            targetTotal += total;
-            targetPassed += passed;
-            targetFailed += failed;
+            int passed = modulePassed[suite_name];
+            int failed = moduleFailed[suite_name];
 
             ofs << R"(
             <tr>
                 <td>)"
-                << moduleName << R"(</td>
+                << suite_name << R"(</td>
                 <td>)"
                 << total << R"(</td>
                 <td>)"
@@ -296,16 +275,15 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             </tr>
         )";
         }
-        // 添加总计行
         ofs << R"(
             <tr class="total-row">
                 <td>总计</td>
                 <td>)"
-            << targetTotal << R"(</td>
-                <td>)"
-            << targetPassed << R"(</td>
-                <td>)"
-            << targetFailed << R"(</td>
+            << totalAllCases << R"(</td>
+            <td>)"
+            << totalPassed << R"(</td>
+            <td>)"
+            << totalFailed << R"(</td>
             </tr>
         )";
     }
@@ -328,32 +306,25 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         <tbody>
     )";
 
-    // 关键修复3：用例详情只显示实际执行的用例（通过/失败都显示）
-    bool hasExecutedCase = false;
-    for (int suite_idx = 0; suite_idx < unit_test->total_test_suite_count(); ++suite_idx)
+    if (filteredTests.empty())
     {
-        const TestSuite *suite = unit_test->GetTestSuite(suite_idx);
-        std::string moduleName = suite->name();
-
-        // 跳过无实际执行用例的模块
-        if (moduleTotal.find(moduleName) == moduleTotal.end())
-            continue;
-
-        for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
+        ofs << R"(
+            <tr>
+                <td colspan="5" class="empty-tip">无实际执行的测试用例</td>
+            </tr>
+        )";
+    }
+    else
+    {
+        for (const auto &[suite, test_case] : filteredTests)
         {
-            const TestInfo *test_case = suite->GetTestInfo(case_idx);
-            const TestResult *case_result = test_case->result();
-
-            // 过滤未执行的用例
-            if (case_result->total_part_count() == 0)
-                continue;
-
-            hasExecutedCase = true;
-            std::string caseName = test_case->name();
+            const ::testing::TestResult *case_result = test_case->result();
+            std::string suite_name = suite->name();
+            std::string case_name = test_case->name();
             std::string statusText = case_result->Passed() ? "通过" : "失败";
             std::string statusClass = case_result->Passed() ? "status-pass" : "status-fail";
             std::string detail = "无";
-            double elapsed = case_result->elapsed_time() / 1000.0;
+            double elapsed = case_result->elapsed_time();
 
             // 失败用例添加详细信息
             if (case_result->Failed())
@@ -361,7 +332,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
                 std::string failMsg;
                 for (int i = 0; i < case_result->total_part_count(); ++i)
                 {
-                    const TestPartResult &part = case_result->GetTestPartResult(i);
+                    const ::testing::TestPartResult &part = case_result->GetTestPartResult(i);
                     if (part.failed())
                     {
                         failMsg += "行号" + std::to_string(part.line_number()) + "：";
@@ -401,9 +372,9 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             ofs << R"(
                 <tr>
                     <td>)"
-                << moduleName << R"(</td>
+                << suite_name << R"(</td>
                     <td>)"
-                << caseName << R"(</td>
+                << case_name << R"(</td>
                     <td><span class="status-tag )"
                 << statusClass << R"(">)" << statusText << R"(</span></td>
                     <td>)"
@@ -413,16 +384,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
                 </tr>
             )";
         }
-    }
-
-    // 无实际执行用例时显示提示
-    if (!hasExecutedCase)
-    {
-        ofs << R"(
-            <tr>
-                <td colspan="5" class="empty-tip">无实际执行的测试用例</td>
-            </tr>
-        )";
     }
 
     ofs << R"(
@@ -437,7 +398,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     std::cout << "[报告统计] 实际执行用例：总" << totalAllCases << "个，通过" << totalPassed << "个，失败" << totalFailed << "个" << std::endl;
     return true;
 }
-
 // 获取当前时间字符串（Linux系统专用，格式：YYYY-MM-DD HH:MM:SS），线程安全
 std::string get_current_time_str()
 {
@@ -458,4 +418,3 @@ std::string get_current_time_str()
 
     return time_buf;
 }
-

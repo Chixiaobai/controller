@@ -146,40 +146,15 @@ void H10wRosClient::move_callback(const controller::msg::MoveMessage::SharedPtr 
 {
     std::lock_guard<std::mutex> lock(msg_mutex_);
     get_move_msg_ = msg;
-    // std::string position_str = "[";
-    // std::string velocity_str = "[";
-    // for (size_t i = 0; i < msg->position.size(); ++i)
-    // {
-    //     position_str += std::to_string(msg->position[i]);
-    //     velocity_str += std::to_string(msg->velocity[i]);
-    //     if (i < msg->position.size() - 1)
-    //     {
-    //         position_str += ", ";
-    //         velocity_str += ", ";
-    //     }
-    // }
-    // position_str += "]";
-    // velocity_str += "]";
-
-    // RCLCPP_INFO(this->get_logger(),
-    //             "接收到 MoveMessage: 状态=%d, 位置=%s, 速度=%s,token=%d", msg->state,
-    //             position_str.c_str(), velocity_str.c_str(), msg->token);
 }
 
 void H10wRosClient::error_callback(const controller::msg::ErrorMessage::SharedPtr msg)
 {
     std::lock_guard<std::mutex> lock(msg_mutex_);
     get_error_msg_ = msg;
-    // if (msg->error_code != 0)
-    // {
-    //     RCLCPP_ERROR(
-    //         this->get_logger(),
-    //         "接收到 ErrorMessage: ID=%u, 级别=%u, 模块=%u, 错误码=%u, 消息='%s'",
-    //         msg->id, msg->level, msg->module, msg->error_code, msg->msg.c_str());
-    // }
 }
 
-void H10wRosClient::enable_realtime_cmd(bool m_enable)
+bool H10wRosClient::enable_realtime_cmd(bool m_enable)
 {
     /*等待服务端上线*/
     while (!m_enable_realtime_cmd->wait_for_service(std::chrono::seconds(1)))
@@ -188,7 +163,7 @@ void H10wRosClient::enable_realtime_cmd(bool m_enable)
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
-            return;
+            return false;
         }
         RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
     }
@@ -199,26 +174,11 @@ void H10wRosClient::enable_realtime_cmd(bool m_enable)
     request->enable = m_enable;
     // 发送异步请求，然后等待返回，返回时调用回调函数
     auto result_future = m_enable_realtime_cmd->async_send_request(request);
-    try
-    {
-        auto response = result_future.get(); // 阻塞直到结果返回
-        RCLCPP_INFO(this->get_logger(), "收到实时指令使能结果：%d", response->success);
-    }
-    catch (const std::exception &e)
-    {
-        RCLCPP_ERROR(this->get_logger(), "服务调用失败: %s", e.what());
-    }
+    auto response = result_future.get(); // 阻塞直到结果返回
+    RCLCPP_INFO(this->get_logger(), "收到实时指令使能结果：%d", response->success);
+    return response->success;
 }
-
-void H10wRosClient::stopTest()
-{
-    m_pControllerClient->stop();
-    // m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-    // m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
-    rclcpp::shutdown();
-}
-
-void H10wRosClient::ros_singlemove(const uint32_t joint_index, const double target_position, const double velocity)
+bool H10wRosClient::ros_singlemove(const uint32_t joint_index, const float target_position, const float velocity)
 {
     /*等待服务端上线*/
     while (!m_single_move_client->wait_for_service(std::chrono::seconds(1)))
@@ -227,7 +187,7 @@ void H10wRosClient::ros_singlemove(const uint32_t joint_index, const double targ
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
-            return;
+            return false;
         }
         RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
     }
@@ -239,65 +199,58 @@ void H10wRosClient::ros_singlemove(const uint32_t joint_index, const double targ
     request->velocity = velocity;
 
     auto result_future = m_single_move_client->async_send_request(request);
-    try
+    // 等待服务响应
+    auto response = result_future.get();
+    RCLCPP_INFO(this->get_logger(), "收到移动结果：%d", response->success);
+
+    // 设置超时时间（例如5秒，可根据实际情况调整）
+    const int timeout_ms = 5000;
+    const int check_interval_ms = 10;
+    int elapsed_ms = 0;
+
+    while (true)
     {
-        // 等待服务响应
-        auto response = result_future.get();
-        RCLCPP_INFO(this->get_logger(), "收到移动结果：%d", response->success);
-
-        // 设置超时时间（例如5秒，可根据实际情况调整）
-        const int timeout_ms = 5000;
-        const int check_interval_ms = 10;
-        int elapsed_ms = 0;
-
-        while (true)
+        // 检查是否达到目标位置
+        if (isFloatValueEqual(get_move_msg_->position[joint_index - 1], target_position, 0.001) && get_move_msg_->state == 0)
         {
-            // 检查是否达到目标位置
-            if (isFloatValueEqual(get_move_msg_->position[joint_index - 1], target_position, 0.001) && get_move_msg_->state == 0)
-            {
-                std::cout << "运动完成" << "\n";
-                break;
-            }
-
-            // error
-            if (get_error_msg_->error_code != 0)
-            {
-                RCLCPP_ERROR(this->get_logger(),
-                             "message:module=%u, error_code=%d, msg=%s",
-                             get_error_msg_->module,
-                             get_error_msg_->error_code,
-                             get_error_msg_->msg.c_str());
-                return;
-            }
-
-            // 检查是否超时
-            if (elapsed_ms >= timeout_ms)
-            {
-                RCLCPP_ERROR(this->get_logger(), "运动超时！目标位置: %.3f, 当前位置: %.3f",
-                             target_position, get_move_msg_->position[joint_index - 1]);
-                // 可以根据需要添加超时处理逻辑，如强制停止等
-                return; // 超时退出
-            }
-
-            // 休眠一小段时间再检查
-            sleepMilliseconds(check_interval_ms);
-            elapsed_ms += check_interval_ms;
-
-            // 检查系统状态是否正常
-            if (!rclcpp::ok())
-            {
-                RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
-                return;
-            }
+            std::cout << "运动完成" << "\n";
+            return true;
         }
-    }
-    catch (const std::exception &e)
-    {
-        RCLCPP_ERROR(this->get_logger(), "服务调用失败: %s", e.what());
+
+        // error
+        if (get_error_msg_->error_code != 0)
+        {
+            RCLCPP_ERROR(this->get_logger(),
+                         "message:module=%u, error_code=%d, msg=%s",
+                         get_error_msg_->module,
+                         get_error_msg_->error_code,
+                         get_error_msg_->msg.c_str());
+            return false;
+        }
+
+        // 检查是否超时
+        if (elapsed_ms >= timeout_ms)
+        {
+            RCLCPP_ERROR(this->get_logger(), "运动超时！目标位置: %.3f, 当前位置: %.3f",
+                         target_position, get_move_msg_->position[joint_index - 1]);
+            // 可以根据需要添加超时处理逻辑，如强制停止等
+            return false; // 超时退出
+        }
+
+        // 休眠一小段时间再检查
+        sleepMilliseconds(check_interval_ms);
+        elapsed_ms += check_interval_ms;
+
+        // 检查系统状态是否正常
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
+            return false;
+        }
     }
 }
 
-void H10wRosClient::ros_multimove(const std::vector<int32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities)
+bool H10wRosClient::ros_multimove(const std::vector<int32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities)
 {
     /*等待服务端上线*/
     while (!m_multi_move_client->wait_for_service(std::chrono::seconds(1)))
@@ -306,7 +259,7 @@ void H10wRosClient::ros_multimove(const std::vector<int32_t> &joint_indices, con
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
-            return;
+            return false;
         }
         RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
     }
@@ -316,12 +269,12 @@ void H10wRosClient::ros_multimove(const std::vector<int32_t> &joint_indices, con
         joint_indices.size() != velocities.size())
     {
         RCLCPP_ERROR(this->get_logger(), "关节参数向量长度不匹配");
-        return;
+        return false;
     }
     if (joint_indices.empty())
     {
         RCLCPP_WARN(this->get_logger(), "未提供任何关节运动参数");
-        return;
+        return false;
     }
 
     std::vector<controller::msg::JointAngle> joint_angles;
@@ -340,89 +293,81 @@ void H10wRosClient::ros_multimove(const std::vector<int32_t> &joint_indices, con
     request->joint_angles = joint_angles;
 
     auto result_future = m_multi_move_client->async_send_request(request);
-    try
+    auto response = result_future.get(); // 阻塞直到结果返回
+
+    // 设置超时时间（例如8秒，多关节运动可适当延长）
+    const int timeout_ms = 8000;
+    const int check_interval_ms = 10;
+    int elapsed_ms = 0;
+
+    while (true)
     {
-        auto response = result_future.get(); // 阻塞直到结果返回
-        RCLCPP_INFO(this->get_logger(), "收到移动结果：%d", response->success);
+        bool all_joints_reached = true;
 
-        // 设置超时时间（例如8秒，多关节运动可适当延长）
-        const int timeout_ms = 8000;
-        const int check_interval_ms = 10;
-        int elapsed_ms = 0;
-
-        while (true)
+        // 检查所有关节是否都达到目标位置且状态正常
+        for (size_t i = 0; i < joint_indices.size(); ++i)
         {
-            bool all_joints_reached = true;
+            int32_t joint_idx = joint_indices[i];
+            double target_pos = target_positions[i];
 
-            // 检查所有关节是否都达到目标位置且状态正常
+            // 检查单个关节是否到位
+            if (!isFloatValueEqual(get_move_msg_->position[joint_idx - 1], target_pos, 0.001) || get_move_msg_->state != 0)
+            {
+                all_joints_reached = false;
+                break; // 只要有一个关节未到位，就跳出检查循环
+            }
+        }
+
+        // 如果所有关节都到位，退出等待循环
+        if (all_joints_reached)
+        {
+            std::cout << "所有关节运动完成" << "\n";
+            return true;
+        }
+
+        // error
+        if (get_error_msg_->error_code != 0)
+        {
+            RCLCPP_ERROR(this->get_logger(),
+                         "message:module=%u, error_code=%d, msg=%s",
+                         get_error_msg_->module,
+                         get_error_msg_->error_code,
+                         get_error_msg_->msg.c_str());
+            return false;
+        }
+
+        // 检查是否超时
+        if (elapsed_ms >= timeout_ms)
+        {
+            RCLCPP_ERROR(this->get_logger(), "运动超时！部分关节未达到目标位置");
+            // 输出未到位的关节信息，便于调试
             for (size_t i = 0; i < joint_indices.size(); ++i)
             {
                 int32_t joint_idx = joint_indices[i];
                 double target_pos = target_positions[i];
-
-                // 检查单个关节是否到位
-                if (!isFloatValueEqual(get_move_msg_->position[joint_idx - 1], target_pos, 0.001) || get_move_msg_->state != 0)
+                if (!isFloatValueEqual(get_move_msg_->position[joint_idx - 1], target_pos, 0.001))
                 {
-                    all_joints_reached = false;
-                    break; // 只要有一个关节未到位，就跳出检查循环
+                    RCLCPP_ERROR(this->get_logger(), "关节 %d: 目标位置 %.3f, 当前位置 %.3f",
+                                 joint_idx, target_pos, get_move_msg_->position[joint_idx - 1]);
                 }
             }
-
-            // 如果所有关节都到位，退出等待循环
-            if (all_joints_reached)
-            {
-                std::cout << "所有关节运动完成" << "\n";
-                break;
-            }
-
-            // error
-            if (get_error_msg_->error_code != 0)
-            {
-                RCLCPP_ERROR(this->get_logger(),
-                             "message:module=%u, error_code=%d, msg=%s",
-                             get_error_msg_->module,
-                             get_error_msg_->error_code,
-                             get_error_msg_->msg.c_str());
-                return;
-            }
-
-            // 检查是否超时
-            if (elapsed_ms >= timeout_ms)
-            {
-                RCLCPP_ERROR(this->get_logger(), "运动超时！部分关节未达到目标位置");
-                // 输出未到位的关节信息，便于调试
-                for (size_t i = 0; i < joint_indices.size(); ++i)
-                {
-                    int32_t joint_idx = joint_indices[i];
-                    double target_pos = target_positions[i];
-                    if (!isFloatValueEqual(get_move_msg_->position[joint_idx - 1], target_pos, 0.001))
-                    {
-                        RCLCPP_ERROR(this->get_logger(), "关节 %d: 目标位置 %.3f, 当前位置 %.3f",
-                                     joint_idx, target_pos, get_move_msg_->position[joint_idx - 1]);
-                    }
-                }
-                return; // 超时退出
-            }
-
-            // 休眠一小段时间再检查
-            sleepMilliseconds(check_interval_ms);
-            elapsed_ms += check_interval_ms;
-
-            // 检查系统状态是否正常
-            if (!rclcpp::ok())
-            {
-                RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
-                return;
-            }
+            return false; // 超时退出
         }
-    }
-    catch (const std::exception &e)
-    {
-        RCLCPP_ERROR(this->get_logger(), "服务调用失败: %s", e.what());
+
+        // 休眠一小段时间再检查
+        sleepMilliseconds(check_interval_ms);
+        elapsed_ms += check_interval_ms;
+
+        // 检查系统状态是否正常
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
+            return false;
+        }
     }
 }
 
-void H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent)
+bool H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent)
 {
     while (!m_linear_move_client->wait_for_service(std::chrono::seconds(1)))
     {
@@ -430,7 +375,7 @@ void H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
-            return;
+            return false;
         }
         RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
     }
@@ -450,73 +395,65 @@ void H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector
         std::make_shared<controller::srv::LinearMove::Request>();
     request->linear_move = linear_params;
     auto result_future = m_linear_move_client->async_send_request(request);
-    try
+    // 等待服务响应
+    auto response = result_future.get();
+
+    // 设置超时时间（例如5秒，可根据实际情况调整）
+    const int timeout_ms = 5000;
+    const int check_interval_ms = 10;
+    int elapsed_ms = 0;
+
+    while (true)
     {
-        // 等待服务响应
-        auto response = result_future.get();
-        // RCLCPP_INFO(this->get_logger(), "收到移动结果：%d", response->success);
-
-        // 设置超时时间（例如5秒，可根据实际情况调整）
-        const int timeout_ms = 5000;
-        const int check_interval_ms = 10;
-        int elapsed_ms = 0;
-
-        while (true)
+        bool all_reached = true;
+        // 检查是否满足完成条件
+        for (int i = 0; i < type.size(); i++)
         {
-            bool all_reached = true;
-            // 检查是否满足完成条件
-            for (int i = 0; i < type.size(); i++)
+            for (int j = 0; j < 6; j++)
             {
-                for (int j = 0; j < 6; j++)
+                if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j], pose[i][j], 0.001))
                 {
-                    if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j], pose[i][j], 0.001))
-                    {
-                        all_reached = false;
-                        break;
-                    }
+                    all_reached = false;
+                    break;
                 }
             }
-            if (all_reached && get_move_msg_->state == 0)
-            {
-                RCLCPP_INFO(this->get_logger(),
-                            "grpc_linearmove() 完成");
-                return;
-            }
-
-            // error
-            if (get_error_msg_->error_code != 0)
-            {
-                RCLCPP_ERROR(this->get_logger(),
-                             "message:module=%u, error_code=%d, msg=%s",
-                             get_error_msg_->module,
-                             get_error_msg_->error_code,
-                             get_error_msg_->msg.c_str());
-                return;
-            }
-
-            // 检查是否超时
-            if (elapsed_ms >= timeout_ms)
-            {
-                RCLCPP_ERROR(this->get_logger(), "运动超时！");
-                // 可以根据需要添加超时处理逻辑，如强制停止等
-                return; // 超时退出
-            }
-
-            // 休眠一小段时间再检查
-            sleepMilliseconds(check_interval_ms);
-            elapsed_ms += check_interval_ms;
-
-            // 检查系统状态是否正常
-            if (!rclcpp::ok())
-            {
-                RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
-                return;
-            }
         }
-    }
-    catch (const std::exception &e)
-    {
-        RCLCPP_ERROR(this->get_logger(), "服务调用失败: %s", e.what());
+        if (all_reached && get_move_msg_->state == 0)
+        {
+            RCLCPP_INFO(this->get_logger(),
+                        "grpc_linearmove() 完成");
+            return true;
+        }
+
+        // error
+        if (get_error_msg_->error_code != 0)
+        {
+            RCLCPP_ERROR(this->get_logger(),
+                         "message:module=%u, error_code=%d, msg=%s",
+                         get_error_msg_->module,
+                         get_error_msg_->error_code,
+                         get_error_msg_->msg.c_str());
+            return false;
+        }
+
+        // 检查是否超时
+        if (elapsed_ms >= timeout_ms)
+        {
+            RCLCPP_ERROR(this->get_logger(), "运动超时！");
+            // 可以根据需要添加超时处理逻辑，如强制停止等
+            return false; // 超时退出
+        }
+
+        // 休眠一小段时间再检查
+        sleepMilliseconds(check_interval_ms);
+        elapsed_ms += check_interval_ms;
+
+        // 检查系统状态是否正常
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
+            return false;
+        }
     }
 }
 
@@ -548,10 +485,10 @@ bool H10wRosClient::clear_error()
     return result->success;
 }
 
-void H10wRosClient::servoj(controller::msg::RealTimeBodyJoints msg, double m_step)
+bool H10wRosClient::servoj(controller::msg::RealTimeBodyJoints msg, double m_step)
 {
     if (!has_move_msg())
-        return;
+        return false;
 
     move_done_ = false; // 重置状态
     auto message = controller::msg::RealTimeBodyJoints();
@@ -648,6 +585,7 @@ void H10wRosClient::servoj(controller::msg::RealTimeBodyJoints msg, double m_ste
         {
             move_done_ = true;
             RCLCPP_INFO(this->get_logger(), "servoj reached target, exit loop");
+            return true;
         }
 
         // error
@@ -658,17 +596,17 @@ void H10wRosClient::servoj(controller::msg::RealTimeBodyJoints msg, double m_ste
                          get_error_msg_->module,
                          get_error_msg_->error_code,
                          get_error_msg_->msg.c_str());
-            return;
+            return false;
         }
 
         std::this_thread::sleep_for(std::chrono::duration<double>(message.time));
     }
 }
 
-void H10wRosClient::servol(controller::msg::RealTimeBodyTcpCartesian msg, double m_step)
+bool H10wRosClient::servol(controller::msg::RealTimeBodyTcpCartesian msg, double m_step)
 {
     if (!has_move_msg())
-        return;
+        return false;
     move_done_ = false;
     auto message = controller::msg::RealTimeBodyTcpCartesian();
     message.left_arm_valid = msg.left_arm_valid;
@@ -757,6 +695,7 @@ void H10wRosClient::servol(controller::msg::RealTimeBodyTcpCartesian msg, double
         {
             move_done_ = true;
             RCLCPP_INFO(this->get_logger(), "servol reached target, exit loop");
+            return true;
         }
 
         // error
@@ -767,13 +706,13 @@ void H10wRosClient::servol(controller::msg::RealTimeBodyTcpCartesian msg, double
                          get_error_msg_->module,
                          get_error_msg_->error_code,
                          get_error_msg_->msg.c_str());
-            return;
+            return false;
         }
         std::this_thread::sleep_for(std::chrono::duration<double>(message.time));
     }
 }
 
-void H10wRosClient::speedj(controller::msg::RealTimeBodyJoints msg, int32_t t)
+bool H10wRosClient::speedj(controller::msg::RealTimeBodyJoints msg, int32_t t)
 {
     move_done_ = false;
     auto message = controller::msg::RealTimeBodyJoints();
@@ -811,6 +750,7 @@ void H10wRosClient::speedj(controller::msg::RealTimeBodyJoints msg, int32_t t)
             m_speed_body_j_publisher->publish(message);
             move_done_ = true;
             RCLCPP_INFO(this->get_logger(), "speedj reached target, exit loop");
+            return true;
         }
         // error
         if (get_error_msg_->error_code != 0)
@@ -820,12 +760,12 @@ void H10wRosClient::speedj(controller::msg::RealTimeBodyJoints msg, int32_t t)
                          get_error_msg_->module,
                          get_error_msg_->error_code,
                          get_error_msg_->msg.c_str());
-            return;
+            return false;
         }
     }
 }
 
-void H10wRosClient::speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_t t)
+bool H10wRosClient::speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_t t)
 {
     move_done_ = false;
     auto message = controller::msg::RealTimeBodyTcpCartesian();
@@ -858,6 +798,7 @@ void H10wRosClient::speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_
             m_speed_body_l_publisher->publish(message);
             move_done_ = true;
             RCLCPP_INFO(this->get_logger(), "speedl reached target, exit loop");
+            return true;
         }
         // error
         if (get_error_msg_->error_code != 0)
@@ -867,7 +808,7 @@ void H10wRosClient::speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_
                          get_error_msg_->module,
                          get_error_msg_->error_code,
                          get_error_msg_->msg.c_str());
-            return;
+            return false;
         }
     }
 }
@@ -923,9 +864,9 @@ bool H10wRosClient::get_joint_soft_limit(std::vector<controller::msg::JointParam
         std::make_shared<controller::srv::GetJointSoftLimit::Request>();
     // 发送异步请求，然后等待返回
     auto result_future = m_get_soft_limit_client->async_send_request(request);
-    std::cout<<"1111111111\n";
+    std::cout << "1111111111\n";
     auto result = result_future.get();
-    std::cout<<"2222222222222\n";
+    std::cout << "2222222222222\n";
     std::cout << result << "\n";
 
     joint_params = result->joint_params;

@@ -70,8 +70,6 @@ public:
     explicit H10wRosClient(const std::string &strIpPort = "localhost");
     ~H10wRosClient() = default;
 
-    void stopTest();
-
     bool has_move_msg() const { return get_move_msg_ != nullptr; }
 
 private:
@@ -80,23 +78,23 @@ private:
     void error_callback(const controller::msg::ErrorMessage::SharedPtr msg);
 
 public:
-    void ros_singlemove(const uint32_t joint_index, const double target_position, const double velocity);
+    bool ros_singlemove(const uint32_t joint_index, const float target_position, const float velocity);
 
-    void ros_multimove(const std::vector<int32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities);
+    bool ros_multimove(const std::vector<int32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities);
 
-    void ros_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent);
+    bool ros_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent);
 
-    void enable_realtime_cmd(bool m_enable);
+    bool enable_realtime_cmd(bool m_enable);
 
     bool clear_error();
 
-    void servoj(controller::msg::RealTimeBodyJoints msg, double m_step);
+    bool servoj(controller::msg::RealTimeBodyJoints msg, double m_step);
 
-    void servol(controller::msg::RealTimeBodyTcpCartesian msg, double m_step);
+    bool servol(controller::msg::RealTimeBodyTcpCartesian msg, double m_step);
 
-    void speedj(controller::msg::RealTimeBodyJoints msg, int32_t t);
+    bool speedj(controller::msg::RealTimeBodyJoints msg, int32_t t);
 
-    void speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_t t);
+    bool speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_t t);
 
     bool get_version(ControllerVersion &version);
 

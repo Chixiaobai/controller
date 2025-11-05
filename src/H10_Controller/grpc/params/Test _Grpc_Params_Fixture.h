@@ -4,17 +4,20 @@
 #include <memory>
 #include <thread>
 #include <signal.h>
+#include "xmlHandler.h"
 #include "H10wGrpcMove.h"
 #include "H10Wglobalconstants.h"
 #include "DeviceControlServiceClient.h"
 #include "humanoid_controller_client.h"
+namespace fs = std::filesystem;
 class GrpcParamsTest : public testing::Test
 {
 protected:
     inline static H10wGrpcMove *g_pTester = nullptr;
     inline static struct sigaction originalSigInt = {0};
     inline static struct sigaction originalSigTerm = {0};
-
+    inline static std::map<std::string, std::vector<float>> robotParameters;
+    inline static XML_HANDLER *xml_handler = nullptr;
     static void consoleHandler(int intSigNum)
     {
         if ((SIGINT == intSigNum) || (SIGTERM == intSigNum))
@@ -50,6 +53,11 @@ protected:
     static void SetUpTestSuite()
     {
         std::cout << "SetUpTestSuite" << std::endl;
+        std::string robotConfigPath;
+        Get_robot_config_file_path(robotConfigPath);
+        fs::path fPath(robotConfigPath);
+        xml_handler = new XML_HANDLER(fPath.string());
+
         if (!rclcpp::ok())
         {
             rclcpp::init(0, nullptr);
@@ -67,8 +75,10 @@ protected:
             rclcpp::shutdown();
             grpc_params_client_.reset();
         }
-        g_pTester = nullptr; // 重置全局指针
-        // 恢复原始信号处理
+        g_pTester = nullptr;
+        delete xml_handler;
+        xml_handler = nullptr;
+        
         sigaction(SIGINT, &originalSigInt, nullptr);
         sigaction(SIGTERM, &originalSigTerm, nullptr);
     }
@@ -76,19 +86,20 @@ protected:
     void SetUp() override
     {
         std::cout << "SetUp" << std::endl;
-        // while (rclcpp::ok() && !grpc_params_client_->has_move_msg())
-        // {
-        //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        // }
-        // grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
-        // grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
+        robotParameters = xml_handler->get_parameters();
+        while (rclcpp::ok() && !grpc_params_client_->has_move_msg())
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+        grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }
 
     void TearDown() override
     {
         std::cout << "TearDown" << std::endl;
-        // grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        // grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
+        grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
     }
 
     inline static std::shared_ptr<H10wGrpcMove> grpc_params_client_;

@@ -45,13 +45,6 @@ void sleepMilliseconds(unsigned int uintMilliseconds)
 #endif
 }
 
-std::map<std::string, std::vector<float>> getTestParameters(std::string &config_file_path)
-{
-    fs::path fPath(config_file_path);
-    XML_HANDLER xml_handler(fPath);
-    return xml_handler.get_parameters();
-}
-
 char read_input(const char *strPrompt)
 {
     char input = '\0';
