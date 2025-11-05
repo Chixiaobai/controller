@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<motion discription="motion">
+    <!--H10w_FT_Grpc_Motion_001 -->
+    <H10w_FT_Grpc_Motion_001 discription="单关节运动">
+            <joint_index discription="关节索引">7,14</joint_index>
+            <position discription="位置跟踪误差阈值">1.5,1.5</position>
+            <position_home discription="目标位置">0.0,0.0</position_home>
+            <vel discription="速度">0.5,0.5</vel>
+    </H10w_FT_Grpc_Motion_001>
+</motion>

@@ -7,11 +7,11 @@ HumanoidControllerClient::HumanoidControllerClient(std::shared_ptr<grpc::Channel
 
 bool HumanoidControllerClient::SingleJointMove(int32_t index, float &position, float &velocity_percent, uint32_t &token)
 {
+
     JointMoveRequest request;
     request.set_joint_index(index);
     request.set_target_position(position);
     request.set_velocity(velocity_percent);
-
     JointMoveResponse response;
     ClientContext ctx;
     Status status = m_motion_stub_->RequestSingleJointMove(&ctx, request, &response);
@@ -535,9 +535,8 @@ std::vector<std::pair<int32_t, std::vector<double>>> HumanoidControllerClient::g
         {
             // 修复：显式转换 RepeatedField 到 vector
             std::vector<double> offsetVec(
-                tcp_offset_param.offset().begin(), 
-                tcp_offset_param.offset().end()
-            );
+                tcp_offset_param.offset().begin(),
+                tcp_offset_param.offset().end());
             result.emplace_back(tcp_offset_param.type(), offsetVec);
         }
     }
@@ -568,9 +567,8 @@ std::vector<std::pair<int32_t, std::vector<double>>> HumanoidControllerClient::g
         for (auto tcp_payload_param : tcp_payload_params)
         {
             std::vector<double> payloadVec(
-                tcp_payload_param.parameters().begin(), 
-                tcp_payload_param.parameters().end()
-            );
+                tcp_payload_param.parameters().begin(),
+                tcp_payload_param.parameters().end());
             result.emplace_back(tcp_payload_param.type(), payloadVec);
         }
     }
@@ -963,9 +961,8 @@ std::vector<std::pair<int32_t, std::vector<double>>> HumanoidControllerClient::f
         for (auto tcpPoseParam : tcpPoseParams)
         {
             std::vector<double> poseVec(
-                tcpPoseParam.pose().begin(), 
-                tcpPoseParam.pose().end()
-            );
+                tcpPoseParam.pose().begin(),
+                tcpPoseParam.pose().end());
             result.emplace_back(tcpPoseParam.type(), poseVec);
         }
     }
@@ -1009,7 +1006,8 @@ std::vector<double> HumanoidControllerClient::inverse(const std::vector<int32_t>
     if (status.ok())
     {
         auto jointAngles = response.joint_angles();
-        for(int i = 0; i < jointAngles.size(); i++){
+        for (int i = 0; i < jointAngles.size(); i++)
+        {
             result.emplace_back(jointAngles[i]);
         }
     }

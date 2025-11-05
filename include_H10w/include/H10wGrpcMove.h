@@ -24,7 +24,7 @@ private:
     void error_callback(const controller::msg::ErrorMessage::SharedPtr msg);
 
 public:
-    void grpc_singlemove(int32_t index, float &position, float &velocity_percent, uint32_t &token);
+    bool grpc_singlemove(int32_t index, float &position, float &velocity_percent, uint32_t &token);
     void grpc_multimove(const std::vector<int32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token);
     void grpc_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent, int32_t &task_id);
 

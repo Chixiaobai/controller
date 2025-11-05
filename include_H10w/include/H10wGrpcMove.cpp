@@ -43,9 +43,8 @@ void H10wGrpcMove::error_callback(const controller::msg::ErrorMessage::SharedPtr
     std::lock_guard<std::mutex> lock(msg_mutex_);
     get_error_msg_ = msg;
 }
-void H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &velocity_percent, uint32_t &token)
+bool H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &velocity_percent, uint32_t &token)
 {
-    
     m_pControllerClient->SingleJointMove(index, position, velocity_percent, token);
     // 定义超时时间为5秒
     const auto timeout = std::chrono::seconds(5);
@@ -63,32 +62,32 @@ void H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &veloci
         if (now - start_time >= timeout)
         {
 
-            RCLCPP_ERROR(this->get_logger(),
-                         "grpc_singlemove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
-                         static_cast<int>(timeout.count()),
-                         get_move_msg_->token,
-                         get_move_msg_->state,
-                         token);
-            return;
+            // RCLCPP_ERROR(this->get_logger(),
+            //              "grpc_singlemove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
+            //              static_cast<int>(timeout.count()),
+            //              get_move_msg_->token,
+            //              get_move_msg_->state,
+            //              token);
+            return false;
         }
 
         // 检查是否满足完成条件
-        if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
+        // if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
         {
-            RCLCPP_INFO(this->get_logger(),
-                        "grpc_singlemove() 完成。token=%u, state=%d",
-                        token, get_move_msg_->state);
-            return;
+        //     RCLCPP_INFO(this->get_logger(),
+        //                 "grpc_singlemove() 完成。token=%u, state=%d",
+        //                 token, get_move_msg_->state);
+            return true;
         }
         // error
-        if (get_error_msg_->error_code != 0)
+        // if (get_error_msg_->error_code != 0)
         {
-            RCLCPP_ERROR(this->get_logger(),
-                         "message:module=%u, error_code=%d, msg=%s",
-                         get_error_msg_->module,
-                         get_error_msg_->error_code,
-                         get_error_msg_->msg.c_str());
-            return;
+            // RCLCPP_ERROR(this->get_logger(),
+            //              "message:module=%u, error_code=%d, msg=%s",
+            //              get_error_msg_->module,
+            //              get_error_msg_->error_code,
+            //              get_error_msg_->msg.c_str());
+            return false;
         }
 
         // 等待一段时间后再次检查（避免CPU占用过高）
