@@ -15,7 +15,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}"
     "${CMAKE_CURRENT_SOURCE_DIR}/Environment"
 )
-# include(h1_sdk_base)
 file(GLOB ENVIRONMENT_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/Environment/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Environment/*.h
@@ -41,14 +40,12 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# 定义公共依赖集合
 set(COMMON_DEPS
   rclcpp
   controller
 )
 
 
-# #7.Specify the head file directories
 include_directories(
     ${TEST_BASE_INCLUDE_DIRECTORIES}
     ${CMAKE_CURRENT_SOURCE_DIR}/Environment/
@@ -66,12 +63,10 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--no-as-needed")
 endif()
 
-#8. Specify the test source file
-file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/H10_Controller/*/*/*.cpp)
+file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/H10_Controller/grpc/*/*.cpp)
 
 file(GLOB_RECURSE H10w_SRC ${CMAKE_CURRENT_SOURCE_DIR}/include_H10w/*)
 
-#11. Define the source file list variable
 set(H10W_CONTROLLER_SRC
     ${ENVIRONMENT_SRC}
     ${H10w_SRC}

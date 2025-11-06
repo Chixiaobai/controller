@@ -1,2 +1,0 @@
-
-TcpPoseParams[] pose

@@ -80,7 +80,7 @@ private:
 public:
     bool ros_singlemove(const uint32_t joint_index, const float target_position, const float velocity);
 
-    bool ros_multimove(const std::vector<int32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities);
+    bool ros_multimove(const std::vector<uint32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities);
 
     bool ros_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent);
 

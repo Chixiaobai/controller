@@ -100,6 +100,7 @@ vector<vector<double>> read_data(string file_name)
     infile.close();
     return data;
 }
+
 bool isFloatValueEqual(float fltValueLeft, float fltValueRight, float fltEpsilon)
 {
     return (fltEpsilon > fabs(fltValueLeft - fltValueRight));
@@ -204,6 +205,26 @@ void sleep_ms(unsigned int ms)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
+
+std::vector<uint32_t> float_to_uint32_vec(const std::vector<float>& float_vec)
+{
+    std::vector<uint32_t> uint32_vec;
+    uint32_vec.reserve(float_vec.size());
+    for (float val : float_vec)
+        uint32_vec.push_back(static_cast<uint32_t>(val));
+    return uint32_vec;
+}
+
+std::vector<double> float_to_double_vec(const std::vector<float>& float_vec)
+{
+    std::vector<double> double_vec;
+    double_vec.reserve(float_vec.size());
+    for (float val : float_vec)
+        double_vec.push_back(static_cast<double>(val));
+    return double_vec;
+}
+
+
 
 TestTaskConfig g_test_config;
 int main(int argc, char **argv)

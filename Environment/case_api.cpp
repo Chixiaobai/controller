@@ -43,14 +43,12 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         return false;
     }
 
-    // 时间格式化（兼容旧GCC版本）
     std::time_t now = std::time(nullptr);
     std::tm tm = *std::localtime(&now);
     char time_buf[64];
     strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", &tm);
     std::string current_time = time_buf;
 
-    // 统计变量 + 存储筛选后的用例
     std::map<std::string, int> moduleTotal;
     std::map<std::string, int> modulePassed;
     std::map<std::string, int> moduleFailed;
@@ -63,13 +61,11 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         std::string suite_name = suite->name();
         int suite_executed_count = 0;
 
-        // 统计当前套件中「实际执行的用例数」：名称非空 + （有片段 或 有执行时间）
         for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
         {
             const ::testing::TestInfo *test_case = suite->GetTestInfo(case_idx);
             const ::testing::TestResult *case_result = test_case->result();
 
-            // 关键修改：同时覆盖「有断言（片段数>0）」和「无断言（执行时间>0）」的执行用例
             bool isExecuted = (test_case->name() != nullptr && *test_case->name() != '\0') &&
                               (case_result->total_part_count() > 0 || case_result->elapsed_time() > 0);
 
@@ -79,18 +75,15 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
             }
         }
 
-        // 跳过无实际执行用例的套件
         if (suite_executed_count == 0)
             continue;
 
-        // 第二步：筛选当前套件中实际执行的用例
         for (int case_idx = 0; case_idx < suite->total_test_count(); ++case_idx)
         {
             const ::testing::TestInfo *test_case = suite->GetTestInfo(case_idx);
             const ::testing::TestResult *case_result = test_case->result();
             std::string case_name = test_case->name();
 
-            // 同样的筛选条件，确保一致性
             bool isExecuted = (test_case->name() != nullptr && *test_case->name() != '\0') &&
                               (case_result->total_part_count() > 0 || case_result->elapsed_time() > 0);
 
@@ -99,7 +92,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
                 continue;
             }
 
-            // 记录并统计
             filteredTests.emplace_back(suite, test_case);
             totalAllCases++;
             moduleTotal[suite_name]++;
@@ -230,7 +222,6 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
         << current_time << R"(<br>
             实际执行总用例数：)"
         << totalAllCases << R"( | 通过：)" << totalPassed << R"( | 失败：)" << totalFailed << R"(<br>
-            报告说明：仅显示 --gtest_filter 筛选的实际执行用例
         </div>
     </div>
 
@@ -238,7 +229,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     <table class="module-stats-table">
         <thead>
             <tr>
-                <th>测试模块（套件）</th>
+                <th>测试模块</th>
                 <th>实际执行用例数</th>
                 <th>通过数</th>
                 <th>失败数</th>
@@ -251,7 +242,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     {
         ofs << R"(
             <tr>
-                <td colspan="4" class="empty-tip">无实际执行的测试用例</td>
+                <td colspan="4" class="empty-tip">无测试用例</td>
             </tr>
         )";
     }
@@ -296,8 +287,8 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     <table class="cases-table">
         <thead>
             <tr>
-                <th>测试模块（套件）</th>
-                <th>测试用例名称</th>
+                <th>测试模块</th>
+                <th>测试用例</th>
                 <th>执行结果</th>
                 <th>执行时间(ms)</th>
                 <th>详细信息</th>
@@ -310,7 +301,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     {
         ofs << R"(
             <tr>
-                <td colspan="5" class="empty-tip">无实际执行的测试用例</td>
+                <td colspan="5" class="empty-tip">无测试用例</td>
             </tr>
         )";
     }
@@ -398,7 +389,7 @@ bool save_html_report(const std::string &report_path, const TestTaskConfig &conf
     std::cout << "[报告统计] 实际执行用例：总" << totalAllCases << "个，通过" << totalPassed << "个，失败" << totalFailed << "个" << std::endl;
     return true;
 }
-// 获取当前时间字符串（Linux系统专用，格式：YYYY-MM-DD HH:MM:SS），线程安全
+
 std::string get_current_time_str()
 {
     // 1. 获取当前系统时间（秒级精度）

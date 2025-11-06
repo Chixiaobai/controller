@@ -1,2 +1,0 @@
-
-CartesianParams[] cartesian_params

@@ -1,2 +1,0 @@
-int32[] type
-float64[] joint_angles

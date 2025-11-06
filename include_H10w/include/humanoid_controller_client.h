@@ -55,7 +55,7 @@ public:
     HumanoidControllerClient(std::shared_ptr<Channel> pChannel);
     ~HumanoidControllerClient() = default;
 
-    bool MultiJointsMove(const std::vector<int32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token);
+    bool MultiJointsMove(const std::vector<uint32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token);
 
     bool SingleJointMove(int32_t index, float &position, float &velocity_percent, uint32_t &token);
 
@@ -99,7 +99,7 @@ public:
     
     std::vector<std::pair<int32_t, std::vector<double>>> get_tcp_payload(std::vector<int32_t> &type);
 
-    bool setJointSoftLimit(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos);
+    bool setJointSoftLimit(const std::vector<uint32_t> &joint_index, const std::vector<float> &max_pos, const std::vector<float> &min_pos);
 
     bool setJointMaxVel(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_vel);
 

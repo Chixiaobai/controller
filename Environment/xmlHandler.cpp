@@ -20,6 +20,7 @@ XML_HANDLER::XML_HANDLER(const fs::path &xml_path)
         throw std::runtime_error("XML parse error: " + std::string(result.description()));
     }
 }
+
 std::map<std::string, std::vector<float>> XML_HANDLER::get_parameters() {
     std::map<std::string, std::vector<float>> xml_parse_result;
 

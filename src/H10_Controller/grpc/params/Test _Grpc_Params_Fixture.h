@@ -53,8 +53,7 @@ protected:
     static void SetUpTestSuite()
     {
         std::cout << "SetUpTestSuite" << std::endl;
-        std::string robotConfigPath;
-        Get_robot_config_file_path(robotConfigPath);
+        const std::string robotConfigPath = std::filesystem::path(__FILE__).parent_path() / "config" / "config.xml";
         fs::path fPath(robotConfigPath);
         xml_handler = new XML_HANDLER(fPath.string());
 
@@ -93,20 +92,38 @@ protected:
         std::cout << "SetUp" << std::endl;
         robotParameters = xml_handler->get_parameters();
 
-        while (rclcpp::ok() && !grpc_params_client_->has_move_msg())
-        {
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        }
+        // while (rclcpp::ok() && !grpc_params_client_->has_move_msg())
+        // {
+        //     std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        // }
         // grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
-        grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
+        // grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }
 
     void TearDown() override
     {
         std::cout << "TearDown" << std::endl;
-        grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
+        // grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
         // grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
     }
 
     inline static std::shared_ptr<H10wGrpcMove> grpc_params_client_;
+
+    bool check_soft_limits_match(const std::vector<std::tuple<uint32_t, double, double>> &soft_limits,
+                                 const std::map<uint32_t, std::pair<float, float>> &expect_limit)
+    {
+        for (auto &item : soft_limits)
+        {
+            auto [joint_id, act_max, act_min] = item;
+            auto [exp_max, exp_min] = expect_limit.at(joint_id);
+            if (!isFloatValueEqual(act_max, exp_max) || !isFloatValueEqual(act_min, exp_min))
+            {
+                std::cout << "关节 " << joint_id << " 限位不匹配："
+                          << "预期(max:" << exp_max << ", min:" << exp_min << ")，"
+                          << "实际(max:" << act_max << ", min:" << act_min << ")" << std::endl;
+                return false;
+            }
+        }
+        return true;
+    }
 };

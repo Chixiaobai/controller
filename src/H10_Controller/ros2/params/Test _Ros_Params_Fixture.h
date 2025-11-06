@@ -53,8 +53,7 @@ protected:
     static void SetUpTestSuite()
     {
         std::cout << "SetUpTestSuite" << std::endl;
-        std::string robotConfigPath;
-        Get_robot_config_file_path(robotConfigPath);
+        const std::string robotConfigPath = std::filesystem::path(__FILE__).parent_path() / "config" / "config.xml";
         fs::path fPath(robotConfigPath);
         xml_handler = new XML_HANDLER(fPath.string());
 

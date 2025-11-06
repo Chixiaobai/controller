@@ -250,7 +250,7 @@ bool H10wRosClient::ros_singlemove(const uint32_t joint_index, const float targe
     }
 }
 
-bool H10wRosClient::ros_multimove(const std::vector<int32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities)
+bool H10wRosClient::ros_multimove(const std::vector<uint32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities)
 {
     /*等待服务端上线*/
     while (!m_multi_move_client->wait_for_service(std::chrono::seconds(1)))
@@ -601,6 +601,8 @@ bool H10wRosClient::servoj(controller::msg::RealTimeBodyJoints msg, double m_ste
 
         std::this_thread::sleep_for(std::chrono::duration<double>(message.time));
     }
+    RCLCPP_ERROR(this->get_logger(), "servoj loop exited abnormally (rclcpp not ok)");
+    return false;
 }
 
 bool H10wRosClient::servol(controller::msg::RealTimeBodyTcpCartesian msg, double m_step)
@@ -710,6 +712,8 @@ bool H10wRosClient::servol(controller::msg::RealTimeBodyTcpCartesian msg, double
         }
         std::this_thread::sleep_for(std::chrono::duration<double>(message.time));
     }
+    RCLCPP_ERROR(this->get_logger(), "servol loop exited abnormally (rclcpp not ok)");
+    return false;
 }
 
 bool H10wRosClient::speedj(controller::msg::RealTimeBodyJoints msg, int32_t t)
@@ -763,6 +767,8 @@ bool H10wRosClient::speedj(controller::msg::RealTimeBodyJoints msg, int32_t t)
             return false;
         }
     }
+    RCLCPP_ERROR(this->get_logger(), "speedj loop exited abnormally (rclcpp not ok)");
+    return false;
 }
 
 bool H10wRosClient::speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_t t)
@@ -811,6 +817,8 @@ bool H10wRosClient::speedl(controller::msg::RealTimeBodyTcpCartesian msg, int32_
             return false;
         }
     }
+    RCLCPP_ERROR(this->get_logger(), "speedl loop exited abnormally (rclcpp not ok)");
+    return false;
 }
 
 bool H10wRosClient::get_version(ControllerVersion &version)

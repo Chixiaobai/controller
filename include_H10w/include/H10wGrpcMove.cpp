@@ -94,7 +94,7 @@ bool H10wGrpcMove::grpc_singlemove(int32_t index, float &position, float &veloci
         std::this_thread::sleep_for(check_interval);
     }
 }
-bool H10wGrpcMove::grpc_multimove(const std::vector<int32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token)
+bool H10wGrpcMove::grpc_multimove(const std::vector<uint32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token)
 {
     m_pControllerClient->MultiJointsMove(joint_index, position, velocity_percent, token);
 

@@ -1,2 +1,0 @@
-uint32 accumulated_time
-uint32 accumulated_mileage

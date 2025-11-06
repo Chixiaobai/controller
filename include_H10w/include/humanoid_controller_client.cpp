@@ -28,7 +28,7 @@ bool HumanoidControllerClient::SingleJointMove(int32_t index, float &position, f
     }
 }
 
-bool HumanoidControllerClient::MultiJointsMove(const std::vector<int32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token)
+bool HumanoidControllerClient::MultiJointsMove(const std::vector<uint32_t> &joint_index, const std::vector<float> &position, const std::vector<float> &velocity_percent, uint32_t &token)
 {
     if (joint_index.size() <= 0)
     {
@@ -575,7 +575,7 @@ std::vector<std::pair<int32_t, std::vector<double>>> HumanoidControllerClient::g
     return result;
 }
 
-bool HumanoidControllerClient::setJointSoftLimit(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos)
+bool HumanoidControllerClient::setJointSoftLimit(const std::vector<uint32_t> &joint_index, const std::vector<float> &max_pos, const std::vector<float> &min_pos)
 {
     ClientContext context;
     SetJointParamsRequest request;
