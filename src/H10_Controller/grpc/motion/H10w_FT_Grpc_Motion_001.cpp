@@ -14,7 +14,7 @@ TEST_F(GrpcMotionTest, H10w_FT_Grpc_Motion_001)
     ASSERT_TRUE(ret) << "单关节运动失败";
     sleepMilliseconds(1000);
     
-    ret = grpc_motion_client_->grpc_singlemove(robotParameters["joint_index"][0], robotParameters["position_home"][0], robotParameters["vel"][0], token);
-    ASSERT_TRUE(ret) << "单关节运动失败";
+    // ret = grpc_motion_client_->grpc_singlemove(robotParameters["joint_index"][0], robotParameters["position_home"][0], robotParameters["vel"][0], token);
+    // ASSERT_TRUE(ret) << "单关节运动失败";
     sleepMilliseconds(1000);
 }

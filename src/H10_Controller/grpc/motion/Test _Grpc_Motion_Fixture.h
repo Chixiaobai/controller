@@ -63,6 +63,11 @@ protected:
             rclcpp::init(0, nullptr);
         }
         grpc_motion_client_ = std::make_shared<H10wGrpcMove>(GlobalConstants::H10W::IpPort);
+        std::thread spin_thread([]()
+                                {
+                                    rclcpp::spin(grpc_motion_client_); // 持续处理回调
+                                });
+        spin_thread.detach();
         g_pTester = grpc_motion_client_.get();
         setConsoleHandler();
     }
@@ -78,7 +83,7 @@ protected:
         g_pTester = nullptr;
         delete xml_handler;
         xml_handler = nullptr;
-        
+
         sigaction(SIGINT, &originalSigInt, nullptr);
         sigaction(SIGTERM, &originalSigTerm, nullptr);
     }
@@ -92,7 +97,7 @@ protected:
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
-        grpc_motion_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        // grpc_motion_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
         grpc_motion_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }
 
@@ -100,7 +105,7 @@ protected:
     {
         std::cout << "TearDown" << std::endl;
         grpc_motion_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        grpc_motion_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        // grpc_motion_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
     }
 
     inline static std::shared_ptr<H10wGrpcMove> grpc_motion_client_;

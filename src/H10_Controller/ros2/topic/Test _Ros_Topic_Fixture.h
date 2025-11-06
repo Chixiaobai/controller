@@ -63,6 +63,11 @@ protected:
             rclcpp::init(0, nullptr);
         }
         ros_topic_client_ = std::make_shared<H10wRosClient>(GlobalConstants::H10W::IpPort);
+        std::thread spin_thread([]()
+                                {
+                                    rclcpp::spin(ros_topic_client_); // 持续处理回调
+                                });
+        spin_thread.detach();
         g_pTester = ros_topic_client_.get();
         setConsoleHandler();
     }
@@ -91,7 +96,7 @@ protected:
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
-        ros_topic_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        // ros_topic_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
         ros_topic_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
         ros_topic_client_->enable_realtime_cmd(true);
     }
@@ -100,7 +105,7 @@ protected:
     {
         std::cout << "TearDown" << std::endl;
         ros_topic_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        ros_topic_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        // ros_topic_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
         ros_topic_client_->enable_realtime_cmd(false);
     }
 

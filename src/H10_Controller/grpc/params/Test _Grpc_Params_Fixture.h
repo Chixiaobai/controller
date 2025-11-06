@@ -24,7 +24,7 @@ protected:
         {
             if (nullptr != g_pTester)
             {
-                std::cout<<"consoleHandler: received ctrl+c signal "<<std::endl;
+                std::cout << "consoleHandler: received ctrl+c signal " << std::endl;
                 g_pTester->m_pControllerClient->stop();
                 rclcpp::shutdown();
             }
@@ -63,6 +63,11 @@ protected:
             rclcpp::init(0, nullptr);
         }
         grpc_params_client_ = std::make_shared<H10wGrpcMove>(GlobalConstants::H10W::IpPort);
+        std::thread spin_thread([]()
+                                {
+                                    rclcpp::spin(grpc_params_client_); // 持续处理回调
+                                });
+        spin_thread.detach();
         g_pTester = grpc_params_client_.get();
         setConsoleHandler();
     }
@@ -78,7 +83,7 @@ protected:
         g_pTester = nullptr;
         delete xml_handler;
         xml_handler = nullptr;
-        
+
         sigaction(SIGINT, &originalSigInt, nullptr);
         sigaction(SIGTERM, &originalSigTerm, nullptr);
     }
@@ -87,11 +92,12 @@ protected:
     {
         std::cout << "SetUp" << std::endl;
         robotParameters = xml_handler->get_parameters();
+
         while (rclcpp::ok() && !grpc_params_client_->has_move_msg())
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
         }
-        grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
+        // grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::ON);
         grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::ON, true);
     }
 
@@ -99,7 +105,7 @@ protected:
     {
         std::cout << "TearDown" << std::endl;
         grpc_params_client_->m_pDevCtrlSvrClient->controlBrakeStatus(BRAKE_STATUS::OFF, true);
-        grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
+        // grpc_params_client_->m_pDevCtrlSvrClient->controlPowerStatus(POWER_STATUS::OFF);
     }
 
     inline static std::shared_ptr<H10wGrpcMove> grpc_params_client_;
