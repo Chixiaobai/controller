@@ -1,4 +1,13 @@
 使用方法:
+
+重新生成一下grpc的文件
+cd include_H10w/grpc_msg/grpc_ws
+./generate_grpc_pb_cpp.sh
+
+cd include_H10w/rpc_service
+./generate_grpc_pb_cpp.sh
+
+
 1. 编译controller
 cd fastdds_ws
 colcon build --packages-select controller
@@ -8,7 +17,7 @@ source install/setup.bash
 
 3.编译测试程序
 在CmakeLists.txt同级目录下编译即可
-colcon build --merge-install --packages-select controller
+colcon build --merge-install --packages-select h10w_controller_test
 
 4.source 环境
 source install/setup.bash
