@@ -1,0 +1,17 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/SetChassisMaxVel.srv
+// generated code does not contain a copyright notice
+
+
+module controller {
+  module srv {
+    struct SetChassisMaxVel_Request {
+      double linear_velocity;
+
+      double angular_velocity;
+    };
+    struct SetChassisMaxVel_Response {
+      boolean success;
+    };
+  };
+};

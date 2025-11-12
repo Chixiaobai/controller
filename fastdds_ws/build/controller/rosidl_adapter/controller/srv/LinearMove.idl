@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/LinearMove.srv
+// generated code does not contain a copyright notice
+
+#include "controller/msg/LinearMoveParams.idl"
+
+module controller {
+  module srv {
+    struct LinearMove_Request {
+      sequence<controller::msg::LinearMoveParams> linear_move;
+    };
+    struct LinearMove_Response {
+      boolean success;
+
+      uint32 token;
+    };
+  };
+};

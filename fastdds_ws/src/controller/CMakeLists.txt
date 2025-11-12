@@ -29,6 +29,15 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
   "srv/EnableRealtimeCmd.srv"
   "srv/ErrorClear.srv"
+  "srv/EnableController.srv"
+  "srv/GetChassisMaxVel.srv"
+  "srv/GetControlPolicy.srv"
+  "srv/GetSafeMode.srv"
+  "srv/IsEnabledController.srv"
+  "srv/SetChassisMaxVel.srv"
+  "srv/SetControlPolicy.srv"
+  "srv/SetSafeMode.srv"
+
   "srv/ForwardKinematics.srv"
   "srv/GetCartesianMechanicalRotationMaxAcc.srv"
   "srv/GetCartesianMechanicalRotationMaxVel.srv"

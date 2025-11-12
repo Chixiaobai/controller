@@ -21,8 +21,8 @@ XML_HANDLER::XML_HANDLER(const fs::path &xml_path)
     }
 }
 
-std::map<std::string, std::vector<float>> XML_HANDLER::get_parameters() {
-    std::map<std::string, std::vector<float>> xml_parse_result;
+std::map<std::string, std::vector<double>> XML_HANDLER::get_parameters() {
+    std::map<std::string, std::vector<double>> xml_parse_result;
 
     const ::testing::UnitTest* unit_test = ::testing::UnitTest::GetInstance();
     const ::testing::TestInfo* current_test_info = unit_test->current_test_info();
@@ -48,7 +48,7 @@ std::map<std::string, std::vector<float>> XML_HANDLER::get_parameters() {
                 continue;
             }
 
-            std::vector<float> node_value;
+            std::vector<double> node_value;
             std::istringstream iss(param_node.text().as_string());
             std::string data;
 
@@ -66,7 +66,7 @@ std::map<std::string, std::vector<float>> XML_HANDLER::get_parameters() {
                 if (std::string attr = param_node.attribute("unit").as_string(); attr == "degree") {
                     node_value.push_back(deg2rad(std::stod(data)));
                 } else {
-                    node_value.push_back(static_cast<float>(std::stod(data)));
+                    node_value.push_back(static_cast<double>(std::stod(data)));
                 }
             }
 

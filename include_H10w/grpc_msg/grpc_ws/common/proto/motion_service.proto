@@ -42,8 +42,8 @@ message LinearMoveRequest {
 }
 
 message LinearMoveResponse {
-  int32 result = 1;
-  int32 task_id = 2;
+  bool success = 1;
+  uint32 token = 2;
 }
 
 message StopResponse{
@@ -66,6 +66,22 @@ message ControlPolicyResponse {
   bool success = 1;
 }
 
+message GetControlPolicyResponse {
+  int32 policy = 1;
+}
+
+message SetSafeModeRequest {
+  bool mode = 1;
+}
+
+message SetSafeModeResponse {
+  bool success = 1;
+}
+
+message GetSafeModeResponse {
+  bool mode = 1;
+}
+
 service MotionService {
   rpc RequestSingleJointMove(JointMoveRequest) returns (JointMoveResponse) {}
   rpc RequestMultiJointsMove(MultiJointMoveRequest) returns (MultiJointMoveResponse) {}
@@ -73,6 +89,9 @@ service MotionService {
   rpc RequestStop(google.protobuf.Empty) returns (StopResponse) {}
   rpc RequestEnableRealtimeCmd(EnableRealtimeRequest) returns (EnableRealtimeResponse) {}
   rpc RequestSetControlPolicy(ControlPolicyRequest) returns (ControlPolicyResponse) {}
+  rpc RequestGetControlPolicy(google.protobuf.Empty) returns (GetControlPolicyResponse) {}
+  rpc RequestSetSafeMode(SetSafeModeRequest) returns (SetSafeModeResponse) {}
+  rpc RequestGetSafeMode(google.protobuf.Empty) returns (GetSafeModeResponse) {}
 }
 
 

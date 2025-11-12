@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-4eb01cfed58388b0144c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "controller__py",
+					"jsonFile" : "directory-controller__py-fad9f8964a0557e8f524.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/Controller/fastdds_ws/build/controller/controller__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "controller",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_controller_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_controller_egg-171f8ac099a80457950e.json",
+					"name" : "ament_cmake_python_build_controller_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_controller::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_controller-3236d27689ea1a2596fb.json",
+					"name" : "ament_cmake_python_copy_controller",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller-d026c5697b360afd6a13.json",
+					"name" : "controller",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__cpp-d84e984f76c03fe2f13c.json",
+					"name" : "controller__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "controller__py::@640804f71caef9b5ae9b",
+					"jsonFile" : "target-controller__py-9d01f411e4db5d751ca1.json",
+					"name" : "controller__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_generator_c-45cd694c267fab54a95b.json",
+					"name" : "controller__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_generator_py-26a66bc76dd548c7f2af.json",
+					"name" : "controller__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_c-69dd4a8c1a8ba16239c1.json",
+					"name" : "controller__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_c__pyext-22ea99bc513b7126e869.json",
+					"name" : "controller__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_cpp-03715f43881a57bae3fd.json",
+					"name" : "controller__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_fastrtps_c-3d48285a5aba11e3024c.json",
+					"name" : "controller__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_fastrtps_c__pyext-85b1120142d0d023c707.json",
+					"name" : "controller__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_fastrtps_cpp-06b710dce46ee356645a.json",
+					"name" : "controller__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_introspection_c-c91dffdd223aee7da8ac.json",
+					"name" : "controller__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_introspection_c__pyext-31c15c5868cc2328d7e6.json",
+					"name" : "controller__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller__rosidl_typesupport_introspection_cpp-d2c233af64685d7b3425.json",
+					"name" : "controller__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "controller_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-controller_uninstall-6c6a0ea7bad4911412df.json",
+					"name" : "controller_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-8c52140e2237e37e8793.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/Controller/fastdds_ws/build/controller",
+		"source" : "/home/lizhou/Desktop/Humanoid/H10_W/h10_sdk/Controller/fastdds_ws/src/controller"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

@@ -119,40 +119,6 @@ float Sin(float index, float lowerlimit, float upperlimit, float samplecount)
     return halfRange * std::sin(angle) + midpoint;
 }
 
-// 时间转换函数，将 index 转换为 mm:ss:zzz 格式的时间
-std::string indexToTime(int ms)
-{
-    // 处理负数
-    bool isNegative = ms < 0;
-    ms = isNegative ? -ms : ms;
-
-    // 计算各时间单位
-    int minutes = ms / 60000;
-    int seconds = (ms % 60000) / 1000;
-    int millis = ms % 1000;
-
-    // 格式化输出
-    std::ostringstream oss;
-    if (isNegative)
-        oss << "-";
-    oss << std::setfill('0') << std::setw(2) << minutes << ":" << std::setfill('0') << std::setw(2) << seconds << "."
-        << std::setfill('0') << std::setw(3) << millis;
-    return oss.str();
-}
-
-// 时间转换函数，将 index 转换为 hh:mm:ss 格式的时间
-
-// std::string indexToTime(int index) {
-//     int hours = index / 3600;
-//     int minutes = (index % 3600) / 60;
-//     int seconds = index % 60;
-
-//     std::ostringstream oss;
-//     oss << std::setfill('0') << std::setw(2) << hours << ":" << std::setfill('0') << std::setw(2) << minutes << ":"
-//         << std::setfill('0') << std::setw(2) << seconds;
-//     return oss.str();
-// }
-
 // 判断输入值是否在指定的上下限范围内
 bool isWithinRange(double inputValue, double lowerBound, double upperBound)
 {
@@ -205,26 +171,6 @@ void sleep_ms(unsigned int ms)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
-
-std::vector<uint32_t> float_to_uint32_vec(const std::vector<float>& float_vec)
-{
-    std::vector<uint32_t> uint32_vec;
-    uint32_vec.reserve(float_vec.size());
-    for (float val : float_vec)
-        uint32_vec.push_back(static_cast<uint32_t>(val));
-    return uint32_vec;
-}
-
-std::vector<double> float_to_double_vec(const std::vector<float>& float_vec)
-{
-    std::vector<double> double_vec;
-    double_vec.reserve(float_vec.size());
-    for (float val : float_vec)
-        double_vec.push_back(static_cast<double>(val));
-    return double_vec;
-}
-
-
 
 TestTaskConfig g_test_config;
 int main(int argc, char **argv)

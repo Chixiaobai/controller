@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from controller/msg/MoveMessage.msg
+// generated code does not contain a copyright notice
+
+#include "controller/msg/TcpPoseParams.idl"
+
+module controller {
+  module msg {
+    struct MoveMessage {
+      uint8 state;
+
+      sequence<double> position;
+
+      sequence<double> velocity;
+
+      sequence<controller::msg::TcpPoseParams> tcp_pose;
+
+      uint32 token;
+    };
+  };
+};

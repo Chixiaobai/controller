@@ -40,8 +40,6 @@ vector<vector<double>> read_data(string file_name);
 // 浮点数是否相等
 bool isFloatValueEqual(float fltValueLeft, float fltValueRight, float fltEpsilon = 0.01f);
 
-// 时间转换函数，将 index 转换为 mm:ss:zzz 格式的时间
-std::string indexToTime(int ms);
 
 // 缩放正弦函数
 float Sin(float index, float lowerlimit, float upperlimit, float samplecount);
@@ -49,7 +47,6 @@ float Sin(float index, float lowerlimit, float upperlimit, float samplecount);
 // 判断输入值是否在指定的上下限范围内
 bool isWithinRange(double inputValue, double lowerBound, double upperBound);
 
-// std::string indexToTime(int index);
 
 // 时间工具函数
 void sleep_ms(unsigned int ms); // 毫秒级睡眠

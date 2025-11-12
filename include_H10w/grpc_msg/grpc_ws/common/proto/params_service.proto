@@ -88,7 +88,8 @@ message ForwardKinematicsResponse {
 
 message InverseKinematicsRequest {
   repeated TcpPoseParams tcp_pose_params = 1;
-  bool if_use_whole_body = 2;
+  repeated double reference_joint_angles = 2;
+  bool if_use_whole_body = 3;
 }
 
 message InverseKinematicsResponse {

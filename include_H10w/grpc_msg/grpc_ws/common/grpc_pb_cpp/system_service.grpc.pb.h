@@ -50,6 +50,20 @@ class SystemService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::ErrorClearResponse>> PrepareAsyncClearError(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::ErrorClearResponse>>(PrepareAsyncClearErrorRaw(context, request, cq));
     }
+    virtual ::grpc::Status EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::controller::EnableControllerResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableControllerResponse>> AsyncEnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableControllerResponse>>(AsyncEnableControllerRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableControllerResponse>> PrepareAsyncEnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableControllerResponse>>(PrepareAsyncEnableControllerRaw(context, request, cq));
+    }
+    virtual ::grpc::Status IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::IsEnabledControllerResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::IsEnabledControllerResponse>> AsyncIsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::IsEnabledControllerResponse>>(AsyncIsEnabledControllerRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::IsEnabledControllerResponse>> PrepareAsyncIsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::IsEnabledControllerResponse>>(PrepareAsyncIsEnabledControllerRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -57,6 +71,10 @@ class SystemService final {
       virtual void GetVersion(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::VersionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ClearError(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::ErrorClearResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ClearError(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::ErrorClearResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -66,6 +84,10 @@ class SystemService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::VersionResponse>* PrepareAsyncGetVersionRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::ErrorClearResponse>* AsyncClearErrorRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::ErrorClearResponse>* PrepareAsyncClearErrorRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableControllerResponse>* AsyncEnableControllerRaw(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableControllerResponse>* PrepareAsyncEnableControllerRaw(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::IsEnabledControllerResponse>* AsyncIsEnabledControllerRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::IsEnabledControllerResponse>* PrepareAsyncIsEnabledControllerRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -84,6 +106,20 @@ class SystemService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::ErrorClearResponse>> PrepareAsyncClearError(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::ErrorClearResponse>>(PrepareAsyncClearErrorRaw(context, request, cq));
     }
+    ::grpc::Status EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::controller::EnableControllerResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>> AsyncEnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>>(AsyncEnableControllerRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>> PrepareAsyncEnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>>(PrepareAsyncEnableControllerRaw(context, request, cq));
+    }
+    ::grpc::Status IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::IsEnabledControllerResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>> AsyncIsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>>(AsyncIsEnabledControllerRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>> PrepareAsyncIsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>>(PrepareAsyncIsEnabledControllerRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -91,6 +127,10 @@ class SystemService final {
       void GetVersion(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::VersionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ClearError(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::ErrorClearResponse* response, std::function<void(::grpc::Status)>) override;
       void ClearError(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::ErrorClearResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response, std::function<void(::grpc::Status)>) override;
+      void EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response, std::function<void(::grpc::Status)>) override;
+      void IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -106,8 +146,14 @@ class SystemService final {
     ::grpc::ClientAsyncResponseReader< ::controller::VersionResponse>* PrepareAsyncGetVersionRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::controller::ErrorClearResponse>* AsyncClearErrorRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::controller::ErrorClearResponse>* PrepareAsyncClearErrorRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>* AsyncEnableControllerRaw(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>* PrepareAsyncEnableControllerRaw(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>* AsyncIsEnabledControllerRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>* PrepareAsyncIsEnabledControllerRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetVersion_;
     const ::grpc::internal::RpcMethod rpcmethod_ClearError_;
+    const ::grpc::internal::RpcMethod rpcmethod_EnableController_;
+    const ::grpc::internal::RpcMethod rpcmethod_IsEnabledController_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -117,6 +163,8 @@ class SystemService final {
     virtual ~Service();
     virtual ::grpc::Status GetVersion(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::VersionResponse* response);
     virtual ::grpc::Status ClearError(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::ErrorClearResponse* response);
+    virtual ::grpc::Status EnableController(::grpc::ServerContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response);
+    virtual ::grpc::Status IsEnabledController(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetVersion : public BaseClass {
@@ -158,7 +206,47 @@ class SystemService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetVersion<WithAsyncMethod_ClearError<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_EnableController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_EnableController() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_EnableController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableController(::grpc::ServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestEnableController(::grpc::ServerContext* context, ::controller::EnableControllerRequest* request, ::grpc::ServerAsyncResponseWriter< ::controller::EnableControllerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_IsEnabledController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_IsEnabledController() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_IsEnabledController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsEnabledController(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIsEnabledController(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::controller::IsEnabledControllerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetVersion<WithAsyncMethod_ClearError<WithAsyncMethod_EnableController<WithAsyncMethod_IsEnabledController<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetVersion : public BaseClass {
    private:
@@ -213,7 +301,61 @@ class SystemService final {
     virtual ::grpc::ServerUnaryReactor* ClearError(
       ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::ErrorClearResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetVersion<WithCallbackMethod_ClearError<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_EnableController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_EnableController() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::controller::EnableControllerRequest, ::controller::EnableControllerResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response) { return this->EnableController(context, request, response); }));}
+    void SetMessageAllocatorFor_EnableController(
+        ::grpc::MessageAllocator< ::controller::EnableControllerRequest, ::controller::EnableControllerResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::controller::EnableControllerRequest, ::controller::EnableControllerResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_EnableController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableController(::grpc::ServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* EnableController(
+      ::grpc::CallbackServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_IsEnabledController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_IsEnabledController() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response) { return this->IsEnabledController(context, request, response); }));}
+    void SetMessageAllocatorFor_IsEnabledController(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_IsEnabledController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsEnabledController(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IsEnabledController(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetVersion<WithCallbackMethod_ClearError<WithCallbackMethod_EnableController<WithCallbackMethod_IsEnabledController<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetVersion : public BaseClass {
@@ -245,6 +387,40 @@ class SystemService final {
     }
     // disable synchronous version of this method
     ::grpc::Status ClearError(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::ErrorClearResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_EnableController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_EnableController() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_EnableController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableController(::grpc::ServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_IsEnabledController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_IsEnabledController() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_IsEnabledController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsEnabledController(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -290,6 +466,46 @@ class SystemService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_EnableController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_EnableController() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_EnableController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableController(::grpc::ServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestEnableController(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_IsEnabledController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_IsEnabledController() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_IsEnabledController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsEnabledController(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIsEnabledController(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_GetVersion : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -331,6 +547,50 @@ class SystemService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ClearError(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_EnableController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_EnableController() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->EnableController(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_EnableController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status EnableController(::grpc::ServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* EnableController(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_IsEnabledController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_IsEnabledController() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsEnabledController(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_IsEnabledController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsEnabledController(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IsEnabledController(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -387,9 +647,63 @@ class SystemService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedClearError(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::controller::ErrorClearResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ClearError<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_EnableController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_EnableController() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::controller::EnableControllerRequest, ::controller::EnableControllerResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::controller::EnableControllerRequest, ::controller::EnableControllerResponse>* streamer) {
+                       return this->StreamedEnableController(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_EnableController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status EnableController(::grpc::ServerContext* /*context*/, const ::controller::EnableControllerRequest* /*request*/, ::controller::EnableControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedEnableController(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::controller::EnableControllerRequest,::controller::EnableControllerResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_IsEnabledController : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_IsEnabledController() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse>* streamer) {
+                       return this->StreamedIsEnabledController(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_IsEnabledController() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status IsEnabledController(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::IsEnabledControllerResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIsEnabledController(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::controller::IsEnabledControllerResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ClearError<WithStreamedUnaryMethod_EnableController<WithStreamedUnaryMethod_IsEnabledController<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ClearError<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ClearError<WithStreamedUnaryMethod_EnableController<WithStreamedUnaryMethod_IsEnabledController<Service > > > > StreamedService;
 };
 
 }  // namespace controller

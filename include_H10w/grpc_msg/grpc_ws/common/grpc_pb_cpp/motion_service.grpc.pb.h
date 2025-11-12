@@ -78,6 +78,27 @@ class MotionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::ControlPolicyResponse>> PrepareAsyncRequestSetControlPolicy(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::ControlPolicyResponse>>(PrepareAsyncRequestSetControlPolicyRaw(context, request, cq));
     }
+    virtual ::grpc::Status RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::GetControlPolicyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetControlPolicyResponse>> AsyncRequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetControlPolicyResponse>>(AsyncRequestGetControlPolicyRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetControlPolicyResponse>> PrepareAsyncRequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetControlPolicyResponse>>(PrepareAsyncRequestGetControlPolicyRaw(context, request, cq));
+    }
+    virtual ::grpc::Status RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::controller::SetSafeModeResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::SetSafeModeResponse>> AsyncRequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::SetSafeModeResponse>>(AsyncRequestSetSafeModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::SetSafeModeResponse>> PrepareAsyncRequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::SetSafeModeResponse>>(PrepareAsyncRequestSetSafeModeRaw(context, request, cq));
+    }
+    virtual ::grpc::Status RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::GetSafeModeResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetSafeModeResponse>> AsyncRequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetSafeModeResponse>>(AsyncRequestGetSafeModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetSafeModeResponse>> PrepareAsyncRequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetSafeModeResponse>>(PrepareAsyncRequestGetSafeModeRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -93,6 +114,12 @@ class MotionService final {
       virtual void RequestEnableRealtimeCmd(::grpc::ClientContext* context, const ::controller::EnableRealtimeRequest* request, ::controller::EnableRealtimeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void RequestSetControlPolicy(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest* request, ::controller::ControlPolicyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RequestSetControlPolicy(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest* request, ::controller::ControlPolicyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -110,6 +137,12 @@ class MotionService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::EnableRealtimeResponse>* PrepareAsyncRequestEnableRealtimeCmdRaw(::grpc::ClientContext* context, const ::controller::EnableRealtimeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::ControlPolicyResponse>* AsyncRequestSetControlPolicyRaw(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::ControlPolicyResponse>* PrepareAsyncRequestSetControlPolicyRaw(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetControlPolicyResponse>* AsyncRequestGetControlPolicyRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetControlPolicyResponse>* PrepareAsyncRequestGetControlPolicyRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::SetSafeModeResponse>* AsyncRequestSetSafeModeRaw(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::SetSafeModeResponse>* PrepareAsyncRequestSetSafeModeRaw(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetSafeModeResponse>* AsyncRequestGetSafeModeRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::controller::GetSafeModeResponse>* PrepareAsyncRequestGetSafeModeRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -156,6 +189,27 @@ class MotionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::ControlPolicyResponse>> PrepareAsyncRequestSetControlPolicy(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::ControlPolicyResponse>>(PrepareAsyncRequestSetControlPolicyRaw(context, request, cq));
     }
+    ::grpc::Status RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::GetControlPolicyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>> AsyncRequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>>(AsyncRequestGetControlPolicyRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>> PrepareAsyncRequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>>(PrepareAsyncRequestGetControlPolicyRaw(context, request, cq));
+    }
+    ::grpc::Status RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::controller::SetSafeModeResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>> AsyncRequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>>(AsyncRequestSetSafeModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>> PrepareAsyncRequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>>(PrepareAsyncRequestSetSafeModeRaw(context, request, cq));
+    }
+    ::grpc::Status RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::GetSafeModeResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>> AsyncRequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>>(AsyncRequestGetSafeModeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>> PrepareAsyncRequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>>(PrepareAsyncRequestGetSafeModeRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -171,6 +225,12 @@ class MotionService final {
       void RequestEnableRealtimeCmd(::grpc::ClientContext* context, const ::controller::EnableRealtimeRequest* request, ::controller::EnableRealtimeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void RequestSetControlPolicy(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest* request, ::controller::ControlPolicyResponse* response, std::function<void(::grpc::Status)>) override;
       void RequestSetControlPolicy(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest* request, ::controller::ControlPolicyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response, std::function<void(::grpc::Status)>) override;
+      void RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response, std::function<void(::grpc::Status)>) override;
+      void RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response, std::function<void(::grpc::Status)>) override;
+      void RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -194,12 +254,21 @@ class MotionService final {
     ::grpc::ClientAsyncResponseReader< ::controller::EnableRealtimeResponse>* PrepareAsyncRequestEnableRealtimeCmdRaw(::grpc::ClientContext* context, const ::controller::EnableRealtimeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::controller::ControlPolicyResponse>* AsyncRequestSetControlPolicyRaw(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::controller::ControlPolicyResponse>* PrepareAsyncRequestSetControlPolicyRaw(::grpc::ClientContext* context, const ::controller::ControlPolicyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>* AsyncRequestGetControlPolicyRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>* PrepareAsyncRequestGetControlPolicyRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>* AsyncRequestSetSafeModeRaw(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>* PrepareAsyncRequestSetSafeModeRaw(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>* AsyncRequestGetSafeModeRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>* PrepareAsyncRequestGetSafeModeRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_RequestSingleJointMove_;
     const ::grpc::internal::RpcMethod rpcmethod_RequestMultiJointsMove_;
     const ::grpc::internal::RpcMethod rpcmethod_RequestLinearMove_;
     const ::grpc::internal::RpcMethod rpcmethod_RequestStop_;
     const ::grpc::internal::RpcMethod rpcmethod_RequestEnableRealtimeCmd_;
     const ::grpc::internal::RpcMethod rpcmethod_RequestSetControlPolicy_;
+    const ::grpc::internal::RpcMethod rpcmethod_RequestGetControlPolicy_;
+    const ::grpc::internal::RpcMethod rpcmethod_RequestSetSafeMode_;
+    const ::grpc::internal::RpcMethod rpcmethod_RequestGetSafeMode_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -213,6 +282,9 @@ class MotionService final {
     virtual ::grpc::Status RequestStop(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::StopResponse* response);
     virtual ::grpc::Status RequestEnableRealtimeCmd(::grpc::ServerContext* context, const ::controller::EnableRealtimeRequest* request, ::controller::EnableRealtimeResponse* response);
     virtual ::grpc::Status RequestSetControlPolicy(::grpc::ServerContext* context, const ::controller::ControlPolicyRequest* request, ::controller::ControlPolicyResponse* response);
+    virtual ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response);
+    virtual ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response);
+    virtual ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_RequestSingleJointMove : public BaseClass {
@@ -334,7 +406,67 @@ class MotionService final {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_RequestSingleJointMove<WithAsyncMethod_RequestMultiJointsMove<WithAsyncMethod_RequestLinearMove<WithAsyncMethod_RequestStop<WithAsyncMethod_RequestEnableRealtimeCmd<WithAsyncMethod_RequestSetControlPolicy<Service > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_RequestGetControlPolicy : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RequestGetControlPolicy() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_RequestGetControlPolicy() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRequestGetControlPolicy(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::controller::GetControlPolicyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_RequestSetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RequestSetSafeMode() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_RequestSetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRequestSetSafeMode(::grpc::ServerContext* context, ::controller::SetSafeModeRequest* request, ::grpc::ServerAsyncResponseWriter< ::controller::SetSafeModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_RequestGetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RequestGetSafeMode() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_RequestGetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRequestGetSafeMode(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::controller::GetSafeModeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_RequestSingleJointMove<WithAsyncMethod_RequestMultiJointsMove<WithAsyncMethod_RequestLinearMove<WithAsyncMethod_RequestStop<WithAsyncMethod_RequestEnableRealtimeCmd<WithAsyncMethod_RequestSetControlPolicy<WithAsyncMethod_RequestGetControlPolicy<WithAsyncMethod_RequestSetSafeMode<WithAsyncMethod_RequestGetSafeMode<Service > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_RequestSingleJointMove : public BaseClass {
    private:
@@ -497,7 +629,88 @@ class MotionService final {
     virtual ::grpc::ServerUnaryReactor* RequestSetControlPolicy(
       ::grpc::CallbackServerContext* /*context*/, const ::controller::ControlPolicyRequest* /*request*/, ::controller::ControlPolicyResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_RequestSingleJointMove<WithCallbackMethod_RequestMultiJointsMove<WithCallbackMethod_RequestLinearMove<WithCallbackMethod_RequestStop<WithCallbackMethod_RequestEnableRealtimeCmd<WithCallbackMethod_RequestSetControlPolicy<Service > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_RequestGetControlPolicy : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RequestGetControlPolicy() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::controller::GetControlPolicyResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response) { return this->RequestGetControlPolicy(context, request, response); }));}
+    void SetMessageAllocatorFor_RequestGetControlPolicy(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::controller::GetControlPolicyResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::controller::GetControlPolicyResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RequestGetControlPolicy() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RequestGetControlPolicy(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_RequestSetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RequestSetSafeMode() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response) { return this->RequestSetSafeMode(context, request, response); }));}
+    void SetMessageAllocatorFor_RequestSetSafeMode(
+        ::grpc::MessageAllocator< ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RequestSetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RequestSetSafeMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_RequestGetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RequestGetSafeMode() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::controller::GetSafeModeResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response) { return this->RequestGetSafeMode(context, request, response); }));}
+    void SetMessageAllocatorFor_RequestGetSafeMode(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::controller::GetSafeModeResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::controller::GetSafeModeResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RequestGetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RequestGetSafeMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_RequestSingleJointMove<WithCallbackMethod_RequestMultiJointsMove<WithCallbackMethod_RequestLinearMove<WithCallbackMethod_RequestStop<WithCallbackMethod_RequestEnableRealtimeCmd<WithCallbackMethod_RequestSetControlPolicy<WithCallbackMethod_RequestGetControlPolicy<WithCallbackMethod_RequestSetSafeMode<WithCallbackMethod_RequestGetSafeMode<Service > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_RequestSingleJointMove : public BaseClass {
@@ -597,6 +810,57 @@ class MotionService final {
     }
     // disable synchronous version of this method
     ::grpc::Status RequestSetControlPolicy(::grpc::ServerContext* /*context*/, const ::controller::ControlPolicyRequest* /*request*/, ::controller::ControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RequestGetControlPolicy : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RequestGetControlPolicy() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_RequestGetControlPolicy() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RequestSetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RequestSetSafeMode() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_RequestSetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RequestGetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RequestGetSafeMode() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_RequestGetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -719,6 +983,66 @@ class MotionService final {
     }
     void RequestRequestSetControlPolicy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RequestGetControlPolicy : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RequestGetControlPolicy() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_RequestGetControlPolicy() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRequestGetControlPolicy(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RequestSetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RequestSetSafeMode() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_RequestSetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRequestSetSafeMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RequestGetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RequestGetSafeMode() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_RequestGetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRequestGetSafeMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -851,6 +1175,72 @@ class MotionService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* RequestSetControlPolicy(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RequestGetControlPolicy : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RequestGetControlPolicy() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RequestGetControlPolicy(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RequestGetControlPolicy() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RequestGetControlPolicy(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RequestSetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RequestSetSafeMode() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RequestSetSafeMode(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RequestSetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RequestSetSafeMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RequestGetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RequestGetSafeMode() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RequestGetSafeMode(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RequestGetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RequestGetSafeMode(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1015,9 +1405,90 @@ class MotionService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedRequestSetControlPolicy(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::controller::ControlPolicyRequest,::controller::ControlPolicyResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_RequestSingleJointMove<WithStreamedUnaryMethod_RequestMultiJointsMove<WithStreamedUnaryMethod_RequestLinearMove<WithStreamedUnaryMethod_RequestStop<WithStreamedUnaryMethod_RequestEnableRealtimeCmd<WithStreamedUnaryMethod_RequestSetControlPolicy<Service > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RequestGetControlPolicy : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RequestGetControlPolicy() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::controller::GetControlPolicyResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::controller::GetControlPolicyResponse>* streamer) {
+                       return this->StreamedRequestGetControlPolicy(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RequestGetControlPolicy() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RequestGetControlPolicy(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetControlPolicyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRequestGetControlPolicy(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::controller::GetControlPolicyResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RequestSetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RequestSetSafeMode() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse>* streamer) {
+                       return this->StreamedRequestSetSafeMode(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RequestSetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RequestSetSafeMode(::grpc::ServerContext* /*context*/, const ::controller::SetSafeModeRequest* /*request*/, ::controller::SetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRequestSetSafeMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::controller::SetSafeModeRequest,::controller::SetSafeModeResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RequestGetSafeMode : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RequestGetSafeMode() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::controller::GetSafeModeResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::controller::GetSafeModeResponse>* streamer) {
+                       return this->StreamedRequestGetSafeMode(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RequestGetSafeMode() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RequestGetSafeMode(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::controller::GetSafeModeResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRequestGetSafeMode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::controller::GetSafeModeResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_RequestSingleJointMove<WithStreamedUnaryMethod_RequestMultiJointsMove<WithStreamedUnaryMethod_RequestLinearMove<WithStreamedUnaryMethod_RequestStop<WithStreamedUnaryMethod_RequestEnableRealtimeCmd<WithStreamedUnaryMethod_RequestSetControlPolicy<WithStreamedUnaryMethod_RequestGetControlPolicy<WithStreamedUnaryMethod_RequestSetSafeMode<WithStreamedUnaryMethod_RequestGetSafeMode<Service > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_RequestSingleJointMove<WithStreamedUnaryMethod_RequestMultiJointsMove<WithStreamedUnaryMethod_RequestLinearMove<WithStreamedUnaryMethod_RequestStop<WithStreamedUnaryMethod_RequestEnableRealtimeCmd<WithStreamedUnaryMethod_RequestSetControlPolicy<Service > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_RequestSingleJointMove<WithStreamedUnaryMethod_RequestMultiJointsMove<WithStreamedUnaryMethod_RequestLinearMove<WithStreamedUnaryMethod_RequestStop<WithStreamedUnaryMethod_RequestEnableRealtimeCmd<WithStreamedUnaryMethod_RequestSetControlPolicy<WithStreamedUnaryMethod_RequestGetControlPolicy<WithStreamedUnaryMethod_RequestSetSafeMode<WithStreamedUnaryMethod_RequestGetSafeMode<Service > > > > > > > > > StreamedService;
 };
 
 }  // namespace controller

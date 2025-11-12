@@ -56,9 +56,18 @@ struct TableStruct_system_5fservice_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_system_5fservice_2eproto;
 namespace controller {
+class EnableControllerRequest;
+struct EnableControllerRequestDefaultTypeInternal;
+extern EnableControllerRequestDefaultTypeInternal _EnableControllerRequest_default_instance_;
+class EnableControllerResponse;
+struct EnableControllerResponseDefaultTypeInternal;
+extern EnableControllerResponseDefaultTypeInternal _EnableControllerResponse_default_instance_;
 class ErrorClearResponse;
 struct ErrorClearResponseDefaultTypeInternal;
 extern ErrorClearResponseDefaultTypeInternal _ErrorClearResponse_default_instance_;
+class IsEnabledControllerResponse;
+struct IsEnabledControllerResponseDefaultTypeInternal;
+extern IsEnabledControllerResponseDefaultTypeInternal _IsEnabledControllerResponse_default_instance_;
 class VersionResponse;
 struct VersionResponseDefaultTypeInternal;
 extern VersionResponseDefaultTypeInternal _VersionResponse_default_instance_;
@@ -114,6 +123,197 @@ class VersionResponse_PluginsEntry_DoNotUse final
                              ::google::protobuf::Arena* arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class IsEnabledControllerResponse final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.IsEnabledControllerResponse) */ {
+ public:
+  inline IsEnabledControllerResponse() : IsEnabledControllerResponse(nullptr) {}
+  ~IsEnabledControllerResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(IsEnabledControllerResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(IsEnabledControllerResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR IsEnabledControllerResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline IsEnabledControllerResponse(const IsEnabledControllerResponse& from) : IsEnabledControllerResponse(nullptr, from) {}
+  inline IsEnabledControllerResponse(IsEnabledControllerResponse&& from) noexcept
+      : IsEnabledControllerResponse(nullptr, std::move(from)) {}
+  inline IsEnabledControllerResponse& operator=(const IsEnabledControllerResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IsEnabledControllerResponse& operator=(IsEnabledControllerResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IsEnabledControllerResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IsEnabledControllerResponse* internal_default_instance() {
+    return reinterpret_cast<const IsEnabledControllerResponse*>(
+        &_IsEnabledControllerResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(IsEnabledControllerResponse& a, IsEnabledControllerResponse& b) { a.Swap(&b); }
+  inline void Swap(IsEnabledControllerResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IsEnabledControllerResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  IsEnabledControllerResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<IsEnabledControllerResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const IsEnabledControllerResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const IsEnabledControllerResponse& from) { IsEnabledControllerResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(IsEnabledControllerResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.IsEnabledControllerResponse"; }
+
+ protected:
+  explicit IsEnabledControllerResponse(::google::protobuf::Arena* arena);
+  IsEnabledControllerResponse(::google::protobuf::Arena* arena, const IsEnabledControllerResponse& from);
+  IsEnabledControllerResponse(::google::protobuf::Arena* arena, IsEnabledControllerResponse&& from) noexcept
+      : IsEnabledControllerResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEnableFieldNumber = 1,
+  };
+  // bool enable = 1;
+  void clear_enable() ;
+  bool enable() const;
+  void set_enable(bool value);
+
+  private:
+  bool _internal_enable() const;
+  void _internal_set_enable(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.IsEnabledControllerResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const IsEnabledControllerResponse& from_msg);
+    bool enable_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_system_5fservice_2eproto;
 };
 // -------------------------------------------------------------------
 
@@ -300,6 +500,388 @@ class ErrorClearResponse final
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const ErrorClearResponse& from_msg);
     bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_system_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class EnableControllerResponse final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.EnableControllerResponse) */ {
+ public:
+  inline EnableControllerResponse() : EnableControllerResponse(nullptr) {}
+  ~EnableControllerResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EnableControllerResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EnableControllerResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EnableControllerResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline EnableControllerResponse(const EnableControllerResponse& from) : EnableControllerResponse(nullptr, from) {}
+  inline EnableControllerResponse(EnableControllerResponse&& from) noexcept
+      : EnableControllerResponse(nullptr, std::move(from)) {}
+  inline EnableControllerResponse& operator=(const EnableControllerResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EnableControllerResponse& operator=(EnableControllerResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EnableControllerResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EnableControllerResponse* internal_default_instance() {
+    return reinterpret_cast<const EnableControllerResponse*>(
+        &_EnableControllerResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(EnableControllerResponse& a, EnableControllerResponse& b) { a.Swap(&b); }
+  inline void Swap(EnableControllerResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EnableControllerResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EnableControllerResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EnableControllerResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EnableControllerResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EnableControllerResponse& from) { EnableControllerResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EnableControllerResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.EnableControllerResponse"; }
+
+ protected:
+  explicit EnableControllerResponse(::google::protobuf::Arena* arena);
+  EnableControllerResponse(::google::protobuf::Arena* arena, const EnableControllerResponse& from);
+  EnableControllerResponse(::google::protobuf::Arena* arena, EnableControllerResponse&& from) noexcept
+      : EnableControllerResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSuccessFieldNumber = 1,
+  };
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.EnableControllerResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const EnableControllerResponse& from_msg);
+    bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_system_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class EnableControllerRequest final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.EnableControllerRequest) */ {
+ public:
+  inline EnableControllerRequest() : EnableControllerRequest(nullptr) {}
+  ~EnableControllerRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EnableControllerRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EnableControllerRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EnableControllerRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline EnableControllerRequest(const EnableControllerRequest& from) : EnableControllerRequest(nullptr, from) {}
+  inline EnableControllerRequest(EnableControllerRequest&& from) noexcept
+      : EnableControllerRequest(nullptr, std::move(from)) {}
+  inline EnableControllerRequest& operator=(const EnableControllerRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EnableControllerRequest& operator=(EnableControllerRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EnableControllerRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EnableControllerRequest* internal_default_instance() {
+    return reinterpret_cast<const EnableControllerRequest*>(
+        &_EnableControllerRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(EnableControllerRequest& a, EnableControllerRequest& b) { a.Swap(&b); }
+  inline void Swap(EnableControllerRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EnableControllerRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EnableControllerRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EnableControllerRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EnableControllerRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EnableControllerRequest& from) { EnableControllerRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EnableControllerRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.EnableControllerRequest"; }
+
+ protected:
+  explicit EnableControllerRequest(::google::protobuf::Arena* arena);
+  EnableControllerRequest(::google::protobuf::Arena* arena, const EnableControllerRequest& from);
+  EnableControllerRequest(::google::protobuf::Arena* arena, EnableControllerRequest&& from) noexcept
+      : EnableControllerRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEnableFieldNumber = 1,
+  };
+  // bool enable = 1;
+  void clear_enable() ;
+  bool enable() const;
+  void set_enable(bool value);
+
+  private:
+  bool _internal_enable() const;
+  void _internal_set_enable(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.EnableControllerRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const EnableControllerRequest& from_msg);
+    bool enable_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -642,6 +1224,84 @@ inline bool ErrorClearResponse::_internal_success() const {
 inline void ErrorClearResponse::_internal_set_success(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.success_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// EnableControllerRequest
+
+// bool enable = 1;
+inline void EnableControllerRequest::clear_enable() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_ = false;
+}
+inline bool EnableControllerRequest::enable() const {
+  // @@protoc_insertion_point(field_get:controller.EnableControllerRequest.enable)
+  return _internal_enable();
+}
+inline void EnableControllerRequest::set_enable(bool value) {
+  _internal_set_enable(value);
+  // @@protoc_insertion_point(field_set:controller.EnableControllerRequest.enable)
+}
+inline bool EnableControllerRequest::_internal_enable() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enable_;
+}
+inline void EnableControllerRequest::_internal_set_enable(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// EnableControllerResponse
+
+// bool success = 1;
+inline void EnableControllerResponse::clear_success() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = false;
+}
+inline bool EnableControllerResponse::success() const {
+  // @@protoc_insertion_point(field_get:controller.EnableControllerResponse.success)
+  return _internal_success();
+}
+inline void EnableControllerResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:controller.EnableControllerResponse.success)
+}
+inline bool EnableControllerResponse::_internal_success() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.success_;
+}
+inline void EnableControllerResponse::_internal_set_success(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// IsEnabledControllerResponse
+
+// bool enable = 1;
+inline void IsEnabledControllerResponse::clear_enable() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_ = false;
+}
+inline bool IsEnabledControllerResponse::enable() const {
+  // @@protoc_insertion_point(field_get:controller.IsEnabledControllerResponse.enable)
+  return _internal_enable();
+}
+inline void IsEnabledControllerResponse::set_enable(bool value) {
+  _internal_set_enable(value);
+  // @@protoc_insertion_point(field_set:controller.IsEnabledControllerResponse.enable)
+}
+inline bool IsEnabledControllerResponse::_internal_enable() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enable_;
+}
+inline void IsEnabledControllerResponse::_internal_set_enable(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_ = value;
 }
 
 #ifdef __GNUC__

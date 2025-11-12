@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from controller/msg/RealTimeBodyJoints.msg
+// generated code does not contain a copyright notice
+
+
+module controller {
+  module msg {
+    typedef double double__7[7];
+    typedef double double__3[3];
+    struct RealTimeBodyJoints {
+      int32 id;
+
+      double__7 left_arm;
+
+      int8 left_arm_valid;
+
+      double__7 right_arm;
+
+      int8 right_arm_valid;
+
+      double__3 torso;
+
+      int8 torso_valid;
+
+      double time;
+    };
+  };
+};

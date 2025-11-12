@@ -51,6 +51,56 @@ struct StopResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopResponseDefaultTypeInternal _StopResponse_default_instance_;
 
+inline constexpr SetSafeModeResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetSafeModeResponse::SetSafeModeResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SetSafeModeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetSafeModeResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetSafeModeResponseDefaultTypeInternal() {}
+  union {
+    SetSafeModeResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetSafeModeResponseDefaultTypeInternal _SetSafeModeResponse_default_instance_;
+
+inline constexpr SetSafeModeRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : mode_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetSafeModeRequest::SetSafeModeRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct SetSafeModeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetSafeModeRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetSafeModeRequestDefaultTypeInternal() {}
+  union {
+    SetSafeModeRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetSafeModeRequestDefaultTypeInternal _SetSafeModeRequest_default_instance_;
+
 inline constexpr MultiJointMoveResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : success_{false},
@@ -79,8 +129,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr LinearMoveResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : result_{0},
-        task_id_{0},
+      : success_{false},
+        token_{0u},
         _cached_size_{0} {}
 
 template <typename>
@@ -210,6 +260,56 @@ struct JointAngleDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JointAngleDefaultTypeInternal _JointAngle_default_instance_;
+
+inline constexpr GetSafeModeResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : mode_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetSafeModeResponse::GetSafeModeResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct GetSafeModeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetSafeModeResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetSafeModeResponseDefaultTypeInternal() {}
+  union {
+    GetSafeModeResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSafeModeResponseDefaultTypeInternal _GetSafeModeResponse_default_instance_;
+
+inline constexpr GetControlPolicyResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : policy_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetControlPolicyResponse::GetControlPolicyResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct GetControlPolicyResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetControlPolicyResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetControlPolicyResponseDefaultTypeInternal() {}
+  union {
+    GetControlPolicyResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetControlPolicyResponseDefaultTypeInternal _GetControlPolicyResponse_default_instance_;
 
 inline constexpr EnableRealtimeResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -448,8 +548,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::controller::LinearMoveResponse, _impl_.result_),
-        PROTOBUF_FIELD_OFFSET(::controller::LinearMoveResponse, _impl_.task_id_),
+        PROTOBUF_FIELD_OFFSET(::controller::LinearMoveResponse, _impl_.success_),
+        PROTOBUF_FIELD_OFFSET(::controller::LinearMoveResponse, _impl_.token_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::controller::StopResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -495,6 +595,42 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::controller::ControlPolicyResponse, _impl_.success_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::controller::GetControlPolicyResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::controller::GetControlPolicyResponse, _impl_.policy_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::controller::SetSafeModeRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::controller::SetSafeModeRequest, _impl_.mode_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::controller::SetSafeModeResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::controller::SetSafeModeResponse, _impl_.success_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::controller::GetSafeModeResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::controller::GetSafeModeResponse, _impl_.mode_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -512,6 +648,10 @@ static const ::_pbi::MigrationSchema
         {100, -1, -1, sizeof(::controller::EnableRealtimeResponse)},
         {109, -1, -1, sizeof(::controller::ControlPolicyRequest)},
         {118, -1, -1, sizeof(::controller::ControlPolicyResponse)},
+        {127, -1, -1, sizeof(::controller::GetControlPolicyResponse)},
+        {136, -1, -1, sizeof(::controller::SetSafeModeRequest)},
+        {145, -1, -1, sizeof(::controller::SetSafeModeResponse)},
+        {154, -1, -1, sizeof(::controller::GetSafeModeResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::controller::_JointMoveRequest_default_instance_._instance,
@@ -527,6 +667,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::controller::_EnableRealtimeResponse_default_instance_._instance,
     &::controller::_ControlPolicyRequest_default_instance_._instance,
     &::controller::_ControlPolicyResponse_default_instance_._instance,
+    &::controller::_GetControlPolicyResponse_default_instance_._instance,
+    &::controller::_SetSafeModeRequest_default_instance_._instance,
+    &::controller::_SetSafeModeResponse_default_instance_._instance,
+    &::controller::_GetSafeModeResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_motion_5fservice_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -544,27 +688,38 @@ const char descriptor_table_protodef_motion_5fservice_2eproto[] ABSL_ATTRIBUTE_S
     "ose\030\002 \003(\001\022\030\n\020velocity_percent\030\003 \001(\001\022\034\n\024a"
     "cceleration_percent\030\004 \001(\001\"@\n\021LinearMoveR"
     "equest\022+\n\013linear_move\030\001 \003(\0132\026.controller"
-    ".LinearMove\"5\n\022LinearMoveResponse\022\016\n\006res"
-    "ult\030\001 \001(\005\022\017\n\007task_id\030\002 \001(\005\"\037\n\014StopRespon"
-    "se\022\017\n\007success\030\001 \001(\010\"\'\n\025EnableRealtimeReq"
-    "uest\022\016\n\006enable\030\001 \001(\010\")\n\026EnableRealtimeRe"
-    "sponse\022\017\n\007success\030\001 \001(\010\"&\n\024ControlPolicy"
-    "Request\022\016\n\006policy\030\001 \001(\005\"(\n\025ControlPolicy"
-    "Response\022\017\n\007success\030\001 \001(\0102\253\004\n\rMotionServ"
-    "ice\022W\n\026RequestSingleJointMove\022\034.controll"
-    "er.JointMoveRequest\032\035.controller.JointMo"
-    "veResponse\"\000\022a\n\026RequestMultiJointsMove\022!"
-    ".controller.MultiJointMoveRequest\032\".cont"
-    "roller.MultiJointMoveResponse\"\000\022T\n\021Reque"
-    "stLinearMove\022\035.controller.LinearMoveRequ"
-    "est\032\036.controller.LinearMoveResponse\"\000\022A\n"
-    "\013RequestStop\022\026.google.protobuf.Empty\032\030.c"
-    "ontroller.StopResponse\"\000\022c\n\030RequestEnabl"
-    "eRealtimeCmd\022!.controller.EnableRealtime"
-    "Request\032\".controller.EnableRealtimeRespo"
-    "nse\"\000\022`\n\027RequestSetControlPolicy\022 .contr"
-    "oller.ControlPolicyRequest\032!.controller."
-    "ControlPolicyResponse\"\000b\006proto3"
+    ".LinearMove\"4\n\022LinearMoveResponse\022\017\n\007suc"
+    "cess\030\001 \001(\010\022\r\n\005token\030\002 \001(\r\"\037\n\014StopRespons"
+    "e\022\017\n\007success\030\001 \001(\010\"\'\n\025EnableRealtimeRequ"
+    "est\022\016\n\006enable\030\001 \001(\010\")\n\026EnableRealtimeRes"
+    "ponse\022\017\n\007success\030\001 \001(\010\"&\n\024ControlPolicyR"
+    "equest\022\016\n\006policy\030\001 \001(\005\"(\n\025ControlPolicyR"
+    "esponse\022\017\n\007success\030\001 \001(\010\"*\n\030GetControlPo"
+    "licyResponse\022\016\n\006policy\030\001 \001(\005\"\"\n\022SetSafeM"
+    "odeRequest\022\014\n\004mode\030\001 \001(\010\"&\n\023SetSafeModeR"
+    "esponse\022\017\n\007success\030\001 \001(\010\"#\n\023GetSafeModeR"
+    "esponse\022\014\n\004mode\030\001 \001(\0102\260\006\n\rMotionService\022"
+    "W\n\026RequestSingleJointMove\022\034.controller.J"
+    "ointMoveRequest\032\035.controller.JointMoveRe"
+    "sponse\"\000\022a\n\026RequestMultiJointsMove\022!.con"
+    "troller.MultiJointMoveRequest\032\".controll"
+    "er.MultiJointMoveResponse\"\000\022T\n\021RequestLi"
+    "nearMove\022\035.controller.LinearMoveRequest\032"
+    "\036.controller.LinearMoveResponse\"\000\022A\n\013Req"
+    "uestStop\022\026.google.protobuf.Empty\032\030.contr"
+    "oller.StopResponse\"\000\022c\n\030RequestEnableRea"
+    "ltimeCmd\022!.controller.EnableRealtimeRequ"
+    "est\032\".controller.EnableRealtimeResponse\""
+    "\000\022`\n\027RequestSetControlPolicy\022 .controlle"
+    "r.ControlPolicyRequest\032!.controller.Cont"
+    "rolPolicyResponse\"\000\022Y\n\027RequestGetControl"
+    "Policy\022\026.google.protobuf.Empty\032$.control"
+    "ler.GetControlPolicyResponse\"\000\022W\n\022Reques"
+    "tSetSafeMode\022\036.controller.SetSafeModeReq"
+    "uest\032\037.controller.SetSafeModeResponse\"\000\022"
+    "O\n\022RequestGetSafeMode\022\026.google.protobuf."
+    "Empty\032\037.controller.GetSafeModeResponse\"\000"
+    "b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_motion_5fservice_2eproto_deps[1] =
     {
@@ -574,13 +729,13 @@ static ::absl::once_flag descriptor_table_motion_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_motion_5fservice_2eproto = {
     false,
     false,
-    1391,
+    1808,
     descriptor_table_protodef_motion_5fservice_2eproto,
     "motion_service.proto",
     &descriptor_table_motion_5fservice_2eproto_once,
     descriptor_table_motion_5fservice_2eproto_deps,
     1,
-    13,
+    17,
     schemas,
     file_default_instances,
     TableStruct_motion_5fservice_2eproto::offsets,
@@ -2425,11 +2580,11 @@ inline PROTOBUF_NDEBUG_INLINE LinearMoveResponse::Impl_::Impl_(
 inline void LinearMoveResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, result_),
+               offsetof(Impl_, success_),
            0,
-           offsetof(Impl_, task_id_) -
-               offsetof(Impl_, result_) +
-               sizeof(Impl_::task_id_));
+           offsetof(Impl_, token_) -
+               offsetof(Impl_, success_) +
+               sizeof(Impl_::token_));
 }
 LinearMoveResponse::~LinearMoveResponse() {
   // @@protoc_insertion_point(destructor:controller.LinearMoveResponse)
@@ -2496,21 +2651,21 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LinearMoveResponse::_table_ = {
     ::_pbi::TcParser::GetTable<::controller::LinearMoveResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int32 task_id = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LinearMoveResponse, _impl_.task_id_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.task_id_)}},
-    // int32 result = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LinearMoveResponse, _impl_.result_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.result_)}},
+    // uint32 token = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LinearMoveResponse, _impl_.token_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.token_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(LinearMoveResponse, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 result = 1;
-    {PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.result_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 task_id = 2;
-    {PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.task_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // uint32 token = 2;
+    {PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.token_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
   {{
@@ -2524,9 +2679,9 @@ PROTOBUF_NOINLINE void LinearMoveResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.result_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.task_id_) -
-      reinterpret_cast<char*>(&_impl_.result_)) + sizeof(_impl_.task_id_));
+  ::memset(&_impl_.success_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.token_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.token_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -2545,18 +2700,18 @@ PROTOBUF_NOINLINE void LinearMoveResponse::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 result = 1;
-          if (this_._internal_result() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_result(), target);
+          // bool success = 1;
+          if (this_._internal_success() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                1, this_._internal_success(), target);
           }
 
-          // int32 task_id = 2;
-          if (this_._internal_task_id() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<2>(
-                    stream, this_._internal_task_id(), target);
+          // uint32 token = 2;
+          if (this_._internal_token() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_token(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -2584,15 +2739,14 @@ PROTOBUF_NOINLINE void LinearMoveResponse::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // int32 result = 1;
-            if (this_._internal_result() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_result());
+            // bool success = 1;
+            if (this_._internal_success() != 0) {
+              total_size += 2;
             }
-            // int32 task_id = 2;
-            if (this_._internal_task_id() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_task_id());
+            // uint32 token = 2;
+            if (this_._internal_token() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_token());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -2607,11 +2761,11 @@ void LinearMoveResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, cons
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_result() != 0) {
-    _this->_impl_.result_ = from._impl_.result_;
+  if (from._internal_success() != 0) {
+    _this->_impl_.success_ = from._impl_.success_;
   }
-  if (from._internal_task_id() != 0) {
-    _this->_impl_.task_id_ = from._impl_.task_id_;
+  if (from._internal_token() != 0) {
+    _this->_impl_.token_ = from._impl_.token_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2628,11 +2782,11 @@ void LinearMoveResponse::InternalSwap(LinearMoveResponse* PROTOBUF_RESTRICT othe
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.task_id_)
-      + sizeof(LinearMoveResponse::_impl_.task_id_)
-      - PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.result_)>(
-          reinterpret_cast<char*>(&_impl_.result_),
-          reinterpret_cast<char*>(&other->_impl_.result_));
+      PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.token_)
+      + sizeof(LinearMoveResponse::_impl_.token_)
+      - PROTOBUF_FIELD_OFFSET(LinearMoveResponse, _impl_.success_)>(
+          reinterpret_cast<char*>(&_impl_.success_),
+          reinterpret_cast<char*>(&other->_impl_.success_));
 }
 
 ::google::protobuf::Metadata LinearMoveResponse::GetMetadata() const {
@@ -3667,6 +3821,831 @@ void ControlPolicyResponse::InternalSwap(ControlPolicyResponse* PROTOBUF_RESTRIC
 }
 
 ::google::protobuf::Metadata ControlPolicyResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GetControlPolicyResponse::_Internal {
+ public:
+};
+
+GetControlPolicyResponse::GetControlPolicyResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:controller.GetControlPolicyResponse)
+}
+GetControlPolicyResponse::GetControlPolicyResponse(
+    ::google::protobuf::Arena* arena, const GetControlPolicyResponse& from)
+    : GetControlPolicyResponse(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE GetControlPolicyResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void GetControlPolicyResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.policy_ = {};
+}
+GetControlPolicyResponse::~GetControlPolicyResponse() {
+  // @@protoc_insertion_point(destructor:controller.GetControlPolicyResponse)
+  SharedDtor(*this);
+}
+inline void GetControlPolicyResponse::SharedDtor(MessageLite& self) {
+  GetControlPolicyResponse& this_ = static_cast<GetControlPolicyResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* GetControlPolicyResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) GetControlPolicyResponse(arena);
+}
+constexpr auto GetControlPolicyResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(GetControlPolicyResponse),
+                                            alignof(GetControlPolicyResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull GetControlPolicyResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_GetControlPolicyResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &GetControlPolicyResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<GetControlPolicyResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &GetControlPolicyResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<GetControlPolicyResponse>(), &GetControlPolicyResponse::ByteSizeLong,
+            &GetControlPolicyResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(GetControlPolicyResponse, _impl_._cached_size_),
+        false,
+    },
+    &GetControlPolicyResponse::kDescriptorMethods,
+    &descriptor_table_motion_5fservice_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* GetControlPolicyResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetControlPolicyResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::controller::GetControlPolicyResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 policy = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetControlPolicyResponse, _impl_.policy_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetControlPolicyResponse, _impl_.policy_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 policy = 1;
+    {PROTOBUF_FIELD_OFFSET(GetControlPolicyResponse, _impl_.policy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GetControlPolicyResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:controller.GetControlPolicyResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.policy_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* GetControlPolicyResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const GetControlPolicyResponse& this_ = static_cast<const GetControlPolicyResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* GetControlPolicyResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const GetControlPolicyResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:controller.GetControlPolicyResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // int32 policy = 1;
+          if (this_._internal_policy() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<1>(
+                    stream, this_._internal_policy(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:controller.GetControlPolicyResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t GetControlPolicyResponse::ByteSizeLong(const MessageLite& base) {
+          const GetControlPolicyResponse& this_ = static_cast<const GetControlPolicyResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t GetControlPolicyResponse::ByteSizeLong() const {
+          const GetControlPolicyResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:controller.GetControlPolicyResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // int32 policy = 1;
+            if (this_._internal_policy() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_policy());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void GetControlPolicyResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetControlPolicyResponse*>(&to_msg);
+  auto& from = static_cast<const GetControlPolicyResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:controller.GetControlPolicyResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_policy() != 0) {
+    _this->_impl_.policy_ = from._impl_.policy_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetControlPolicyResponse::CopyFrom(const GetControlPolicyResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:controller.GetControlPolicyResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GetControlPolicyResponse::InternalSwap(GetControlPolicyResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.policy_, other->_impl_.policy_);
+}
+
+::google::protobuf::Metadata GetControlPolicyResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SetSafeModeRequest::_Internal {
+ public:
+};
+
+SetSafeModeRequest::SetSafeModeRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:controller.SetSafeModeRequest)
+}
+SetSafeModeRequest::SetSafeModeRequest(
+    ::google::protobuf::Arena* arena, const SetSafeModeRequest& from)
+    : SetSafeModeRequest(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE SetSafeModeRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetSafeModeRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.mode_ = {};
+}
+SetSafeModeRequest::~SetSafeModeRequest() {
+  // @@protoc_insertion_point(destructor:controller.SetSafeModeRequest)
+  SharedDtor(*this);
+}
+inline void SetSafeModeRequest::SharedDtor(MessageLite& self) {
+  SetSafeModeRequest& this_ = static_cast<SetSafeModeRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* SetSafeModeRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SetSafeModeRequest(arena);
+}
+constexpr auto SetSafeModeRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SetSafeModeRequest),
+                                            alignof(SetSafeModeRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SetSafeModeRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SetSafeModeRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SetSafeModeRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SetSafeModeRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SetSafeModeRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SetSafeModeRequest>(), &SetSafeModeRequest::ByteSizeLong,
+            &SetSafeModeRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SetSafeModeRequest, _impl_._cached_size_),
+        false,
+    },
+    &SetSafeModeRequest::kDescriptorMethods,
+    &descriptor_table_motion_5fservice_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SetSafeModeRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SetSafeModeRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::controller::SetSafeModeRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bool mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(SetSafeModeRequest, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SetSafeModeRequest, _impl_.mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool mode = 1;
+    {PROTOBUF_FIELD_OFFSET(SetSafeModeRequest, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SetSafeModeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:controller.SetSafeModeRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SetSafeModeRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SetSafeModeRequest& this_ = static_cast<const SetSafeModeRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SetSafeModeRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SetSafeModeRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:controller.SetSafeModeRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // bool mode = 1;
+          if (this_._internal_mode() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                1, this_._internal_mode(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:controller.SetSafeModeRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SetSafeModeRequest::ByteSizeLong(const MessageLite& base) {
+          const SetSafeModeRequest& this_ = static_cast<const SetSafeModeRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SetSafeModeRequest::ByteSizeLong() const {
+          const SetSafeModeRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:controller.SetSafeModeRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // bool mode = 1;
+            if (this_._internal_mode() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SetSafeModeRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SetSafeModeRequest*>(&to_msg);
+  auto& from = static_cast<const SetSafeModeRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:controller.SetSafeModeRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_impl_.mode_ = from._impl_.mode_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetSafeModeRequest::CopyFrom(const SetSafeModeRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:controller.SetSafeModeRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SetSafeModeRequest::InternalSwap(SetSafeModeRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.mode_, other->_impl_.mode_);
+}
+
+::google::protobuf::Metadata SetSafeModeRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SetSafeModeResponse::_Internal {
+ public:
+};
+
+SetSafeModeResponse::SetSafeModeResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:controller.SetSafeModeResponse)
+}
+SetSafeModeResponse::SetSafeModeResponse(
+    ::google::protobuf::Arena* arena, const SetSafeModeResponse& from)
+    : SetSafeModeResponse(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE SetSafeModeResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetSafeModeResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+SetSafeModeResponse::~SetSafeModeResponse() {
+  // @@protoc_insertion_point(destructor:controller.SetSafeModeResponse)
+  SharedDtor(*this);
+}
+inline void SetSafeModeResponse::SharedDtor(MessageLite& self) {
+  SetSafeModeResponse& this_ = static_cast<SetSafeModeResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* SetSafeModeResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) SetSafeModeResponse(arena);
+}
+constexpr auto SetSafeModeResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(SetSafeModeResponse),
+                                            alignof(SetSafeModeResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull SetSafeModeResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_SetSafeModeResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &SetSafeModeResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<SetSafeModeResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &SetSafeModeResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<SetSafeModeResponse>(), &SetSafeModeResponse::ByteSizeLong,
+            &SetSafeModeResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(SetSafeModeResponse, _impl_._cached_size_),
+        false,
+    },
+    &SetSafeModeResponse::kDescriptorMethods,
+    &descriptor_table_motion_5fservice_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* SetSafeModeResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SetSafeModeResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::controller::SetSafeModeResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(SetSafeModeResponse, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SetSafeModeResponse, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(SetSafeModeResponse, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SetSafeModeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:controller.SetSafeModeResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* SetSafeModeResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const SetSafeModeResponse& this_ = static_cast<const SetSafeModeResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* SetSafeModeResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const SetSafeModeResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:controller.SetSafeModeResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // bool success = 1;
+          if (this_._internal_success() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                1, this_._internal_success(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:controller.SetSafeModeResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t SetSafeModeResponse::ByteSizeLong(const MessageLite& base) {
+          const SetSafeModeResponse& this_ = static_cast<const SetSafeModeResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t SetSafeModeResponse::ByteSizeLong() const {
+          const SetSafeModeResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:controller.SetSafeModeResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // bool success = 1;
+            if (this_._internal_success() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void SetSafeModeResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SetSafeModeResponse*>(&to_msg);
+  auto& from = static_cast<const SetSafeModeResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:controller.SetSafeModeResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_success() != 0) {
+    _this->_impl_.success_ = from._impl_.success_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetSafeModeResponse::CopyFrom(const SetSafeModeResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:controller.SetSafeModeResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SetSafeModeResponse::InternalSwap(SetSafeModeResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata SetSafeModeResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GetSafeModeResponse::_Internal {
+ public:
+};
+
+GetSafeModeResponse::GetSafeModeResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:controller.GetSafeModeResponse)
+}
+GetSafeModeResponse::GetSafeModeResponse(
+    ::google::protobuf::Arena* arena, const GetSafeModeResponse& from)
+    : GetSafeModeResponse(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE GetSafeModeResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void GetSafeModeResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.mode_ = {};
+}
+GetSafeModeResponse::~GetSafeModeResponse() {
+  // @@protoc_insertion_point(destructor:controller.GetSafeModeResponse)
+  SharedDtor(*this);
+}
+inline void GetSafeModeResponse::SharedDtor(MessageLite& self) {
+  GetSafeModeResponse& this_ = static_cast<GetSafeModeResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* GetSafeModeResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) GetSafeModeResponse(arena);
+}
+constexpr auto GetSafeModeResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(GetSafeModeResponse),
+                                            alignof(GetSafeModeResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull GetSafeModeResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_GetSafeModeResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &GetSafeModeResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<GetSafeModeResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &GetSafeModeResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<GetSafeModeResponse>(), &GetSafeModeResponse::ByteSizeLong,
+            &GetSafeModeResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(GetSafeModeResponse, _impl_._cached_size_),
+        false,
+    },
+    &GetSafeModeResponse::kDescriptorMethods,
+    &descriptor_table_motion_5fservice_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* GetSafeModeResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetSafeModeResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::controller::GetSafeModeResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bool mode = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetSafeModeResponse, _impl_.mode_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetSafeModeResponse, _impl_.mode_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool mode = 1;
+    {PROTOBUF_FIELD_OFFSET(GetSafeModeResponse, _impl_.mode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GetSafeModeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:controller.GetSafeModeResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.mode_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* GetSafeModeResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const GetSafeModeResponse& this_ = static_cast<const GetSafeModeResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* GetSafeModeResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const GetSafeModeResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:controller.GetSafeModeResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // bool mode = 1;
+          if (this_._internal_mode() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                1, this_._internal_mode(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:controller.GetSafeModeResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t GetSafeModeResponse::ByteSizeLong(const MessageLite& base) {
+          const GetSafeModeResponse& this_ = static_cast<const GetSafeModeResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t GetSafeModeResponse::ByteSizeLong() const {
+          const GetSafeModeResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:controller.GetSafeModeResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // bool mode = 1;
+            if (this_._internal_mode() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void GetSafeModeResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetSafeModeResponse*>(&to_msg);
+  auto& from = static_cast<const GetSafeModeResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:controller.GetSafeModeResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_mode() != 0) {
+    _this->_impl_.mode_ = from._impl_.mode_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetSafeModeResponse::CopyFrom(const GetSafeModeResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:controller.GetSafeModeResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GetSafeModeResponse::InternalSwap(GetSafeModeResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.mode_, other->_impl_.mode_);
+}
+
+::google::protobuf::Metadata GetSafeModeResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

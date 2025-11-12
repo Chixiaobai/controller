@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from controller/msg/CartesianParams.msg
+// generated code does not contain a copyright notice
+
+
+module controller {
+  module msg {
+    struct CartesianParams {
+      uint32 cartesian_index;
+
+      double trans_max_vel;
+
+      double trans_max_acc;
+
+      double rota_max_vel;
+
+      double rota_max_acc;
+    };
+  };
+};

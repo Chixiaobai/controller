@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/EnableController.srv
+// generated code does not contain a copyright notice
+
+
+module controller {
+  module srv {
+    struct EnableController_Request {
+      boolean enable;
+    };
+    struct EnableController_Response {
+      boolean success;
+    };
+  };
+};

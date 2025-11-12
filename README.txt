@@ -34,3 +34,7 @@ ros2 run h10w_controller_test h10w_controller_test  --gtest_filter=GrpcParamsTes
 
 (3) 执行所有用例，并将测试报告保存为report.html:
 ros2 run h10w_controller_test h10w_controller_test  --gtest_filter=*.* -report report.html
+
+
+列出所有用例：
+ros2 run h10w_controller_test h10w_controller_test  --gtest_list_tests

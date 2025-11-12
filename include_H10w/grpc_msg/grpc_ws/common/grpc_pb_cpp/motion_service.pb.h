@@ -65,6 +65,12 @@ extern EnableRealtimeRequestDefaultTypeInternal _EnableRealtimeRequest_default_i
 class EnableRealtimeResponse;
 struct EnableRealtimeResponseDefaultTypeInternal;
 extern EnableRealtimeResponseDefaultTypeInternal _EnableRealtimeResponse_default_instance_;
+class GetControlPolicyResponse;
+struct GetControlPolicyResponseDefaultTypeInternal;
+extern GetControlPolicyResponseDefaultTypeInternal _GetControlPolicyResponse_default_instance_;
+class GetSafeModeResponse;
+struct GetSafeModeResponseDefaultTypeInternal;
+extern GetSafeModeResponseDefaultTypeInternal _GetSafeModeResponse_default_instance_;
 class JointAngle;
 struct JointAngleDefaultTypeInternal;
 extern JointAngleDefaultTypeInternal _JointAngle_default_instance_;
@@ -89,6 +95,12 @@ extern MultiJointMoveRequestDefaultTypeInternal _MultiJointMoveRequest_default_i
 class MultiJointMoveResponse;
 struct MultiJointMoveResponseDefaultTypeInternal;
 extern MultiJointMoveResponseDefaultTypeInternal _MultiJointMoveResponse_default_instance_;
+class SetSafeModeRequest;
+struct SetSafeModeRequestDefaultTypeInternal;
+extern SetSafeModeRequestDefaultTypeInternal _SetSafeModeRequest_default_instance_;
+class SetSafeModeResponse;
+struct SetSafeModeResponseDefaultTypeInternal;
+extern SetSafeModeResponseDefaultTypeInternal _SetSafeModeResponse_default_instance_;
 class StopResponse;
 struct StopResponseDefaultTypeInternal;
 extern StopResponseDefaultTypeInternal _StopResponse_default_instance_;
@@ -288,6 +300,388 @@ class StopResponse final
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const StopResponse& from_msg);
     bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_motion_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetSafeModeResponse final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.SetSafeModeResponse) */ {
+ public:
+  inline SetSafeModeResponse() : SetSafeModeResponse(nullptr) {}
+  ~SetSafeModeResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SetSafeModeResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SetSafeModeResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SetSafeModeResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SetSafeModeResponse(const SetSafeModeResponse& from) : SetSafeModeResponse(nullptr, from) {}
+  inline SetSafeModeResponse(SetSafeModeResponse&& from) noexcept
+      : SetSafeModeResponse(nullptr, std::move(from)) {}
+  inline SetSafeModeResponse& operator=(const SetSafeModeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSafeModeResponse& operator=(SetSafeModeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetSafeModeResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetSafeModeResponse* internal_default_instance() {
+    return reinterpret_cast<const SetSafeModeResponse*>(
+        &_SetSafeModeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(SetSafeModeResponse& a, SetSafeModeResponse& b) { a.Swap(&b); }
+  inline void Swap(SetSafeModeResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetSafeModeResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetSafeModeResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SetSafeModeResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetSafeModeResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SetSafeModeResponse& from) { SetSafeModeResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SetSafeModeResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.SetSafeModeResponse"; }
+
+ protected:
+  explicit SetSafeModeResponse(::google::protobuf::Arena* arena);
+  SetSafeModeResponse(::google::protobuf::Arena* arena, const SetSafeModeResponse& from);
+  SetSafeModeResponse(::google::protobuf::Arena* arena, SetSafeModeResponse&& from) noexcept
+      : SetSafeModeResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSuccessFieldNumber = 1,
+  };
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.SetSafeModeResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SetSafeModeResponse& from_msg);
+    bool success_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_motion_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetSafeModeRequest final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.SetSafeModeRequest) */ {
+ public:
+  inline SetSafeModeRequest() : SetSafeModeRequest(nullptr) {}
+  ~SetSafeModeRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(SetSafeModeRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SetSafeModeRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SetSafeModeRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SetSafeModeRequest(const SetSafeModeRequest& from) : SetSafeModeRequest(nullptr, from) {}
+  inline SetSafeModeRequest(SetSafeModeRequest&& from) noexcept
+      : SetSafeModeRequest(nullptr, std::move(from)) {}
+  inline SetSafeModeRequest& operator=(const SetSafeModeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSafeModeRequest& operator=(SetSafeModeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetSafeModeRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetSafeModeRequest* internal_default_instance() {
+    return reinterpret_cast<const SetSafeModeRequest*>(
+        &_SetSafeModeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 14;
+  friend void swap(SetSafeModeRequest& a, SetSafeModeRequest& b) { a.Swap(&b); }
+  inline void Swap(SetSafeModeRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetSafeModeRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetSafeModeRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SetSafeModeRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetSafeModeRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SetSafeModeRequest& from) { SetSafeModeRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(SetSafeModeRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.SetSafeModeRequest"; }
+
+ protected:
+  explicit SetSafeModeRequest(::google::protobuf::Arena* arena);
+  SetSafeModeRequest(::google::protobuf::Arena* arena, const SetSafeModeRequest& from);
+  SetSafeModeRequest(::google::protobuf::Arena* arena, SetSafeModeRequest&& from) noexcept
+      : SetSafeModeRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kModeFieldNumber = 1,
+  };
+  // bool mode = 1;
+  void clear_mode() ;
+  bool mode() const;
+  void set_mode(bool value);
+
+  private:
+  bool _internal_mode() const;
+  void _internal_set_mode(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.SetSafeModeRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SetSafeModeRequest& from_msg);
+    bool mode_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -646,27 +1040,27 @@ class LinearMoveResponse final
 
   // accessors -------------------------------------------------------
   enum : int {
-    kResultFieldNumber = 1,
-    kTaskIdFieldNumber = 2,
+    kSuccessFieldNumber = 1,
+    kTokenFieldNumber = 2,
   };
-  // int32 result = 1;
-  void clear_result() ;
-  ::int32_t result() const;
-  void set_result(::int32_t value);
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
 
   private:
-  ::int32_t _internal_result() const;
-  void _internal_set_result(::int32_t value);
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
 
   public:
-  // int32 task_id = 2;
-  void clear_task_id() ;
-  ::int32_t task_id() const;
-  void set_task_id(::int32_t value);
+  // uint32 token = 2;
+  void clear_token() ;
+  ::uint32_t token() const;
+  void set_token(::uint32_t value);
 
   private:
-  ::int32_t _internal_task_id() const;
-  void _internal_set_task_id(::int32_t value);
+  ::uint32_t _internal_token() const;
+  void _internal_set_token(::uint32_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:controller.LinearMoveResponse)
@@ -692,8 +1086,8 @@ class LinearMoveResponse final
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const LinearMoveResponse& from_msg);
-    ::int32_t result_;
-    ::int32_t task_id_;
+    bool success_;
+    ::uint32_t token_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1562,6 +1956,388 @@ class JointAngle final
     double target_position_;
     double velocity_;
     ::uint32_t joint_index_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_motion_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSafeModeResponse final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.GetSafeModeResponse) */ {
+ public:
+  inline GetSafeModeResponse() : GetSafeModeResponse(nullptr) {}
+  ~GetSafeModeResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetSafeModeResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetSafeModeResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetSafeModeResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetSafeModeResponse(const GetSafeModeResponse& from) : GetSafeModeResponse(nullptr, from) {}
+  inline GetSafeModeResponse(GetSafeModeResponse&& from) noexcept
+      : GetSafeModeResponse(nullptr, std::move(from)) {}
+  inline GetSafeModeResponse& operator=(const GetSafeModeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSafeModeResponse& operator=(GetSafeModeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetSafeModeResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetSafeModeResponse* internal_default_instance() {
+    return reinterpret_cast<const GetSafeModeResponse*>(
+        &_GetSafeModeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 16;
+  friend void swap(GetSafeModeResponse& a, GetSafeModeResponse& b) { a.Swap(&b); }
+  inline void Swap(GetSafeModeResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetSafeModeResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetSafeModeResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetSafeModeResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetSafeModeResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetSafeModeResponse& from) { GetSafeModeResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GetSafeModeResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.GetSafeModeResponse"; }
+
+ protected:
+  explicit GetSafeModeResponse(::google::protobuf::Arena* arena);
+  GetSafeModeResponse(::google::protobuf::Arena* arena, const GetSafeModeResponse& from);
+  GetSafeModeResponse(::google::protobuf::Arena* arena, GetSafeModeResponse&& from) noexcept
+      : GetSafeModeResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kModeFieldNumber = 1,
+  };
+  // bool mode = 1;
+  void clear_mode() ;
+  bool mode() const;
+  void set_mode(bool value);
+
+  private:
+  bool _internal_mode() const;
+  void _internal_set_mode(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.GetSafeModeResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetSafeModeResponse& from_msg);
+    bool mode_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_motion_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetControlPolicyResponse final
+    : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:controller.GetControlPolicyResponse) */ {
+ public:
+  inline GetControlPolicyResponse() : GetControlPolicyResponse(nullptr) {}
+  ~GetControlPolicyResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetControlPolicyResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetControlPolicyResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetControlPolicyResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetControlPolicyResponse(const GetControlPolicyResponse& from) : GetControlPolicyResponse(nullptr, from) {}
+  inline GetControlPolicyResponse(GetControlPolicyResponse&& from) noexcept
+      : GetControlPolicyResponse(nullptr, std::move(from)) {}
+  inline GetControlPolicyResponse& operator=(const GetControlPolicyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetControlPolicyResponse& operator=(GetControlPolicyResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetControlPolicyResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetControlPolicyResponse* internal_default_instance() {
+    return reinterpret_cast<const GetControlPolicyResponse*>(
+        &_GetControlPolicyResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(GetControlPolicyResponse& a, GetControlPolicyResponse& b) { a.Swap(&b); }
+  inline void Swap(GetControlPolicyResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetControlPolicyResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetControlPolicyResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetControlPolicyResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetControlPolicyResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetControlPolicyResponse& from) { GetControlPolicyResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GetControlPolicyResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "controller.GetControlPolicyResponse"; }
+
+ protected:
+  explicit GetControlPolicyResponse(::google::protobuf::Arena* arena);
+  GetControlPolicyResponse(::google::protobuf::Arena* arena, const GetControlPolicyResponse& from);
+  GetControlPolicyResponse(::google::protobuf::Arena* arena, GetControlPolicyResponse&& from) noexcept
+      : GetControlPolicyResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPolicyFieldNumber = 1,
+  };
+  // int32 policy = 1;
+  void clear_policy() ;
+  ::int32_t policy() const;
+  void set_policy(::int32_t value);
+
+  private:
+  ::int32_t _internal_policy() const;
+  void _internal_set_policy(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:controller.GetControlPolicyResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetControlPolicyResponse& from_msg);
+    ::int32_t policy_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3202,48 +3978,48 @@ LinearMoveRequest::_internal_mutable_linear_move() {
 
 // LinearMoveResponse
 
-// int32 result = 1;
-inline void LinearMoveResponse::clear_result() {
+// bool success = 1;
+inline void LinearMoveResponse::clear_success() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.result_ = 0;
+  _impl_.success_ = false;
 }
-inline ::int32_t LinearMoveResponse::result() const {
-  // @@protoc_insertion_point(field_get:controller.LinearMoveResponse.result)
-  return _internal_result();
+inline bool LinearMoveResponse::success() const {
+  // @@protoc_insertion_point(field_get:controller.LinearMoveResponse.success)
+  return _internal_success();
 }
-inline void LinearMoveResponse::set_result(::int32_t value) {
-  _internal_set_result(value);
-  // @@protoc_insertion_point(field_set:controller.LinearMoveResponse.result)
+inline void LinearMoveResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:controller.LinearMoveResponse.success)
 }
-inline ::int32_t LinearMoveResponse::_internal_result() const {
+inline bool LinearMoveResponse::_internal_success() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.result_;
+  return _impl_.success_;
 }
-inline void LinearMoveResponse::_internal_set_result(::int32_t value) {
+inline void LinearMoveResponse::_internal_set_success(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.result_ = value;
+  _impl_.success_ = value;
 }
 
-// int32 task_id = 2;
-inline void LinearMoveResponse::clear_task_id() {
+// uint32 token = 2;
+inline void LinearMoveResponse::clear_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.task_id_ = 0;
+  _impl_.token_ = 0u;
 }
-inline ::int32_t LinearMoveResponse::task_id() const {
-  // @@protoc_insertion_point(field_get:controller.LinearMoveResponse.task_id)
-  return _internal_task_id();
+inline ::uint32_t LinearMoveResponse::token() const {
+  // @@protoc_insertion_point(field_get:controller.LinearMoveResponse.token)
+  return _internal_token();
 }
-inline void LinearMoveResponse::set_task_id(::int32_t value) {
-  _internal_set_task_id(value);
-  // @@protoc_insertion_point(field_set:controller.LinearMoveResponse.task_id)
+inline void LinearMoveResponse::set_token(::uint32_t value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:controller.LinearMoveResponse.token)
 }
-inline ::int32_t LinearMoveResponse::_internal_task_id() const {
+inline ::uint32_t LinearMoveResponse::_internal_token() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.task_id_;
+  return _impl_.token_;
 }
-inline void LinearMoveResponse::_internal_set_task_id(::int32_t value) {
+inline void LinearMoveResponse::_internal_set_token(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.task_id_ = value;
+  _impl_.token_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -3374,6 +4150,110 @@ inline bool ControlPolicyResponse::_internal_success() const {
 inline void ControlPolicyResponse::_internal_set_success(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.success_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetControlPolicyResponse
+
+// int32 policy = 1;
+inline void GetControlPolicyResponse::clear_policy() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.policy_ = 0;
+}
+inline ::int32_t GetControlPolicyResponse::policy() const {
+  // @@protoc_insertion_point(field_get:controller.GetControlPolicyResponse.policy)
+  return _internal_policy();
+}
+inline void GetControlPolicyResponse::set_policy(::int32_t value) {
+  _internal_set_policy(value);
+  // @@protoc_insertion_point(field_set:controller.GetControlPolicyResponse.policy)
+}
+inline ::int32_t GetControlPolicyResponse::_internal_policy() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.policy_;
+}
+inline void GetControlPolicyResponse::_internal_set_policy(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.policy_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SetSafeModeRequest
+
+// bool mode = 1;
+inline void SetSafeModeRequest::clear_mode() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mode_ = false;
+}
+inline bool SetSafeModeRequest::mode() const {
+  // @@protoc_insertion_point(field_get:controller.SetSafeModeRequest.mode)
+  return _internal_mode();
+}
+inline void SetSafeModeRequest::set_mode(bool value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:controller.SetSafeModeRequest.mode)
+}
+inline bool SetSafeModeRequest::_internal_mode() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mode_;
+}
+inline void SetSafeModeRequest::_internal_set_mode(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mode_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SetSafeModeResponse
+
+// bool success = 1;
+inline void SetSafeModeResponse::clear_success() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = false;
+}
+inline bool SetSafeModeResponse::success() const {
+  // @@protoc_insertion_point(field_get:controller.SetSafeModeResponse.success)
+  return _internal_success();
+}
+inline void SetSafeModeResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:controller.SetSafeModeResponse.success)
+}
+inline bool SetSafeModeResponse::_internal_success() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.success_;
+}
+inline void SetSafeModeResponse::_internal_set_success(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.success_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetSafeModeResponse
+
+// bool mode = 1;
+inline void GetSafeModeResponse::clear_mode() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mode_ = false;
+}
+inline bool GetSafeModeResponse::mode() const {
+  // @@protoc_insertion_point(field_get:controller.GetSafeModeResponse.mode)
+  return _internal_mode();
+}
+inline void GetSafeModeResponse::set_mode(bool value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:controller.GetSafeModeResponse.mode)
+}
+inline bool GetSafeModeResponse::_internal_mode() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mode_;
+}
+inline void GetSafeModeResponse::_internal_set_mode(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mode_ = value;
 }
 
 #ifdef __GNUC__

@@ -63,7 +63,8 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--no-as-needed")
 endif()
 
-file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/H10_Controller/grpc/*/*.cpp)
+file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/test/H10_Controller/grpc/params/H10w_FT_Grpc_Params_Softlimit_002.cpp)
+# file(GLOB_RECURSE Test_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 file(GLOB_RECURSE H10w_SRC ${CMAKE_CURRENT_SOURCE_DIR}/include_H10w/*)
 

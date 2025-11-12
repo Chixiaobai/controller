@@ -28,6 +28,9 @@ static const char* MotionService_method_names[] = {
   "/controller.MotionService/RequestStop",
   "/controller.MotionService/RequestEnableRealtimeCmd",
   "/controller.MotionService/RequestSetControlPolicy",
+  "/controller.MotionService/RequestGetControlPolicy",
+  "/controller.MotionService/RequestSetSafeMode",
+  "/controller.MotionService/RequestGetSafeMode",
 };
 
 std::unique_ptr< MotionService::Stub> MotionService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -43,6 +46,9 @@ MotionService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_RequestStop_(MotionService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RequestEnableRealtimeCmd_(MotionService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RequestSetControlPolicy_(MotionService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RequestGetControlPolicy_(MotionService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RequestSetSafeMode_(MotionService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RequestGetSafeMode_(MotionService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotionService::Stub::RequestSingleJointMove(::grpc::ClientContext* context, const ::controller::JointMoveRequest& request, ::controller::JointMoveResponse* response) {
@@ -183,6 +189,75 @@ void MotionService::Stub::async::RequestSetControlPolicy(::grpc::ClientContext* 
   return result;
 }
 
+::grpc::Status MotionService::Stub::RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::GetControlPolicyResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::controller::GetControlPolicyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RequestGetControlPolicy_, context, request, response);
+}
+
+void MotionService::Stub::async::RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::controller::GetControlPolicyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestGetControlPolicy_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::RequestGetControlPolicy(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestGetControlPolicy_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>* MotionService::Stub::PrepareAsyncRequestGetControlPolicyRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::controller::GetControlPolicyResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RequestGetControlPolicy_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::GetControlPolicyResponse>* MotionService::Stub::AsyncRequestGetControlPolicyRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRequestGetControlPolicyRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MotionService::Stub::RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::controller::SetSafeModeResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RequestSetSafeMode_, context, request, response);
+}
+
+void MotionService::Stub::async::RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestSetSafeMode_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::RequestSetSafeMode(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestSetSafeMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>* MotionService::Stub::PrepareAsyncRequestSetSafeModeRaw(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::controller::SetSafeModeResponse, ::controller::SetSafeModeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RequestSetSafeMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::SetSafeModeResponse>* MotionService::Stub::AsyncRequestSetSafeModeRaw(::grpc::ClientContext* context, const ::controller::SetSafeModeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRequestSetSafeModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MotionService::Stub::RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::GetSafeModeResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::controller::GetSafeModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RequestGetSafeMode_, context, request, response);
+}
+
+void MotionService::Stub::async::RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::controller::GetSafeModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestGetSafeMode_, context, request, response, std::move(f));
+}
+
+void MotionService::Stub::async::RequestGetSafeMode(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestGetSafeMode_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>* MotionService::Stub::PrepareAsyncRequestGetSafeModeRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::controller::GetSafeModeResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RequestGetSafeMode_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::GetSafeModeResponse>* MotionService::Stub::AsyncRequestGetSafeModeRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRequestGetSafeModeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MotionService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotionService_method_names[0],
@@ -244,6 +319,36 @@ MotionService::Service::Service() {
              ::controller::ControlPolicyResponse* resp) {
                return service->RequestSetControlPolicy(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::google::protobuf::Empty, ::controller::GetControlPolicyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::controller::GetControlPolicyResponse* resp) {
+               return service->RequestGetControlPolicy(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::controller::SetSafeModeRequest, ::controller::SetSafeModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::controller::SetSafeModeRequest* req,
+             ::controller::SetSafeModeResponse* resp) {
+               return service->RequestSetSafeMode(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotionService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotionService::Service, ::google::protobuf::Empty, ::controller::GetSafeModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotionService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::controller::GetSafeModeResponse* resp) {
+               return service->RequestGetSafeMode(ctx, req, resp);
+             }, this)));
 }
 
 MotionService::Service::~Service() {
@@ -285,6 +390,27 @@ MotionService::Service::~Service() {
 }
 
 ::grpc::Status MotionService::Service::RequestSetControlPolicy(::grpc::ServerContext* context, const ::controller::ControlPolicyRequest* request, ::controller::ControlPolicyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::RequestGetControlPolicy(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::GetControlPolicyResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::RequestSetSafeMode(::grpc::ServerContext* context, const ::controller::SetSafeModeRequest* request, ::controller::SetSafeModeResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotionService::Service::RequestGetSafeMode(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::GetSafeModeResponse* response) {
   (void) context;
   (void) request;
   (void) response;

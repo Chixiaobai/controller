@@ -24,6 +24,8 @@ namespace controller {
 static const char* SystemService_method_names[] = {
   "/controller.SystemService/GetVersion",
   "/controller.SystemService/ClearError",
+  "/controller.SystemService/EnableController",
+  "/controller.SystemService/IsEnabledController",
 };
 
 std::unique_ptr< SystemService::Stub> SystemService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,6 +37,8 @@ std::unique_ptr< SystemService::Stub> SystemService::NewStub(const std::shared_p
 SystemService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_GetVersion_(SystemService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ClearError_(SystemService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_EnableController_(SystemService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsEnabledController_(SystemService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status SystemService::Stub::GetVersion(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::VersionResponse* response) {
@@ -83,6 +87,52 @@ void SystemService::Stub::async::ClearError(::grpc::ClientContext* context, cons
   return result;
 }
 
+::grpc::Status SystemService::Stub::EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::controller::EnableControllerResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::controller::EnableControllerRequest, ::controller::EnableControllerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_EnableController_, context, request, response);
+}
+
+void SystemService::Stub::async::EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::controller::EnableControllerRequest, ::controller::EnableControllerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EnableController_, context, request, response, std::move(f));
+}
+
+void SystemService::Stub::async::EnableController(::grpc::ClientContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_EnableController_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>* SystemService::Stub::PrepareAsyncEnableControllerRaw(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::controller::EnableControllerResponse, ::controller::EnableControllerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_EnableController_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::EnableControllerResponse>* SystemService::Stub::AsyncEnableControllerRaw(::grpc::ClientContext* context, const ::controller::EnableControllerRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableControllerRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status SystemService::Stub::IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::controller::IsEnabledControllerResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsEnabledController_, context, request, response);
+}
+
+void SystemService::Stub::async::IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsEnabledController_, context, request, response, std::move(f));
+}
+
+void SystemService::Stub::async::IsEnabledController(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsEnabledController_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>* SystemService::Stub::PrepareAsyncIsEnabledControllerRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::controller::IsEnabledControllerResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsEnabledController_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::controller::IsEnabledControllerResponse>* SystemService::Stub::AsyncIsEnabledControllerRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsEnabledControllerRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 SystemService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SystemService_method_names[0],
@@ -104,6 +154,26 @@ SystemService::Service::Service() {
              ::controller::ErrorClearResponse* resp) {
                return service->ClearError(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SystemService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SystemService::Service, ::controller::EnableControllerRequest, ::controller::EnableControllerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](SystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::controller::EnableControllerRequest* req,
+             ::controller::EnableControllerResponse* resp) {
+               return service->EnableController(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SystemService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SystemService::Service, ::google::protobuf::Empty, ::controller::IsEnabledControllerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](SystemService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::controller::IsEnabledControllerResponse* resp) {
+               return service->IsEnabledController(ctx, req, resp);
+             }, this)));
 }
 
 SystemService::Service::~Service() {
@@ -117,6 +187,20 @@ SystemService::Service::~Service() {
 }
 
 ::grpc::Status SystemService::Service::ClearError(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::ErrorClearResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SystemService::Service::EnableController(::grpc::ServerContext* context, const ::controller::EnableControllerRequest* request, ::controller::EnableControllerResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SystemService::Service::IsEnabledController(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::controller::IsEnabledControllerResponse* response) {
   (void) context;
   (void) request;
   (void) response;

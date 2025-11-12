@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/SetControlPolicy.srv
+// generated code does not contain a copyright notice
+
+
+module controller {
+  module srv {
+    struct SetControlPolicy_Request {
+      int32 policy;
+    };
+    struct SetControlPolicy_Response {
+      boolean success;
+    };
+  };
+};

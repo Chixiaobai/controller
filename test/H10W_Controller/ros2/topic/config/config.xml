@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ros2TopicTest discription="motion">
+    <!--H10w_FT_Ros2_Topic_001 -->
+    <H10w_FT_Ros2_Topic_001 discription="单关节运动">
+            <joint_index discription="关节索引">1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19</joint_index>
+            <max_limit discription="最大默认限位">3.1230,3.1230,3.1230,3.0543,3.1230,1.5708,3.1230,3.1230,3.1230,3.1230,3.0543,3.1230,1.5708,3.1230,0.122,1.571,0.75,1.571,1.571</max_limit>
+            <min_limit discription="最小默认限位">-3.1230,-3.1230,-3.1230,0,-3.1230,-1.5708,-3.1230,-3.1230,-3.1230,-3.1230,0,-3.1230,-1.5708,-3.1230,-0.785,-1.571,0.01,-1.571,-1.571</min_limit>
+    </H10w_FT_Ros2_Topic_001>
+    <!--H10w_FT_Grpc_Params_002 -->
+    <H10w_FT_Grpc_Params_002 discription="单关节运动">
+            <joint_index discription="关节索引">7,14</joint_index>
+            <position discription="位置跟踪误差阈值">1.5,1.5</position>
+            <position_home discription="目标位置">0.0,0.0</position_home>
+            <vel discription="速度">0.5,0.5</vel>
+    </H10w_FT_Grpc_Params_002>
+</Ros2TopicTest>

@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from controller/msg/Localization.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Pose.idl"
+#include "std_msgs/msg/Header.idl"
+
+module controller {
+  module msg {
+    struct Localization {
+      std_msgs::msg::Header header;
+
+      geometry_msgs::msg::Pose pose;
+
+      double confidence;
+
+      @verbatim (language="comment", text=
+        "非0有效")
+      int8 valid_flag;
+
+      int32 error_msgs;
+
+      int32 trajectory_id;
+    };
+  };
+};

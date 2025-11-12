@@ -394,6 +394,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr InverseKinematicsRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : tcp_pose_params_{},
+        reference_joint_angles_{},
         if_use_whole_body_{false},
         _cached_size_{0} {}
 
@@ -736,6 +737,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::controller::InverseKinematicsRequest, _impl_.tcp_pose_params_),
+        PROTOBUF_FIELD_OFFSET(::controller::InverseKinematicsRequest, _impl_.reference_joint_angles_),
         PROTOBUF_FIELD_OFFSET(::controller::InverseKinematicsRequest, _impl_.if_use_whole_body_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::controller::InverseKinematicsResponse, _internal_metadata_),
@@ -769,7 +771,7 @@ static const ::_pbi::MigrationSchema
         {157, -1, -1, sizeof(::controller::ForwardKinematicsRequest)},
         {167, -1, -1, sizeof(::controller::ForwardKinematicsResponse)},
         {176, -1, -1, sizeof(::controller::InverseKinematicsRequest)},
-        {186, -1, -1, sizeof(::controller::InverseKinematicsResponse)},
+        {187, -1, -1, sizeof(::controller::InverseKinematicsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::controller::_JointParams_default_instance_._instance,
@@ -829,74 +831,75 @@ const char descriptor_table_protodef_params_5fservice_2eproto[] ABSL_ATTRIBUTE_S
     "\030\002 \003(\001\">\n\030ForwardKinematicsRequest\022\014\n\004ty"
     "pe\030\001 \003(\005\022\024\n\014joint_angles\030\002 \003(\001\"O\n\031Forwar"
     "dKinematicsResponse\0222\n\017tcp_pose_params\030\001"
-    " \003(\0132\031.controller.TcpPoseParams\"i\n\030Inver"
-    "seKinematicsRequest\0222\n\017tcp_pose_params\030\001"
-    " \003(\0132\031.controller.TcpPoseParams\022\031\n\021if_us"
-    "e_whole_body\030\002 \001(\010\"1\n\031InverseKinematicsR"
-    "esponse\022\024\n\014joint_angles\030\001 \003(\0012\316\023\n\rParams"
-    "Service\022T\n\021SetJointSoftLimit\022!.controlle"
-    "r.SetJointParamsRequest\032\034.controller.Set"
-    "ParamResponse\022Q\n\016SetJointMaxVel\022!.contro"
-    "ller.SetJointParamsRequest\032\034.controller."
-    "SetParamResponse\022Q\n\016SetJointMaxAcc\022!.con"
-    "troller.SetJointParamsRequest\032\034.controll"
-    "er.SetParamResponse\022d\n\035SetCartesianTrans"
-    "lationMaxVel\022%.controller.SetCartesianPa"
-    "ramsRequest\032\034.controller.SetParamRespons"
-    "e\022d\n\035SetCartesianTranslationMaxAcc\022%.con"
-    "troller.SetCartesianParamsRequest\032\034.cont"
-    "roller.SetParamResponse\022a\n\032SetCartesianR"
-    "otationMaxVel\022%.controller.SetCartesianP"
-    "aramsRequest\032\034.controller.SetParamRespon"
-    "se\022a\n\032SetCartesianRotationMaxAcc\022%.contr"
-    "oller.SetCartesianParamsRequest\032\034.contro"
-    "ller.SetParamResponse\022S\n\014SetTcpOffset\022%."
-    "controller.SetTcpOffsetParamsRequest\032\034.c"
-    "ontroller.SetParamResponse\022U\n\rSetTcpPayl"
-    "oad\022&.controller.SetTcpPayloadParamsRequ"
-    "est\032\034.controller.SetParamResponse\022O\n\021Get"
-    "JointSoftLimit\022\026.google.protobuf.Empty\032\""
-    ".controller.GetJointParamsResponse\022L\n\016Ge"
-    "tJointMaxVel\022\026.google.protobuf.Empty\032\".c"
-    "ontroller.GetJointParamsResponse\022L\n\016GetJ"
-    "ointMaxAcc\022\026.google.protobuf.Empty\032\".con"
-    "troller.GetJointParamsResponse\022_\n\035GetCar"
-    "tesianTranslationMaxVel\022\026.google.protobu"
+    " \003(\0132\031.controller.TcpPoseParams\"\211\001\n\030Inve"
+    "rseKinematicsRequest\0222\n\017tcp_pose_params\030"
+    "\001 \003(\0132\031.controller.TcpPoseParams\022\036\n\026refe"
+    "rence_joint_angles\030\002 \003(\001\022\031\n\021if_use_whole"
+    "_body\030\003 \001(\010\"1\n\031InverseKinematicsResponse"
+    "\022\024\n\014joint_angles\030\001 \003(\0012\316\023\n\rParamsService"
+    "\022T\n\021SetJointSoftLimit\022!.controller.SetJo"
+    "intParamsRequest\032\034.controller.SetParamRe"
+    "sponse\022Q\n\016SetJointMaxVel\022!.controller.Se"
+    "tJointParamsRequest\032\034.controller.SetPara"
+    "mResponse\022Q\n\016SetJointMaxAcc\022!.controller"
+    ".SetJointParamsRequest\032\034.controller.SetP"
+    "aramResponse\022d\n\035SetCartesianTranslationM"
+    "axVel\022%.controller.SetCartesianParamsReq"
+    "uest\032\034.controller.SetParamResponse\022d\n\035Se"
+    "tCartesianTranslationMaxAcc\022%.controller"
+    ".SetCartesianParamsRequest\032\034.controller."
+    "SetParamResponse\022a\n\032SetCartesianRotation"
+    "MaxVel\022%.controller.SetCartesianParamsRe"
+    "quest\032\034.controller.SetParamResponse\022a\n\032S"
+    "etCartesianRotationMaxAcc\022%.controller.S"
+    "etCartesianParamsRequest\032\034.controller.Se"
+    "tParamResponse\022S\n\014SetTcpOffset\022%.control"
+    "ler.SetTcpOffsetParamsRequest\032\034.controll"
+    "er.SetParamResponse\022U\n\rSetTcpPayload\022&.c"
+    "ontroller.SetTcpPayloadParamsRequest\032\034.c"
+    "ontroller.SetParamResponse\022O\n\021GetJointSo"
+    "ftLimit\022\026.google.protobuf.Empty\032\".contro"
+    "ller.GetJointParamsResponse\022L\n\016GetJointM"
+    "axVel\022\026.google.protobuf.Empty\032\".controll"
+    "er.GetJointParamsResponse\022L\n\016GetJointMax"
+    "Acc\022\026.google.protobuf.Empty\032\".controller"
+    ".GetJointParamsResponse\022_\n\035GetCartesianT"
+    "ranslationMaxVel\022\026.google.protobuf.Empty"
+    "\032&.controller.GetCartesianParamsResponse"
+    "\022_\n\035GetCartesianTranslationMaxAcc\022\026.goog"
+    "le.protobuf.Empty\032&.controller.GetCartes"
+    "ianParamsResponse\022\\\n\032GetCartesianRotatio"
+    "nMaxVel\022\026.google.protobuf.Empty\032&.contro"
+    "ller.GetCartesianParamsResponse\022\\\n\032GetCa"
+    "rtesianRotationMaxAcc\022\026.google.protobuf."
+    "Empty\032&.controller.GetCartesianParamsRes"
+    "ponse\022Q\n\014GetTcpOffset\022\037.controller.GetTc"
+    "pOffsetRequest\032 .controller.GetTcpOffset"
+    "Response\022T\n\rGetTcpPayload\022 .controller.G"
+    "etTcpPayloadRequest\032!.controller.GetTcpP"
+    "ayloadResponse\022`\n\021ForwardKinematics\022$.co"
+    "ntroller.ForwardKinematicsRequest\032%.cont"
+    "roller.ForwardKinematicsResponse\022`\n\021Inve"
+    "rseKinematics\022$.controller.InverseKinema"
+    "ticsRequest\032%.controller.InverseKinemati"
+    "csResponse\022U\n\027GetJointMechanicalLimit\022\026."
+    "google.protobuf.Empty\032\".controller.GetJo"
+    "intParamsResponse\022V\n\030GetJointMechanicalM"
+    "axVel\022\026.google.protobuf.Empty\032\".controll"
+    "er.GetJointParamsResponse\022V\n\030GetJointMec"
+    "hanicalMaxAcc\022\026.google.protobuf.Empty\032\"."
+    "controller.GetJointParamsResponse\022i\n\'Get"
+    "CartesianMechanicalTranslationMaxVel\022\026.g"
+    "oogle.protobuf.Empty\032&.controller.GetCar"
+    "tesianParamsResponse\022i\n\'GetCartesianMech"
+    "anicalTranslationMaxAcc\022\026.google.protobu"
     "f.Empty\032&.controller.GetCartesianParamsR"
-    "esponse\022_\n\035GetCartesianTranslationMaxAcc"
-    "\022\026.google.protobuf.Empty\032&.controller.Ge"
-    "tCartesianParamsResponse\022\\\n\032GetCartesian"
-    "RotationMaxVel\022\026.google.protobuf.Empty\032&"
-    ".controller.GetCartesianParamsResponse\022\\"
-    "\n\032GetCartesianRotationMaxAcc\022\026.google.pr"
-    "otobuf.Empty\032&.controller.GetCartesianPa"
-    "ramsResponse\022Q\n\014GetTcpOffset\022\037.controlle"
-    "r.GetTcpOffsetRequest\032 .controller.GetTc"
-    "pOffsetResponse\022T\n\rGetTcpPayload\022 .contr"
-    "oller.GetTcpPayloadRequest\032!.controller."
-    "GetTcpPayloadResponse\022`\n\021ForwardKinemati"
-    "cs\022$.controller.ForwardKinematicsRequest"
-    "\032%.controller.ForwardKinematicsResponse\022"
-    "`\n\021InverseKinematics\022$.controller.Invers"
-    "eKinematicsRequest\032%.controller.InverseK"
-    "inematicsResponse\022U\n\027GetJointMechanicalL"
-    "imit\022\026.google.protobuf.Empty\032\".controlle"
-    "r.GetJointParamsResponse\022V\n\030GetJointMech"
-    "anicalMaxVel\022\026.google.protobuf.Empty\032\".c"
-    "ontroller.GetJointParamsResponse\022V\n\030GetJ"
-    "ointMechanicalMaxAcc\022\026.google.protobuf.E"
-    "mpty\032\".controller.GetJointParamsResponse"
-    "\022i\n\'GetCartesianMechanicalTranslationMax"
-    "Vel\022\026.google.protobuf.Empty\032&.controller"
-    ".GetCartesianParamsResponse\022i\n\'GetCartes"
-    "ianMechanicalTranslationMaxAcc\022\026.google."
-    "protobuf.Empty\032&.controller.GetCartesian"
-    "ParamsResponse\022f\n$GetCartesianMechanical"
-    "RotationMaxVel\022\026.google.protobuf.Empty\032&"
-    ".controller.GetCartesianParamsResponse\022f"
-    "\n$GetCartesianMechanicalRotationMaxAcc\022\026"
-    ".google.protobuf.Empty\032&.controller.GetC"
-    "artesianParamsResponseb\006proto3"
+    "esponse\022f\n$GetCartesianMechanicalRotatio"
+    "nMaxVel\022\026.google.protobuf.Empty\032&.contro"
+    "ller.GetCartesianParamsResponse\022f\n$GetCa"
+    "rtesianMechanicalRotationMaxAcc\022\026.google"
+    ".protobuf.Empty\032&.controller.GetCartesia"
+    "nParamsResponseb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_params_5fservice_2eproto_deps[1] =
     {
@@ -906,7 +909,7 @@ static ::absl::once_flag descriptor_table_params_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_params_5fservice_2eproto = {
     false,
     false,
-    4070,
+    4103,
     descriptor_table_protodef_params_5fservice_2eproto,
     "params_service.proto",
     &descriptor_table_params_5fservice_2eproto_once,
@@ -5529,6 +5532,7 @@ inline PROTOBUF_NDEBUG_INLINE InverseKinematicsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::controller::InverseKinematicsRequest& from_msg)
       : tcp_pose_params_{visibility, arena, from.tcp_pose_params_},
+        reference_joint_angles_{visibility, arena, from.reference_joint_angles_},
         _cached_size_{0} {}
 
 InverseKinematicsRequest::InverseKinematicsRequest(
@@ -5552,6 +5556,7 @@ inline PROTOBUF_NDEBUG_INLINE InverseKinematicsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : tcp_pose_params_{visibility, arena},
+        reference_joint_angles_{visibility, arena},
         _cached_size_{0} {}
 
 inline void InverseKinematicsRequest::SharedCtor(::_pb::Arena* arena) {
@@ -5577,6 +5582,10 @@ constexpr auto InverseKinematicsRequest::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
       PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.tcp_pose_params_) +
           decltype(InverseKinematicsRequest::_impl_.tcp_pose_params_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.reference_joint_angles_) +
+          decltype(InverseKinematicsRequest::_impl_.reference_joint_angles_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -5617,15 +5626,15 @@ const ::google::protobuf::internal::ClassData* InverseKinematicsRequest::GetClas
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 0, 2> InverseKinematicsRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> InverseKinematicsRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -5635,19 +5644,26 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> InverseKinematicsRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::controller::InverseKinematicsRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool if_use_whole_body = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(InverseKinematicsRequest, _impl_.if_use_whole_body_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.if_use_whole_body_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // repeated .controller.TcpPoseParams tcp_pose_params = 1;
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.tcp_pose_params_)}},
+    // repeated double reference_joint_angles = 2;
+    {::_pbi::TcParser::FastF64P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.reference_joint_angles_)}},
+    // bool if_use_whole_body = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(InverseKinematicsRequest, _impl_.if_use_whole_body_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.if_use_whole_body_)}},
   }}, {{
     65535, 65535
   }}, {{
     // repeated .controller.TcpPoseParams tcp_pose_params = 1;
     {PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.tcp_pose_params_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // bool if_use_whole_body = 2;
+    // repeated double reference_joint_angles = 2;
+    {PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.reference_joint_angles_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedDouble)},
+    // bool if_use_whole_body = 3;
     {PROTOBUF_FIELD_OFFSET(InverseKinematicsRequest, _impl_.if_use_whole_body_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }}, {{
@@ -5664,6 +5680,7 @@ PROTOBUF_NOINLINE void InverseKinematicsRequest::Clear() {
   (void) cached_has_bits;
 
   _impl_.tcp_pose_params_.Clear();
+  _impl_.reference_joint_angles_.Clear();
   _impl_.if_use_whole_body_ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -5694,11 +5711,16 @@ PROTOBUF_NOINLINE void InverseKinematicsRequest::Clear() {
                     target, stream);
           }
 
-          // bool if_use_whole_body = 2;
+          // repeated double reference_joint_angles = 2;
+          if (this_._internal_reference_joint_angles_size() > 0) {
+            target = stream->WriteFixedPacked(2, this_._internal_reference_joint_angles(), target);
+          }
+
+          // bool if_use_whole_body = 3;
           if (this_._internal_if_use_whole_body() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                2, this_._internal_if_use_whole_body(), target);
+                3, this_._internal_if_use_whole_body(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -5733,9 +5755,19 @@ PROTOBUF_NOINLINE void InverseKinematicsRequest::Clear() {
                 total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
               }
             }
+            // repeated double reference_joint_angles = 2;
+            {
+              std::size_t data_size = std::size_t{8} *
+                  ::_pbi::FromIntSize(this_._internal_reference_joint_angles_size());
+              std::size_t tag_size = data_size == 0
+                  ? 0
+                  : 1 + ::_pbi::WireFormatLite::Int32Size(
+                                      static_cast<int32_t>(data_size));
+              total_size += tag_size + data_size;
+            }
           }
            {
-            // bool if_use_whole_body = 2;
+            // bool if_use_whole_body = 3;
             if (this_._internal_if_use_whole_body() != 0) {
               total_size += 2;
             }
@@ -5754,6 +5786,7 @@ void InverseKinematicsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg
 
   _this->_internal_mutable_tcp_pose_params()->MergeFrom(
       from._internal_tcp_pose_params());
+  _this->_internal_mutable_reference_joint_angles()->MergeFrom(from._internal_reference_joint_angles());
   if (from._internal_if_use_whole_body() != 0) {
     _this->_impl_.if_use_whole_body_ = from._impl_.if_use_whole_body_;
   }
@@ -5772,6 +5805,7 @@ void InverseKinematicsRequest::InternalSwap(InverseKinematicsRequest* PROTOBUF_R
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.tcp_pose_params_.InternalSwap(&other->_impl_.tcp_pose_params_);
+  _impl_.reference_joint_angles_.InternalSwap(&other->_impl_.reference_joint_angles_);
         swap(_impl_.if_use_whole_body_, other->_impl_.if_use_whole_body_);
 }
 

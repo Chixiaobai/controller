@@ -16,7 +16,7 @@ public:
     XML_HANDLER() = delete;
     XML_HANDLER(const fs::path &xml_path);
     ~XML_HANDLER() = default;
-    std::map<std::string, std::vector<float>> get_parameters();
+    std::map<std::string, std::vector<double>> get_parameters();
 
 private:
     pugi::xml_document xml_doc_;

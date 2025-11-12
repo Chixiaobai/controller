@@ -11,7 +11,7 @@ H10wRosClient::H10wRosClient(const std::string &strIpPort)
     : Node("H10wRosClient"),
       m_pDevCtrlSvrClient(std::make_unique<CDeviceControlServiceClient>(
           grpc::CreateChannel(strIpPort + ":8686", grpc::InsecureChannelCredentials()))),
-      m_pControllerClient(std::make_unique<HumanoidControllerClient>(
+      m_pControllerClient(std::make_unique<H10WGrpcParam>(
           grpc::CreateChannel(strIpPort + ":8585", grpc::InsecureChannelCredentials())))
 
 {
@@ -33,6 +33,31 @@ H10wRosClient::H10wRosClient(const std::string &strIpPort)
     m_enable_realtime_cmd =
         this->create_client<controller::srv::EnableRealtimeCmd>(
             "/h10w/controller/enable_realtime_cmd");
+
+    m_enable_controller_client =
+        this->create_client<controller::srv::EnableController>(
+            "/h10w/controller/enable_controller");
+    m_get_chassis_max_vel_client =
+        this->create_client<controller::srv::GetChassisMaxVel>(
+            "/h10w/controller/get_chassis_max_vel");
+    m_get_control_policy_client =
+        this->create_client<controller::srv::GetControlPolicy>(
+            "/h10w/controller/get_control_policy");
+    m_get_safe_mode_client =
+        this->create_client<controller::srv::GetSafeMode>(
+            "/h10w/controller/get_safe_mode");
+    m_is_enable_controller_client =
+        this->create_client<controller::srv::IsEnabledController>(
+            "/h10w/controller/is_enable_controller");
+    m_set_chassis_max_vel_client =
+        this->create_client<controller::srv::SetChassisMaxVel>(
+            "/h10w/controller/set_chassis_max_vel");
+    m_set_control_policy_client =
+        this->create_client<controller::srv::SetControlPolicy>(
+            "/h10w/controller/set_control_policy");
+    m_set_safe_mode_client =
+        this->create_client<controller::srv::SetSafeMode>(
+            "/h10w/controller/set_safe_mode");
 
     m_single_move_client =
         this->create_client<controller::srv::SingleJointMove>(
@@ -102,9 +127,9 @@ H10wRosClient::H10wRosClient(const std::string &strIpPort)
     m_get_tcp_offset_client =
         this->create_client<controller::srv::GetTcpOffset>(
             "/h10w/controller/get_tcp_offset");
-    m_get_tcp_paylaod_client =
+    m_get_tcp_payload_client =
         this->create_client<controller::srv::GetTcpPayload>(
-            "/h10w/controller/get_tcp_paylaod");
+            "/h10w/controller/get_tcp_payload");
 
     m_set_soft_limit_client =
         this->create_client<controller::srv::SetJointSoftLimit>(
@@ -178,7 +203,8 @@ bool H10wRosClient::enable_realtime_cmd(bool m_enable)
     RCLCPP_INFO(this->get_logger(), "收到实时指令使能结果：%d", response->success);
     return response->success;
 }
-bool H10wRosClient::ros_singlemove(const uint32_t joint_index, const float target_position, const float velocity)
+
+bool H10wRosClient::ros_singlemove(const MoveParams params, uint32_t &token)
 {
     /*等待服务端上线*/
     while (!m_single_move_client->wait_for_service(std::chrono::seconds(1)))
@@ -194,29 +220,53 @@ bool H10wRosClient::ros_singlemove(const uint32_t joint_index, const float targe
     // 构造请求
     auto request =
         std::make_shared<controller::srv::SingleJointMove::Request>();
-    request->joint_index = joint_index;
-    request->target_position = target_position;
-    request->velocity = velocity;
+    request->joint_index = params.joint_index;
+    request->target_position = params.target_position;
+    request->velocity = params.velocity;
 
     auto result_future = m_single_move_client->async_send_request(request);
     // 等待服务响应
     auto response = result_future.get();
-    RCLCPP_INFO(this->get_logger(), "收到移动结果：%d", response->success);
+    if (!response->success)
+    {
+        std::cerr << "ros_singlemove RPC failed " << '\n';
+        return false;
+    }
+    token = response->token;
 
-    // 设置超时时间（例如5秒，可根据实际情况调整）
-    const int timeout_ms = 5000;
-    const int check_interval_ms = 10;
-    int elapsed_ms = 0;
+    // 定义超时时间为5秒
+    const auto timeout = std::chrono::seconds(5);
+    // 记录开始时间
+    const auto start_time = std::chrono::steady_clock::now();
+    // 循环检查间隔（100毫秒）
+    const auto check_interval = std::chrono::milliseconds(100);
 
+    // 循环检查直到满足条件或超时
     while (true)
     {
-        // 检查是否达到目标位置
-        if (isFloatValueEqual(get_move_msg_->position[joint_index - 1], target_position, 0.001) && get_move_msg_->state == 0)
+        // 获取当前时间
+        const auto now = std::chrono::steady_clock::now();
+        // 检查是否超时
+        if (now - start_time >= timeout)
         {
-            std::cout << "运动完成" << "\n";
-            return true;
+
+            RCLCPP_ERROR(this->get_logger(),
+                         "ros_singlemove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
+                         static_cast<int>(timeout.count()),
+                         get_move_msg_->token,
+                         get_move_msg_->state,
+                         token);
+            return false;
         }
 
+        // 检查是否满足完成条件
+        if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
+        {
+            RCLCPP_INFO(this->get_logger(),
+                        "ros_singlemove() 完成。token=%u, state=%d",
+                        token, get_move_msg_->state);
+            return true;
+        }
         // error
         if (get_error_msg_->error_code != 0)
         {
@@ -227,30 +277,19 @@ bool H10wRosClient::ros_singlemove(const uint32_t joint_index, const float targe
                          get_error_msg_->msg.c_str());
             return false;
         }
-
-        // 检查是否超时
-        if (elapsed_ms >= timeout_ms)
-        {
-            RCLCPP_ERROR(this->get_logger(), "运动超时！目标位置: %.3f, 当前位置: %.3f",
-                         target_position, get_move_msg_->position[joint_index - 1]);
-            // 可以根据需要添加超时处理逻辑，如强制停止等
-            return false; // 超时退出
-        }
-
-        // 休眠一小段时间再检查
-        sleepMilliseconds(check_interval_ms);
-        elapsed_ms += check_interval_ms;
-
         // 检查系统状态是否正常
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
             return false;
         }
+
+        // 等待一段时间后再次检查（避免CPU占用过高）
+        std::this_thread::sleep_for(check_interval);
     }
 }
 
-bool H10wRosClient::ros_multimove(const std::vector<uint32_t> &joint_indices, const std::vector<float> &target_positions, const std::vector<float> &velocities)
+bool H10wRosClient::ros_multimove(const std::vector<MoveParams> params, uint32_t &token)
 {
     /*等待服务端上线*/
     while (!m_multi_move_client->wait_for_service(std::chrono::seconds(1)))
@@ -265,26 +304,20 @@ bool H10wRosClient::ros_multimove(const std::vector<uint32_t> &joint_indices, co
     }
 
     // 检查输入参数有效性
-    if (joint_indices.size() != target_positions.size() ||
-        joint_indices.size() != velocities.size())
+    if (params.empty())
     {
-        RCLCPP_ERROR(this->get_logger(), "关节参数向量长度不匹配");
-        return false;
-    }
-    if (joint_indices.empty())
-    {
-        RCLCPP_WARN(this->get_logger(), "未提供任何关节运动参数");
+        RCLCPP_ERROR(this->get_logger(), ");关节参数为空");
         return false;
     }
 
     std::vector<controller::msg::JointAngle> joint_angles;
     // 遍历参数构造关节角度信息
-    for (size_t i = 0; i < joint_indices.size(); ++i)
+    for (auto &joint_params : params)
     {
         controller::msg::JointAngle joint_angle;
-        joint_angle.joint_index = joint_indices[i];
-        joint_angle.target_position = target_positions[i];
-        joint_angle.velocity = velocities[i];
+        joint_angle.joint_index = joint_params.joint_index;
+        joint_angle.target_position = joint_params.target_position;
+        joint_angle.velocity = joint_params.velocity;
         joint_angles.emplace_back(joint_angle);
     }
 
@@ -293,38 +326,48 @@ bool H10wRosClient::ros_multimove(const std::vector<uint32_t> &joint_indices, co
     request->joint_angles = joint_angles;
 
     auto result_future = m_multi_move_client->async_send_request(request);
-    auto response = result_future.get(); // 阻塞直到结果返回
+    auto response = result_future.get();
 
-    // 设置超时时间（例如8秒，多关节运动可适当延长）
-    const int timeout_ms = 8000;
-    const int check_interval_ms = 10;
-    int elapsed_ms = 0;
+    if (!response->success)
+    {
+        std::cerr << "ros_multimove RPC failed " << '\n';
+        return false;
+    }
+    token = response->token;
 
+    // 定义超时时间为5秒
+    const auto timeout = std::chrono::seconds(5);
+    // 记录开始时间
+    const auto start_time = std::chrono::steady_clock::now();
+    // 循环检查间隔（100毫秒）
+    const auto check_interval = std::chrono::milliseconds(100);
+
+    // 循环检查直到满足条件或超时
     while (true)
     {
-        bool all_joints_reached = true;
-
-        // 检查所有关节是否都达到目标位置且状态正常
-        for (size_t i = 0; i < joint_indices.size(); ++i)
+        // 获取当前时间
+        const auto now = std::chrono::steady_clock::now();
+        // 检查是否超时
+        if (now - start_time >= timeout)
         {
-            int32_t joint_idx = joint_indices[i];
-            double target_pos = target_positions[i];
 
-            // 检查单个关节是否到位
-            if (!isFloatValueEqual(get_move_msg_->position[joint_idx - 1], target_pos, 0.001) || get_move_msg_->state != 0)
-            {
-                all_joints_reached = false;
-                break; // 只要有一个关节未到位，就跳出检查循环
-            }
+            RCLCPP_ERROR(this->get_logger(),
+                         "ros_multimove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
+                         static_cast<int>(timeout.count()),
+                         get_move_msg_->token,
+                         get_move_msg_->state,
+                         token);
+            return false;
         }
 
-        // 如果所有关节都到位，退出等待循环
-        if (all_joints_reached)
+        // 检查是否满足完成条件
+        if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
         {
-            std::cout << "所有关节运动完成" << "\n";
+            RCLCPP_INFO(this->get_logger(),
+                        "ros_multimove() 完成。token=%u, state=%d",
+                        token, get_move_msg_->state);
             return true;
         }
-
         // error
         if (get_error_msg_->error_code != 0)
         {
@@ -335,39 +378,19 @@ bool H10wRosClient::ros_multimove(const std::vector<uint32_t> &joint_indices, co
                          get_error_msg_->msg.c_str());
             return false;
         }
-
-        // 检查是否超时
-        if (elapsed_ms >= timeout_ms)
-        {
-            RCLCPP_ERROR(this->get_logger(), "运动超时！部分关节未达到目标位置");
-            // 输出未到位的关节信息，便于调试
-            for (size_t i = 0; i < joint_indices.size(); ++i)
-            {
-                int32_t joint_idx = joint_indices[i];
-                double target_pos = target_positions[i];
-                if (!isFloatValueEqual(get_move_msg_->position[joint_idx - 1], target_pos, 0.001))
-                {
-                    RCLCPP_ERROR(this->get_logger(), "关节 %d: 目标位置 %.3f, 当前位置 %.3f",
-                                 joint_idx, target_pos, get_move_msg_->position[joint_idx - 1]);
-                }
-            }
-            return false; // 超时退出
-        }
-
-        // 休眠一小段时间再检查
-        sleepMilliseconds(check_interval_ms);
-        elapsed_ms += check_interval_ms;
-
         // 检查系统状态是否正常
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
             return false;
         }
+
+        // 等待一段时间后再次检查（避免CPU占用过高）
+        std::this_thread::sleep_for(check_interval);
     }
 }
 
-bool H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, const std::vector<float> velocity_percent, std::vector<float> acceleration_percent)
+bool H10wRosClient::ros_linearmove(const std::vector<LinearMoveParams> params, uint32_t &token)
 {
     while (!m_linear_move_client->wait_for_service(std::chrono::seconds(1)))
     {
@@ -379,52 +402,66 @@ bool H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector
         }
         RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
     }
-
     std::vector<controller::msg::LinearMoveParams> linear_params;
-    for (size_t i = 0; i < type.size(); ++i)
+    // 遍历参数构造关节角度信息
+    for (auto &linear : params)
     {
         controller::msg::LinearMoveParams linear_param;
-        linear_param.type = type[i];
-        linear_param.pose = pose[i];
-        linear_param.velocity_percent = velocity_percent[i];
-        linear_param.acceleration_percent = acceleration_percent[i];
+        linear_param.type = linear.type;
+        for (auto &pose : linear.pose)
+            linear_param.pose.push_back(pose);
+        linear_param.velocity_percent = linear.velocity_percent;
+        linear_param.acceleration_percent = linear.acceleration_percent;
         linear_params.emplace_back(linear_param);
     }
+
     // 构造请求
     auto request =
         std::make_shared<controller::srv::LinearMove::Request>();
     request->linear_move = linear_params;
     auto result_future = m_linear_move_client->async_send_request(request);
-    // 等待服务响应
+
     auto response = result_future.get();
+    if (!response->success)
+    {
+        std::cerr << "ros_linearmove RPC failed " << '\n';
+        return false;
+    }
+    token = response->token;
 
-    // 设置超时时间（例如5秒，可根据实际情况调整）
-    const int timeout_ms = 5000;
-    const int check_interval_ms = 10;
-    int elapsed_ms = 0;
+    // 定义超时时间为5秒
+    const auto timeout = std::chrono::seconds(5);
+    // 记录开始时间
+    const auto start_time = std::chrono::steady_clock::now();
+    // 循环检查间隔（100毫秒）
+    const auto check_interval = std::chrono::milliseconds(100);
 
+    // 循环检查直到满足条件或超时
     while (true)
     {
-        bool all_reached = true;
-        // 检查是否满足完成条件
-        for (int i = 0; i < type.size(); i++)
+        // 获取当前时间
+        const auto now = std::chrono::steady_clock::now();
+        // 检查是否超时
+        if (now - start_time >= timeout)
         {
-            for (int j = 0; j < 6; j++)
-            {
-                if (!isFloatValueEqual(get_move_msg_->tcp_pose[type[i] - 1].pose[j], pose[i][j], 0.001))
-                {
-                    all_reached = false;
-                    break;
-                }
-            }
-        }
-        if (all_reached && get_move_msg_->state == 0)
-        {
-            RCLCPP_INFO(this->get_logger(),
-                        "grpc_linearmove() 完成");
-            return true;
+
+            RCLCPP_ERROR(this->get_logger(),
+                         "ros_linearmove() 超时（%d秒），操作未完成。当前状态: token=%u, state=%d, 目标token=%u",
+                         static_cast<int>(timeout.count()),
+                         get_move_msg_->token,
+                         get_move_msg_->state,
+                         token);
+            return false;
         }
 
+        // 检查是否满足完成条件
+        if ((get_move_msg_->state == 0 && get_move_msg_->token == token))
+        {
+            RCLCPP_INFO(this->get_logger(),
+                        "ros_linearmove() 完成。token=%u, state=%d",
+                        token, get_move_msg_->state);
+            return true;
+        }
         // error
         if (get_error_msg_->error_code != 0)
         {
@@ -435,25 +472,15 @@ bool H10wRosClient::ros_linearmove(const std::vector<int32_t> &type, std::vector
                          get_error_msg_->msg.c_str());
             return false;
         }
-
-        // 检查是否超时
-        if (elapsed_ms >= timeout_ms)
-        {
-            RCLCPP_ERROR(this->get_logger(), "运动超时！");
-            // 可以根据需要添加超时处理逻辑，如强制停止等
-            return false; // 超时退出
-        }
-
-        // 休眠一小段时间再检查
-        sleepMilliseconds(check_interval_ms);
-        elapsed_ms += check_interval_ms;
-
         // 检查系统状态是否正常
         if (!rclcpp::ok())
         {
             RCLCPP_ERROR(this->get_logger(), "系统状态异常，退出运动检查");
             return false;
         }
+
+        // 等待一段时间后再次检查（避免CPU占用过高）
+        std::this_thread::sleep_for(check_interval);
     }
 }
 
@@ -872,10 +899,7 @@ bool H10wRosClient::get_joint_soft_limit(std::vector<controller::msg::JointParam
         std::make_shared<controller::srv::GetJointSoftLimit::Request>();
     // 发送异步请求，然后等待返回
     auto result_future = m_get_soft_limit_client->async_send_request(request);
-    std::cout << "1111111111\n";
     auto result = result_future.get();
-    std::cout << "2222222222222\n";
-    std::cout << result << "\n";
 
     joint_params = result->joint_params;
     return true;
@@ -1306,7 +1330,7 @@ bool H10wRosClient::get_cart_mech_rota_max_acc(std::vector<controller::msg::Cart
     return true;
 }
 
-bool H10wRosClient::get_tcp_offset(std::vector<int32_t> &type, std::vector<controller::msg::TcpOffsetParams> &tcp_offset_params)
+bool H10wRosClient::get_tcp_offset(std::vector<int32_t> type, std::vector<TcpOffsetParams> &tcp_offset_params)
 {
     /*等待服务端上线*/
     while (!m_get_tcp_offset_client->wait_for_service(
@@ -1342,10 +1366,10 @@ bool H10wRosClient::get_tcp_offset(std::vector<int32_t> &type, std::vector<contr
     return true;
 }
 
-bool H10wRosClient::get_tcp_payload(std::vector<int32_t> &type, std::vector<controller::msg::TcpPayloadParams> &tcp_payload_params)
+bool H10wRosClient::get_tcp_payload(std::vector<int32_t> type, std::vector<TcpPayloadParams> &tcp_payload_params)
 {
     /*等待服务端上线*/
-    while (!m_get_tcp_paylaod_client->wait_for_service(
+    while (!m_get_tcp_payload_client->wait_for_service(
         std::chrono::seconds(1)))
     {
         // 等待时检测rclcpp的状态
@@ -1364,12 +1388,12 @@ bool H10wRosClient::get_tcp_payload(std::vector<int32_t> &type, std::vector<cont
 
     // 发送异步请求，然后等待返回
     auto result_future =
-        m_get_tcp_paylaod_client->async_send_request(request);
+        m_get_tcp_payload_client->async_send_request(request);
     if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
         rclcpp::FutureReturnCode::SUCCESS)
     {
         RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
-        m_get_tcp_paylaod_client->remove_pending_request(
+        m_get_tcp_payload_client->remove_pending_request(
             result_future);
         return false;
     }
@@ -1378,7 +1402,7 @@ bool H10wRosClient::get_tcp_payload(std::vector<int32_t> &type, std::vector<cont
     return true;
 }
 
-bool H10wRosClient::set_joint_soft_limit(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_pos, const std::vector<double> &min_pos)
+bool H10wRosClient::set_joint_soft_limit(const std::vector<JointSoftLimitParams> params)
 {
     /*等待服务端上线*/
     while (
@@ -1394,24 +1418,18 @@ bool H10wRosClient::set_joint_soft_limit(const std::vector<uint32_t> &joint_inde
     }
 
     // 构造请求
-    auto request = std::make_shared<controller::srv::SetJointSoftLimit::Request>();
-    if (joint_index.size() <= 0)
+    auto request = std::make_shared<SetJointSoftLimit::Request>();
+    if (params.empty())
     {
-        std::cout << "Invalid joint count: " << joint_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (max_pos.size() != joint_index.size() ||
-        min_pos.size() != joint_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < joint_index.size(); i++)
+    for (const auto &joint_param : params)
     {
         controller::msg::JointParams ddsParam;
-        ddsParam.joint_index = joint_index[i];
-        ddsParam.max_pos = max_pos[i];
-        ddsParam.min_pos = min_pos[i];
+        ddsParam.joint_index = joint_param.joint_index;
+        ddsParam.max_pos = joint_param.max_pos;
+        ddsParam.min_pos = joint_param.min_pos;
         request->joint_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1427,7 +1445,7 @@ bool H10wRosClient::set_joint_soft_limit(const std::vector<uint32_t> &joint_inde
     return response->success;
 }
 
-bool H10wRosClient::set_joint_max_vel(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_vel)
+bool H10wRosClient::set_joint_max_vel(const std::vector<JointMaxParams> max_vel)
 {
     /*等待服务端上线*/
     while (!m_set_joint_max_vel_client->wait_for_service(
@@ -1443,22 +1461,17 @@ bool H10wRosClient::set_joint_max_vel(const std::vector<uint32_t> &joint_index, 
     }
 
     // 构造请求
-    auto request = std::make_shared<controller::srv::SetJointMaxVel::Request>();
-    if (joint_index.size() <= 0)
+    auto request = std::make_shared<SetJointMaxVel::Request>();
+    if (max_vel.empty())
     {
-        std::cout << "Invalid joint count: " << joint_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (max_vel.size() != joint_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < joint_index.size(); i++)
+    for (const auto &joint_param : max_vel)
     {
         controller::msg::JointParams ddsParam;
-        ddsParam.joint_index = joint_index[i];
-        ddsParam.max_vel = max_vel[i];
+        ddsParam.joint_index = joint_param.joint_index;
+        ddsParam.max_vel = joint_param.value;
         request->joint_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1475,7 +1488,7 @@ bool H10wRosClient::set_joint_max_vel(const std::vector<uint32_t> &joint_index, 
     return response->success;
 }
 
-bool H10wRosClient::set_joint_max_acc(const std::vector<uint32_t> &joint_index, const std::vector<double> &max_acc)
+bool H10wRosClient::set_joint_max_acc(const std::vector<JointMaxParams> max_acc)
 {
     /*等待服务端上线*/
     while (!m_set_joint_max_acc_client->wait_for_service(
@@ -1492,21 +1505,16 @@ bool H10wRosClient::set_joint_max_acc(const std::vector<uint32_t> &joint_index, 
 
     // 构造请求
     auto request = std::make_shared<controller::srv::SetJointMaxAcc::Request>();
-    if (joint_index.size() <= 0)
+    if (max_acc.empty())
     {
-        std::cout << "Invalid joint count: " << joint_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (max_acc.size() != joint_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < joint_index.size(); i++)
+    for (const auto &joint_param : max_acc)
     {
         controller::msg::JointParams ddsParam;
-        ddsParam.joint_index = joint_index[i];
-        ddsParam.max_acc = max_acc[i];
+        ddsParam.joint_index = joint_param.joint_index;
+        ddsParam.max_acc = joint_param.value;
         request->joint_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1523,7 +1531,7 @@ bool H10wRosClient::set_joint_max_acc(const std::vector<uint32_t> &joint_index, 
     return response->success;
 }
 
-bool H10wRosClient::set_cart_trans_max_vel(const std::vector<uint32_t> &cartesian_index, const std::vector<double> &trans_max_vel)
+bool H10wRosClient::set_cart_trans_max_vel(const std::vector<CartMaxParams> max_vel)
 {
     /*等待服务端上线*/
     while (!m_set_cart_trans_max_vel_client->wait_for_service(
@@ -1541,21 +1549,16 @@ bool H10wRosClient::set_cart_trans_max_vel(const std::vector<uint32_t> &cartesia
     // 构造请求
     auto request = std::make_shared<
         controller::srv::SetCartesianTranslationMaxVel::Request>();
-    if (cartesian_index.size() <= 0)
+    if (max_vel.empty())
     {
-        std::cout << "Invalid joint count: " << cartesian_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (trans_max_vel.size() != cartesian_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < cartesian_index.size(); i++)
+    for (const auto &cart_param : max_vel)
     {
         controller::msg::CartesianParams ddsParam;
-        ddsParam.cartesian_index = cartesian_index[i];
-        ddsParam.trans_max_vel = trans_max_vel[i];
+        ddsParam.cartesian_index = cart_param.cartesian_index;
+        ddsParam.trans_max_vel = cart_param.value;
         request->cartesian_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1572,7 +1575,7 @@ bool H10wRosClient::set_cart_trans_max_vel(const std::vector<uint32_t> &cartesia
     return response->success;
 }
 
-bool H10wRosClient::set_cart_trans_max_acc(const std::vector<uint32_t> &cartesian_index, const std::vector<double> &trans_max_acc)
+bool H10wRosClient::set_cart_trans_max_acc(const std::vector<CartMaxParams> max_acc)
 {
     /*等待服务端上线*/
     while (!m_set_cart_trans_max_acc_client->wait_for_service(
@@ -1590,21 +1593,16 @@ bool H10wRosClient::set_cart_trans_max_acc(const std::vector<uint32_t> &cartesia
     // 构造请求
     auto request = std::make_shared<
         controller::srv::SetCartesianTranslationMaxAcc::Request>();
-    if (cartesian_index.size() <= 0)
+    if (max_acc.empty())
     {
-        std::cout << "Invalid joint count: " << cartesian_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (trans_max_acc.size() != cartesian_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < cartesian_index.size(); i++)
+    for (const auto &cart_param : max_acc)
     {
         controller::msg::CartesianParams ddsParam;
-        ddsParam.cartesian_index = cartesian_index[i];
-        ddsParam.trans_max_acc = trans_max_acc[i];
+        ddsParam.cartesian_index = cart_param.cartesian_index;
+        ddsParam.trans_max_acc = cart_param.value;
         request->cartesian_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1621,7 +1619,7 @@ bool H10wRosClient::set_cart_trans_max_acc(const std::vector<uint32_t> &cartesia
     return response->success;
 }
 
-bool H10wRosClient::set_cart_rota_max_vel(const std::vector<uint32_t> &cartesian_index, const std::vector<double> &rota_max_vel)
+bool H10wRosClient::set_cart_rota_max_vel(const std::vector<CartMaxParams> max_vel)
 {
     /*等待服务端上线*/
     while (!m_set_cart_rota_max_vel_client->wait_for_service(
@@ -1639,21 +1637,16 @@ bool H10wRosClient::set_cart_rota_max_vel(const std::vector<uint32_t> &cartesian
     // 构造请求
     auto request = std::make_shared<
         controller::srv::SetCartesianRotationMaxVel::Request>();
-    if (cartesian_index.size() <= 0)
+    if (max_vel.empty())
     {
-        std::cout << "Invalid joint count: " << cartesian_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (rota_max_vel.size() != cartesian_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < cartesian_index.size(); i++)
+    for (const auto &cart_param : max_vel)
     {
         controller::msg::CartesianParams ddsParam;
-        ddsParam.cartesian_index = cartesian_index[i];
-        ddsParam.rota_max_vel = rota_max_vel[i];
+        ddsParam.cartesian_index = cart_param.cartesian_index;
+        ddsParam.rota_max_vel = cart_param.value;
         request->cartesian_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1670,7 +1663,7 @@ bool H10wRosClient::set_cart_rota_max_vel(const std::vector<uint32_t> &cartesian
     return response->success;
 }
 
-bool H10wRosClient::set_cart_rota_max_acc(const std::vector<uint32_t> &cartesian_index, const std::vector<double> &rota_max_acc)
+bool H10wRosClient::set_cart_rota_max_acc(const std::vector<CartMaxParams> max_acc)
 {
     /*等待服务端上线*/
     while (!m_set_cart_rota_max_acc_client->wait_for_service(
@@ -1688,21 +1681,16 @@ bool H10wRosClient::set_cart_rota_max_acc(const std::vector<uint32_t> &cartesian
     // 构造请求
     auto request = std::make_shared<
         controller::srv::SetCartesianRotationMaxAcc::Request>();
-    if (cartesian_index.size() <= 0)
+    if (max_acc.empty())
     {
-        std::cout << "Invalid joint count: " << cartesian_index.size() << std::endl;
+        std::cout << "Invalid joint count: " << std::endl;
         return false;
     }
-    if (rota_max_acc.size() != cartesian_index.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < cartesian_index.size(); i++)
+    for (const auto &cart_param : max_acc)
     {
         controller::msg::CartesianParams ddsParam;
-        ddsParam.cartesian_index = cartesian_index[i];
-        ddsParam.rota_max_acc = rota_max_acc[i];
+        ddsParam.cartesian_index = cart_param.cartesian_index;
+        ddsParam.rota_max_acc = cart_param.value;
         request->cartesian_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1719,7 +1707,7 @@ bool H10wRosClient::set_cart_rota_max_acc(const std::vector<uint32_t> &cartesian
     return response->success;
 }
 
-bool H10wRosClient::set_tcp_offset(const std::vector<int32_t> &type, std::vector<std::vector<double>> &offset)
+bool H10wRosClient::set_tcp_offset(const std::vector<TcpParam> tcp_offset_param)
 {
     /*等待服务端上线*/
     while (!m_set_tcp_offset_client->wait_for_service(
@@ -1737,23 +1725,23 @@ bool H10wRosClient::set_tcp_offset(const std::vector<int32_t> &type, std::vector
     // 构造请求
     auto request = std::make_shared<
         controller::srv::SetTcpOffset::Request>();
-    if (type.size() <= 0)
+    if (tcp_offset_param.empty())
     {
-        std::cout << "Invalid joint count: " << type.size() << std::endl;
+        std::cout << "Invalid joint count " << std::endl;
         return false;
     }
-    if (offset.size() != type.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < type.size(); i++)
+
+    for (const auto &offset : tcp_offset_param)
     {
         controller::msg::TcpOffsetParams ddsParam;
-        ddsParam.type = type[i];
-        ddsParam.offset = offset[i];
+        ddsParam.type = offset.type;
+        for (double val : offset.data)
+        {
+            ddsParam.offset.push_back(val);
+        }
         request->tcp_offset_params.push_back(ddsParam);
     }
+
     // 发送异步请求，然后等待返回
     auto result_future =
         m_set_tcp_offset_client->async_send_request(request);
@@ -1768,7 +1756,7 @@ bool H10wRosClient::set_tcp_offset(const std::vector<int32_t> &type, std::vector
     return response->success;
 }
 
-bool H10wRosClient::set_tcp_payload(const std::vector<int32_t> &type, std::vector<std::vector<double>> &payload)
+bool H10wRosClient::set_tcp_payload(const std::vector<TcpParam> tcp_payload_param)
 {
     /*等待服务端上线*/
     while (!m_set_tcp_payload_client->wait_for_service(
@@ -1786,21 +1774,19 @@ bool H10wRosClient::set_tcp_payload(const std::vector<int32_t> &type, std::vecto
     // 构造请求
     auto request = std::make_shared<
         controller::srv::SetTcpPayload::Request>();
-    if (type.size() <= 0)
+    if (tcp_payload_param.empty())
     {
-        std::cout << "Invalid joint count: " << type.size() << std::endl;
+        std::cout << "Invalid joint count " << std::endl;
         return false;
     }
-    if (payload.size() != type.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-        return false;
-    }
-    for (int i = 0; i < type.size(); i++)
+    for (const auto &payload : tcp_payload_param)
     {
         controller::msg::TcpPayloadParams ddsParam;
-        ddsParam.type = type[i];
-        ddsParam.parameters = payload[i];
+        ddsParam.type = payload.type;
+        for (double val : payload.data)
+        {
+            ddsParam.parameters.push_back(val);
+        }
         request->tcp_payload_params.push_back(ddsParam);
     }
     // 发送异步请求，然后等待返回
@@ -1817,9 +1803,8 @@ bool H10wRosClient::set_tcp_payload(const std::vector<int32_t> &type, std::vecto
     return response->success;
 }
 
-std::vector<std::pair<int32_t, std::vector<double>>> H10wRosClient::forward(const std::vector<int32_t> &type, std::vector<double> &joint_angles)
+bool H10wRosClient::forward(const ForwardRequest joint, std::vector<TcpParam> &pose)
 {
-    std::vector<std::pair<int32_t, std::vector<double>>> result;
     /*等待服务端上线*/
     while (!m_forward_client->wait_for_service(
         std::chrono::seconds(1)))
@@ -1835,8 +1820,11 @@ std::vector<std::pair<int32_t, std::vector<double>>> H10wRosClient::forward(cons
     // 构造请求
     auto request = std::make_shared<
         controller::srv::ForwardKinematics::Request>();
-    request->type = type;
-    request->joint_angles = joint_angles;
+
+    for (int t : joint.type)
+        request->type.push_back(t); // 添加元素
+    for (double angle : joint.joint_angles)
+        request->joint_angles.push_back(angle);
 
     // 发送异步请求，然后等待返回
     auto result_future =
@@ -1846,22 +1834,25 @@ std::vector<std::pair<int32_t, std::vector<double>>> H10wRosClient::forward(cons
     {
         RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
         m_forward_client->remove_pending_request(result_future);
+        return false;
     }
     auto response = result_future.get();
-    auto tcpPoseParams = response->pose;
-    for (auto tcpPoseParam : tcpPoseParams)
+
+    auto &tcpPoseParams = response->pose;
+
+    for (const auto &tcpPoseParam : tcpPoseParams)
     {
         std::vector<double> poseVec(
             tcpPoseParam.pose.begin(),
             tcpPoseParam.pose.end());
-        result.emplace_back(tcpPoseParam.type, poseVec);
+        TcpParam rosParam(tcpPoseParam.type, poseVec);
+        pose.push_back(rosParam);
     }
-    return result;
+    return true;
 }
 
-std::vector<double> H10wRosClient::inverse(const std::vector<int32_t> &type, std::vector<std::vector<double>> &pose, bool if_use_whole_body)
+bool H10wRosClient::inverse(const KinematicsParams params, std::vector<double> &joint)
 {
-    std::vector<double> result;
     /*等待服务端上线*/
     while (!m_inverse_client->wait_for_service(
         std::chrono::seconds(1)))
@@ -1873,26 +1864,28 @@ std::vector<double> H10wRosClient::inverse(const std::vector<int32_t> &type, std
         }
         RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
     }
-
+    if (params.pose.empty() || params.type.empty())
+    {
+        std::cerr << "Empty pose input" << std::endl;
+        return false;
+    }
     // 构造请求
     auto request = std::make_shared<
         controller::srv::InverseKinematics::Request>();
-    if (type.size() <= 0)
-    {
-        std::cout << "Invalid joint count: " << type.size() << std::endl;
-    }
-    if (pose.size() != type.size())
-    {
-        std::cout << "Parameter array size mismatch with joint count" << std::endl;
-    }
-    for (int i = 0; i < type.size(); i++)
+
+    for (int i = 0; i < params.type.size(); i++)
     {
         controller::msg::TcpPoseParams ddsParam;
-        ddsParam.type = type[i];
-        ddsParam.pose = pose[i];
+        ddsParam.type = params.type[i];
+        for (double val : params.pose[i])
+        {
+            ddsParam.pose.push_back(val);
+        };
         request->pose.push_back(ddsParam);
     }
-    request->if_use_whole_body = if_use_whole_body;
+    for (double angle : params.joint_angle)
+        request->reference_joint_angles.push_back(angle);
+    request->if_use_whole_body = params.if_use_whole_body;
 
     // 发送异步请求，然后等待返回
     auto result_future =
@@ -1902,12 +1895,276 @@ std::vector<double> H10wRosClient::inverse(const std::vector<int32_t> &type, std
     {
         RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
         m_inverse_client->remove_pending_request(result_future);
+        return false;
     }
     auto response = result_future.get();
     auto jointAngles = response->joint_angles;
     for (int i = 0; i < jointAngles.size(); i++)
     {
-        result.emplace_back(jointAngles[i]);
+        joint.emplace_back(jointAngles[i]);
     }
-    return result;
+    return true;
+}
+
+bool H10wRosClient::enable_controller(bool m_enable)
+{
+    /*等待服务端上线*/
+    while (!m_enable_controller_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::EnableController::Request>();
+    request->enable = m_enable;
+
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_enable_controller_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_enable_controller_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    return response->success;
+}
+
+bool H10wRosClient::set_chassis_max_vel(double linear_vel, double angular_vel)
+{
+    /*等待服务端上线*/
+    while (!m_set_chassis_max_vel_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::SetChassisMaxVel::Request>();
+    request->linear_velocity = linear_vel;
+    request->angular_velocity = angular_vel;
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_set_chassis_max_vel_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_set_chassis_max_vel_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    return response->success;
+}
+
+bool H10wRosClient::get_chassis_max_vel(double &linear_vel, double &angular_vel)
+{
+    /*等待服务端上线*/
+    while (!m_get_chassis_max_vel_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::GetChassisMaxVel::Request>();
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_get_chassis_max_vel_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_get_chassis_max_vel_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    linear_vel = response->linear_velocity;
+    angular_vel = response->angular_velocity;
+    return true;
+}
+
+bool H10wRosClient::set_control_policy(int32_t policy)
+{
+    /*等待服务端上线*/
+    while (!m_set_control_policy_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::SetControlPolicy::Request>();
+    request->policy = policy;
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_set_control_policy_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_set_control_policy_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    return response->success;
+}
+
+bool H10wRosClient::get_control_policy(int32_t &policy)
+{
+    /*等待服务端上线*/
+    while (!m_get_control_policy_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::GetControlPolicy::Request>();
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_get_control_policy_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_get_control_policy_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    policy = response->policy;
+    return true;
+}
+
+bool H10wRosClient::set_safe_mode(bool safe_mode)
+{
+    /*等待服务端上线*/
+    while (!m_set_safe_mode_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::SetSafeMode::Request>();
+    request->enable = safe_mode;
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_set_safe_mode_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_set_safe_mode_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    return response->success;
+}
+
+bool H10wRosClient::get_safe_mode(bool &safe_mode)
+{
+    /*等待服务端上线*/
+    while (!m_get_safe_mode_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::GetSafeMode::Request>();
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_get_safe_mode_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_get_safe_mode_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    safe_mode = response->enable;
+    return true;
+}
+
+bool H10wRosClient::is_enabled_controller(bool &is_enabled)
+{
+    /*等待服务端上线*/
+    while (!m_is_enable_controller_client->wait_for_service(
+        std::chrono::seconds(1)))
+    {
+        // 等待时检测rclcpp的状态
+        if (!rclcpp::ok())
+        {
+            RCLCPP_ERROR(this->get_logger(), "等待服务的过程中被打断...");
+            return false;
+        }
+        RCLCPP_INFO(this->get_logger(), "等待服务端上线中");
+    }
+    // 构造请求
+    auto request = std::make_shared<
+        controller::srv::IsEnabledController::Request>();
+    // 发送异步请求，然后等待返回
+    auto result_future =
+        m_is_enable_controller_client->async_send_request(request);
+    if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result_future) !=
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_ERROR(this->get_logger(), "服务调用失败 :(");
+        m_is_enable_controller_client->remove_pending_request(result_future);
+        return false;
+    }
+    auto response = result_future.get();
+    is_enabled = response->enable;
+    return response->success;
 }

@@ -12,7 +12,21 @@ message ErrorClearResponse{
   bool  success = 1;
 }
 
+message EnableControllerRequest{
+  bool  enable = 1;
+}
+
+message EnableControllerResponse{
+  bool  success = 1;
+}
+
+message IsEnabledControllerResponse{
+  bool  enable = 1;
+}
+
 service SystemService {
   rpc GetVersion(google.protobuf.Empty) returns (VersionResponse) {}
   rpc ClearError(google.protobuf.Empty) returns (ErrorClearResponse) {}
+  rpc EnableController(EnableControllerRequest) returns (EnableControllerResponse) {}
+  rpc IsEnabledController(google.protobuf.Empty) returns (IsEnabledControllerResponse) {}
 }

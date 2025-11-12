@@ -3187,7 +3187,8 @@ class InverseKinematicsRequest final
   // accessors -------------------------------------------------------
   enum : int {
     kTcpPoseParamsFieldNumber = 1,
-    kIfUseWholeBodyFieldNumber = 2,
+    kReferenceJointAnglesFieldNumber = 2,
+    kIfUseWholeBodyFieldNumber = 3,
   };
   // repeated .controller.TcpPoseParams tcp_pose_params = 1;
   int tcp_pose_params_size() const;
@@ -3206,7 +3207,25 @@ class InverseKinematicsRequest final
   const ::controller::TcpPoseParams& tcp_pose_params(int index) const;
   ::controller::TcpPoseParams* add_tcp_pose_params();
   const ::google::protobuf::RepeatedPtrField<::controller::TcpPoseParams>& tcp_pose_params() const;
-  // bool if_use_whole_body = 2;
+  // repeated double reference_joint_angles = 2;
+  int reference_joint_angles_size() const;
+  private:
+  int _internal_reference_joint_angles_size() const;
+
+  public:
+  void clear_reference_joint_angles() ;
+  double reference_joint_angles(int index) const;
+  void set_reference_joint_angles(int index, double value);
+  void add_reference_joint_angles(double value);
+  const ::google::protobuf::RepeatedField<double>& reference_joint_angles() const;
+  ::google::protobuf::RepeatedField<double>* mutable_reference_joint_angles();
+
+  private:
+  const ::google::protobuf::RepeatedField<double>& _internal_reference_joint_angles() const;
+  ::google::protobuf::RepeatedField<double>* _internal_mutable_reference_joint_angles();
+
+  public:
+  // bool if_use_whole_body = 3;
   void clear_if_use_whole_body() ;
   bool if_use_whole_body() const;
   void set_if_use_whole_body(bool value);
@@ -3221,7 +3240,7 @@ class InverseKinematicsRequest final
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
+      2, 3, 1,
       0, 2>
       _table_;
 
@@ -3240,6 +3259,7 @@ class InverseKinematicsRequest final
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const InverseKinematicsRequest& from_msg);
     ::google::protobuf::RepeatedPtrField< ::controller::TcpPoseParams > tcp_pose_params_;
+    ::google::protobuf::RepeatedField<double> reference_joint_angles_;
     bool if_use_whole_body_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -5507,7 +5527,52 @@ InverseKinematicsRequest::_internal_mutable_tcp_pose_params() {
   return &_impl_.tcp_pose_params_;
 }
 
-// bool if_use_whole_body = 2;
+// repeated double reference_joint_angles = 2;
+inline int InverseKinematicsRequest::_internal_reference_joint_angles_size() const {
+  return _internal_reference_joint_angles().size();
+}
+inline int InverseKinematicsRequest::reference_joint_angles_size() const {
+  return _internal_reference_joint_angles_size();
+}
+inline void InverseKinematicsRequest::clear_reference_joint_angles() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reference_joint_angles_.Clear();
+}
+inline double InverseKinematicsRequest::reference_joint_angles(int index) const {
+  // @@protoc_insertion_point(field_get:controller.InverseKinematicsRequest.reference_joint_angles)
+  return _internal_reference_joint_angles().Get(index);
+}
+inline void InverseKinematicsRequest::set_reference_joint_angles(int index, double value) {
+  _internal_mutable_reference_joint_angles()->Set(index, value);
+  // @@protoc_insertion_point(field_set:controller.InverseKinematicsRequest.reference_joint_angles)
+}
+inline void InverseKinematicsRequest::add_reference_joint_angles(double value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_reference_joint_angles()->Add(value);
+  // @@protoc_insertion_point(field_add:controller.InverseKinematicsRequest.reference_joint_angles)
+}
+inline const ::google::protobuf::RepeatedField<double>& InverseKinematicsRequest::reference_joint_angles() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:controller.InverseKinematicsRequest.reference_joint_angles)
+  return _internal_reference_joint_angles();
+}
+inline ::google::protobuf::RepeatedField<double>* InverseKinematicsRequest::mutable_reference_joint_angles()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:controller.InverseKinematicsRequest.reference_joint_angles)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_reference_joint_angles();
+}
+inline const ::google::protobuf::RepeatedField<double>&
+InverseKinematicsRequest::_internal_reference_joint_angles() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.reference_joint_angles_;
+}
+inline ::google::protobuf::RepeatedField<double>* InverseKinematicsRequest::_internal_mutable_reference_joint_angles() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.reference_joint_angles_;
+}
+
+// bool if_use_whole_body = 3;
 inline void InverseKinematicsRequest::clear_if_use_whole_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.if_use_whole_body_ = false;

@@ -1,0 +1,16 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from controller/srv/SetCartesianRotationMaxVel.srv
+// generated code does not contain a copyright notice
+
+#include "controller/msg/CartesianParams.idl"
+
+module controller {
+  module srv {
+    struct SetCartesianRotationMaxVel_Request {
+      sequence<controller::msg::CartesianParams> cartesian_params;
+    };
+    struct SetCartesianRotationMaxVel_Response {
+      boolean success;
+    };
+  };
+};
